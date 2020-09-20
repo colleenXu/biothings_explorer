@@ -8,7 +8,7 @@ Export the output of BTE to pandas data frame.
 """
 
 import pandas as pd
-
+import re
 
 def networkx2pandas(current_graph, input_type):
     """Converting current graph into a pandas data frame
@@ -24,7 +24,8 @@ def networkx2pandas(current_graph, input_type):
                 if i == 0:
                     path_data['input'] = edge['input_name']
                     path_data['input_type'] = input_type
-                path_data['pred' + str(i + 1)] = edge['info']['label']
+                path_data['pred' + str(i + 1)] = retrieve_prop_from_edge(edge['info'], 
+                                                                         'relation')
                 path_data['pred' + str(i + 1) +
                           '_source'] = retrieve_prop_from_edge(edge['info'],
                                                                'source')
@@ -34,16 +35,45 @@ def networkx2pandas(current_graph, input_type):
                 path_data['pred' + str(i + 1) +
                           '_pubmed'] = retrieve_prop_from_edge(edge['info'],
                                                                'pubmed')
+                path_data['pred' + str(i + 1) +
+                          '_method'] = retrieve_prop_from_edge(edge['info'],
+                                                               'category')   
+                ## not using right now
+#                 path_data['pred' + str(i + 1) +
+#                           '_frequency'] = retrieve_prop_from_edge(edge['info'],
+#                                                                'frequency')                    
                 node = 'output' if i + 1 == len(path) else 'node' + str(i + 1)
                 path_data[node + '_type'] = edge['info']['info']['@type']
                 path_data[node + '_name'] = edge['output_name']
                 path_data[node + '_id'] = edge['output_id']
             data.append(path_data)
     return pd.DataFrame(data).drop_duplicates()
+#     return pd.DataFrame(data)  ## use if I want to see the duplicates 
 
 
 def retrieve_prop_from_edge(edge_info, prop):
-    """Retrieve property info from the edge data."""
+    """
+    Retrieve property info from the edge data.
+
+    :param: edge_info: dictionary of edge information
+    :param: prop: string, specific information you want from this dictionary
+
+    Output:
+         string, the specific information for that edge
+    
+    The edge_info is a dictionary with the following keys: 
+        * info: a dictionary with the following possible keys: 
+            * 'category': a list of strings, the method (how the info was generated)
+            * 'SYMBOL', 'name', 'ULMS', 'MGI' keys: value is a string identifier
+            * 'pubmed': list of strings, pubmed IDs
+            * 'taxid': list of strings (NCBITaxon curies)
+            * 'source': list of strings (resource the API drew from to get this info)
+            * 'relation': list of strings (relationship)
+            * always there: '$api' string, the API this info came from   
+            * always there: '$source': like source, but annotated by SmartAPI rather than the API itself
+            * always there: '@type': string, BioThings type of output  
+        * label: like relation, but annotated by SmartAPI rather than the API itself 
+    """
     if prop == 'api':
         data = edge_info['info'].get('$api')
         if data:
@@ -51,11 +81,29 @@ def retrieve_prop_from_edge(edge_info, prop):
                 data = [data]
             return ','.join(data)
     elif prop == 'source':
-        data = edge_info['info'].get('$source')
+        ## try getting source from inner dictionary, from api
+        data = edge_info['info'].get('source')
+        ## if that didn't work, get source from SmartAPI
+        if not data:
+            data = edge_info['info'].get('$source')        
         if data:
             if not isinstance(data, list):
                 data = [data]
-            return ','.join(data)
+#             return ','.join(data)    
+            new_data = []
+            for val in data:
+                ## try getting source if url is in this format
+                temp = re.findall("https://archive.monarchinitiative.org/#([a-zA-Z]+)", val)
+                ## if that didn't work, try another format
+                if not temp:  
+                    temp = re.findall("https://data.monarchinitiative.org/ttl/([a-zA-Z]+).", val)
+                ## if either worked...change the source value to this, as a string
+                if temp:
+                    new_data.append(''.join(temp))
+                ## if none worked, keep the current source value as-is 
+                else:
+                    new_data.append(val)
+            return ','.join(new_data)
     elif prop == 'pubmed':
         data = edge_info['info'].get('pubmed')
         if data:
@@ -65,3 +113,32 @@ def retrieve_prop_from_edge(edge_info, prop):
                 data = [str(item) if not isinstance(item, str) else item
                         for item in data]
             return ','.join(data)
+    elif prop == 'relation':  
+        ## try getting source from inner dictionary, from api        
+        data = edge_info['info'].get('relation')
+        ## if that didn't work, get source from SmartAPI
+        if not data:
+            data = edge_info.get('label')  
+        if data:  
+            if not isinstance(data, list):
+                data = [data]
+            data = [item.replace(" ", "_") for item in data]
+            return ','.join(data)    
+    elif prop == 'category':  
+        data = edge_info['info'].get('category')
+        ## if that didn't work, try getting source from another entry
+        if not data:
+            data = edge_info['info'].get('evidence') 
+        if data:  
+            if not isinstance(data, list):
+                data = [data]
+            data = [item.replace(" ", "_") for item in data]
+            return ','.join(data) 
+    elif prop == 'frequency':  
+        data = edge_info['info'].get('frequency')
+        ## if that didn't work, try getting source from another entry
+        if data:  
+            if not isinstance(data, list):
+                data = [data]
+            data = [item.replace(" ", "_") for item in data]
+            return ','.join(data)    
