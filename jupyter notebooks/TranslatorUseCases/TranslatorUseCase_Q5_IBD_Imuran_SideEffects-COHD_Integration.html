@@ -14336,6 +14336,14 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>2020-11-26 update: Hint module results changed so the pick selection is changed. Also commented out the print statements in OMOP map -&gt; MONDO.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Understanding-the-question">Understanding the question<a class="anchor-link" href="#Understanding-the-question">&#182;</a></h2>
 </div>
 </div>
@@ -14633,9 +14641,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-09-28 18:47:59.618219
+2020-11-26 14:49:52.715392
 UTC time: 
-2020-09-29 01:47:59.618389
+2020-11-26 22:49:52.715548
 </pre>
 </div>
 </div>
@@ -14927,11 +14935,10 @@ Pathway, Inflammatory bowel disease (IBD) - Mus musculus (mouse), num of IDs: 1
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 4 BioThings objects returned for Imuran:
-ChemicalSubstance, azathioprine, num of IDs: 6
+<pre>There are 3 BioThings objects returned for Imuran:
+ChemicalSubstance, AZATHIOPRINE, num of IDs: 13
 ChemicalSubstance, Imuran, num of IDs: 2
 ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
-ChemicalSubstance, AZATHIOPRINE, num of IDs: 13
 </pre>
 </div>
 </div>
@@ -14943,7 +14950,7 @@ ChemicalSubstance, AZATHIOPRINE, num of IDs: 13
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>All of these <code>ChemicalSubstance</code> entries seem to be the right object. We'll pick the entry with the most identifiers (indexed at 3) for our query. We can look at identifier mappings inside this BioThings object.</p>
+<p>2020-11-26 update: Hint module results changed so the pick selection is changed. All of these <code>ChemicalSubstance</code> entries seem to be the right object. We'll pick the entry with the most identifiers (the first one, indexed at 0) for our query. We can look at identifier mappings inside this BioThings object.</p>
 
 </div>
 </div>
@@ -14955,7 +14962,7 @@ ChemicalSubstance, AZATHIOPRINE, num of IDs: 13
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
 <span class="n">drug_choice_type</span> <span class="o">=</span> <span class="s1">&#39;ChemicalSubstance&#39;</span>
-<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">0</span>
 
 <span class="n">drug_hint_obj</span> <span class="o">=</span> <span class="n">drug_hint</span><span class="p">[</span><span class="n">drug_choice_type</span><span class="p">][</span><span class="n">drug_choice_idx</span><span class="p">]</span>  
 <span class="n">drug_hint_obj</span>
@@ -15197,54 +15204,54 @@ API 5. CORD Disease API (1 API calls)
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
 API 3.1: http://mydisease.info/v1/query?fields=mondo.descendants (POST -d q=MONDO:0005265&amp;scopes=mondo.mondo)
-API 3.1 mydisease.info API: 0 hits
+API 3.1 mydisease.info API: 81 hits
 API 3.2: http://mydisease.info/v1/query?fields=mondo.parents (POST -d q=MONDO:0005265&amp;scopes=mondo.mondo)
 API 3.2 mydisease.info API: 2 hits
-API 4.1: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C0021390&amp;scopes=umls)
-API 4.1 SEMMED Disease API: 137 hits
-API 5.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:0050589&amp;scopes=doid)
-API 4.2: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0021390&amp;scopes=umls)
-API 4.2: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0021390&amp;scopes=umls)
-API 4.2: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0021390&amp;scopes=umls)
-API 4.2 SEMMED Disease API: 106 hits
-API 5.1 CORD Disease API: 115 hits
-API 4.3 SEMMED Disease API: 148 hits
-API 4.4 SEMMED Disease API: 118 hits
+API 4.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.1 SEMMED Disease API: 118 hits
 API 2.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:0050589
-API 1.1: http://tr-kp-clinical.ncats.io/api/association/chiSquare?concept_id_1=4074815&amp;dataset_id=3&amp;domain=Condition
 API 2.1 Ontology Lookup Service API: 20 hits
+API 1.1: http://tr-kp-clinical.ncats.io/api/association/chiSquare?concept_id_1=4074815&amp;dataset_id=3&amp;domain=Condition
 cohd transformer triggerd
 API 1.1 COHD API: 393 hits
-API 4.5: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
-API 4.5 SEMMED Disease API: 0 hits
-API 4.6: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.2: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0021390&amp;scopes=umls)
+API 4.2 SEMMED Disease API: 148 hits
+API 4.3: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.3 SEMMED Disease API: 106 hits
+API 4.4: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C0021390&amp;scopes=umls)
+API 4.4 SEMMED Disease API: 137 hits
+API 4.5: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0021390&amp;scopes=umls)
+API 4.5 SEMMED Disease API: 892 hits
+API 4.6: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C0021390&amp;scopes=umls)
 API 4.6 SEMMED Disease API: 0 hits
-API 4.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0021390&amp;scopes=umls)
+API 4.7: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0021390&amp;scopes=umls)
 API 4.7 SEMMED Disease API: 0 hits
-API 4.8: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C0021390&amp;scopes=umls)
+API 4.8: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0021390&amp;scopes=umls)
 API 4.8 SEMMED Disease API: 0 hits
-API 4.9: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0021390&amp;scopes=umls)
-API 4.9 SEMMED Disease API: 892 hits
-API 4.10: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0021390&amp;scopes=umls)
+API 4.9: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.9 SEMMED Disease API: 0 hits
+API 4.10: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
 API 4.10 SEMMED Disease API: 0 hits
-API 4.11: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.11: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0021390&amp;scopes=umls)
 API 4.11 SEMMED Disease API: 0 hits
-API 4.12: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C0021390&amp;scopes=umls)
+API 4.12: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0021390&amp;scopes=umls)
 API 4.12 SEMMED Disease API: 0 hits
-API 4.13: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0021390&amp;scopes=umls)
+API 4.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0021390&amp;scopes=umls)
 API 4.13 SEMMED Disease API: 0 hits
-API 4.14: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.14: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C0021390&amp;scopes=umls)
 API 4.14 SEMMED Disease API: 0 hits
-API 4.15: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C0021390&amp;scopes=umls)
-API 4.15 SEMMED Disease API: 0 hits
-API 4.16: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0021390&amp;scopes=umls)
-API 4.16: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0021390&amp;scopes=umls)
-API 4.16 SEMMED Disease API: 2 hits
-API 4.17 SEMMED Disease API: 65 hits
+API 4.15: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0021390&amp;scopes=umls)
+API 4.15 SEMMED Disease API: 65 hits
+API 4.16: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C0021390&amp;scopes=umls)
+API 4.16 SEMMED Disease API: 0 hits
+API 4.17: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0021390&amp;scopes=umls)
+API 4.17 SEMMED Disease API: 2 hits
+API 5.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:0050589&amp;scopes=doid)
+API 5.1 CORD Disease API: 115 hits
 
 BTE starts to perform id-to-object translation.
 
-After id-to-object translation, BTE retrieved 1500 unique output nodes.
+After id-to-object translation, BTE retrieved 1542 unique output nodes.
 
 
 
@@ -15252,7 +15259,7 @@ After id-to-object translation, BTE retrieved 1500 unique output nodes.
 ========== Final assembly of results ==========
 ==========
 
-In the #1 query, BTE found 1500 unique nodes.
+In the #1 query, BTE found 1542 unique nodes.
 </pre>
 </div>
 </div>
@@ -15403,66 +15410,64 @@ API 9. Automat HMDB API (2 API calls)
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
 API 3.1: http://mydisease.info/v1/query?fields=disgenet.xrefs.mesh&amp;size=250 (POST -d q=D001379&amp;scopes=ctd.chemical_related_to_disease.mesh_chemical_id)
-API 3.1 mydisease.info API: 0 hits
-API 8.1: https://biothings.ncats.io/cord_chemical/query?fields=associated_with (POST -d q=CHEBI:2948&amp;scopes=chebi)
-API 8.1 CORD Chemical API: 11 hits
+API 3.1 mydisease.info API: 1 hits
 API 5.1: https://biothings.ncats.io/semmedchemical/query?fields=affected_by (POST -d q=C0004482&amp;scopes=umls)
 API 5.1 SEMMED Chemical API: 0 hits
-API 5.2: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C0004482&amp;scopes=umls)
-API 5.2 SEMMED Chemical API: 0 hits
-API 5.3: https://biothings.ncats.io/semmedchemical/query?fields=causes (POST -d q=C0004482&amp;scopes=umls)
-API 5.3: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C0004482&amp;scopes=umls)
-API 5.3 SEMMED Chemical API: 136 hits
-API 5.4 SEMMED Chemical API: 107 hits
-API 7.1: https://mychem.info/v1/query?fields=drugcentral.drug_use.contraindication (POST -d q=CHEMBL1542&amp;scopes=chembl.molecule_chembl_id)
-API 7.1 MyChem.info API: 13 hits
-API 7.2: https://mychem.info/v1/query?fields=drugcentral.drug_use.indication (POST -d q=CHEMBL1542&amp;scopes=chembl.molecule_chembl_id)
-API 7.2 MyChem.info API: 1 hits
+API 7.1: https://mychem.info/v1/query?fields=drugcentral.drug_use.indication (POST -d q=CHEMBL1542&amp;scopes=chembl.molecule_chembl_id)
+API 7.1 MyChem.info API: 1 hits
+API 7.2: https://mychem.info/v1/query?fields=drugcentral.drug_use.contraindication (POST -d q=CHEMBL1542&amp;scopes=chembl.molecule_chembl_id)
+API 7.2 MyChem.info API: 13 hits
 API 6.1: https://automat.renci.org/pharos/chemical_substance/disease/CHEBI:2948
 API call to Automat PHAROS API with input CHEBI:2948 failed with status code 404
-{&#39;error&#39;: &#39;Failed to get response from http://pharos-plater-plater-service:8080/chemical_substance/disease/CHEBI:2948?. Status code 404&#39;}
+API 2.1: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:2948
 API 6.1: https://automat.renci.org/pharos/chemical_substance/disease/CHEBI:2948
 API call to Automat PHAROS API with input CHEBI:2948 failed with status code 404
-{&#39;error&#39;: &#39;Failed to get response from http://pharos-plater-plater-service:8080/chemical_substance/disease/CHEBI:2948?. Status code 404&#39;}
+API 2.1 Automat CORD19 Scibite API: 0 hits
 API 9.1: https://automat.renci.org/hmdb/chemical_substance/disease/CHEBI:2948
 API 9.1 Automat HMDB API: 0 hits
 API 9.2: https://automat.renci.org/hmdb/chemical_substance/disease/CHEBI:2948
 API 9.2 Automat HMDB API: 0 hits
-API 2.1: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:2948
-API 2.1 Automat CORD19 Scibite API: 0 hits
+API 4.1: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:2948
 API 2.2: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:2948
 API 2.2 Automat CORD19 Scibite API: 14 hits
 API 4.1: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:2948
-API 4.1: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:2948
-API 4.1 Automat CORD19 Scigraph API: 372 hits
-API 4.2 Automat CORD19 Scigraph API: 0 hits
+API 4.1 Automat CORD19 Scigraph API: 0 hits
+API 4.2 Automat CORD19 Scigraph API: 372 hits
 API 1.1: http://tr-kp-clinical.ncats.io/api/association/chiSquare?concept_id_1=19014878&amp;dataset_id=3&amp;domain=Condition
 cohd transformer triggerd
 API 1.1 COHD API: 792 hits
-API 5.5: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulated_by (POST -d q=C0004482&amp;scopes=umls)
-API 5.5 SEMMED Chemical API: 0 hits
-API 5.6: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C0004482&amp;scopes=umls)
+API 5.2: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C0004482&amp;scopes=umls)
+API 5.2 SEMMED Chemical API: 107 hits
+API 5.3: https://biothings.ncats.io/semmedchemical/query?fields=causes (POST -d q=C0004482&amp;scopes=umls)
+API 5.3 SEMMED Chemical API: 136 hits
+API 5.4: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C0004482&amp;scopes=umls)
+API 5.4 SEMMED Chemical API: 0 hits
+API 5.5: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C0004482&amp;scopes=umls)
+API 5.5 SEMMED Chemical API: 27 hits
+API 5.6: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulated_by (POST -d q=C0004482&amp;scopes=umls)
 API 5.6 SEMMED Chemical API: 0 hits
 API 5.7: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulates (POST -d q=C0004482&amp;scopes=umls)
 API 5.7 SEMMED Chemical API: 10 hits
 API 5.8: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulated_by (POST -d q=C0004482&amp;scopes=umls)
 API 5.8 SEMMED Chemical API: 0 hits
-API 5.9: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C0004482&amp;scopes=umls)
-API 5.9 SEMMED Chemical API: 27 hits
-API 5.10: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C0004482&amp;scopes=umls)
-API 5.10 SEMMED Chemical API: 3 hits
-API 5.11: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C0004482&amp;scopes=umls)
-API 5.11 SEMMED Chemical API: 0 hits
+API 5.9: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C0004482&amp;scopes=umls)
+API 5.9 SEMMED Chemical API: 0 hits
+API 5.10: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C0004482&amp;scopes=umls)
+API 5.10 SEMMED Chemical API: 0 hits
+API 5.11: https://biothings.ncats.io/semmedchemical/query?fields=prevents (POST -d q=C0004482&amp;scopes=umls)
+API 5.11 SEMMED Chemical API: 60 hits
 API 5.12: https://biothings.ncats.io/semmedchemical/query?fields=produced_by (POST -d q=C0004482&amp;scopes=umls)
 API 5.12 SEMMED Chemical API: 0 hits
-API 5.13: https://biothings.ncats.io/semmedchemical/query?fields=prevents (POST -d q=C0004482&amp;scopes=umls)
-API 5.13 SEMMED Chemical API: 60 hits
+API 5.13: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C0004482&amp;scopes=umls)
+API 5.13 SEMMED Chemical API: 3 hits
+API 8.1: https://biothings.ncats.io/cord_chemical/query?fields=associated_with (POST -d q=CHEBI:2948&amp;scopes=chebi)
+API 8.1 CORD Chemical API: 11 hits
 API 5.14: https://biothings.ncats.io/semmedchemical/query?fields=treats (POST -d q=C0004482&amp;scopes=umls)
 API 5.14 SEMMED Chemical API: 472 hits
 
 BTE starts to perform id-to-object translation.
 
-After id-to-object translation, BTE retrieved 1667 unique output nodes.
+After id-to-object translation, BTE retrieved 1656 unique output nodes.
 
 
 
@@ -15470,7 +15475,7 @@ After id-to-object translation, BTE retrieved 1667 unique output nodes.
 ========== Final assembly of results ==========
 ==========
 
-In the #1 query, BTE found 1667 unique nodes.
+In the #1 query, BTE found 1656 unique nodes.
 </pre>
 </div>
 </div>
@@ -15591,8 +15596,8 @@ In the #1 query, BTE found 1667 unique nodes.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 540 unique Diseases.
-There are 1510 unique paths.
+<pre>There are 543 unique Diseases.
+There are 1571 unique paths.
 </pre>
 </div>
 </div>
@@ -15666,7 +15671,7 @@ There are 1510 unique paths.
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 259 unique Diseases.
-There are 291 unique paths.
+There are 298 unique paths.
 </pre>
 </div>
 </div>
@@ -15743,239 +15748,23 @@ There are 291 unique paths.
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;not resolved&quot;</span><span class="p">)</span>
+<span class="c1">#             print(&quot;not resolved&quot;)</span>
             <span class="n">MONDO_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">## have to add the prefix back</span>
             <span class="n">name_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1">## for now, just take the top result</span>
             <span class="n">temp_id</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;target_curie&#39;</span><span class="p">]</span>
             <span class="n">temp_name</span> <span class="o">=</span> <span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;target_label&#39;</span><span class="p">]</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;YAY it&#39;s </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">temp_id</span><span class="p">))</span>
+<span class="c1">#             print(&quot;YAY it&#39;s {}&quot;.format(temp_id))</span>
             <span class="n">MONDO_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_id</span>
             <span class="n">name_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp_name</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;not resolved&quot;</span><span class="p">)</span>
+<span class="c1">#         print(&quot;not resolved&quot;)</span>
         <span class="n">MONDO_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">name_translate</span><span class="p">[</span><span class="s1">&#39;OMOP:&#39;</span><span class="o">+</span><span class="n">OMOP</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>YAY it&#39;s MONDO:0005101
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005292
-YAY it&#39;s MONDO:0043839
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0003409
-YAY it&#39;s MONDO:0024634
-not resolved
-YAY it&#39;s MONDO:0000707
-YAY it&#39;s MONDO:0005020
-YAY it&#39;s MONDO:0016542
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005532
-not resolved
-YAY it&#39;s MONDO:0004335
-not resolved
-YAY it&#39;s MONDO:0000706
-not resolved
-YAY it&#39;s MONDO:0000710
-not resolved
-YAY it&#39;s MONDO:0004335
-not resolved
-not resolved
-YAY it&#39;s MONDO:0018305
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0021166
-not resolved
-YAY it&#39;s MONDO:0024635
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0044965
-not resolved
-not resolved
-YAY it&#39;s MONDO:0043579
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0024388
-not resolved
-YAY it&#39;s MONDO:0000705
-not resolved
-not resolved
-YAY it&#39;s MONDO:0002866
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0006873
-not resolved
-YAY it&#39;s MONDO:0001371
-YAY it&#39;s MONDO:0004298
-not resolved
-not resolved
-YAY it&#39;s MONDO:0024459
-YAY it&#39;s MONDO:0024389
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005137
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0004634
-YAY it&#39;s MONDO:0002866
-not resolved
-not resolved
-YAY it&#39;s MONDO:0002515
-not resolved
-YAY it&#39;s MONDO:0005137
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0002887
-YAY it&#39;s MONDO:0002280
-YAY it&#39;s MONDO:0004868
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005046
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0007747
-not resolved
-not resolved
-YAY it&#39;s MONDO:0003749
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0002280
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0004805
-YAY it&#39;s MONDO:0005385
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0012726
-not resolved
-YAY it&#39;s MONDO:0000270
-YAY it&#39;s MONDO:0004805
-not resolved
-YAY it&#39;s MONDO:0001673
-not resolved
-not resolved
-YAY it&#39;s MONDO:0000651
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005550
-YAY it&#39;s MONDO:0005113
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0007186
-YAY it&#39;s MONDO:0005240
-not resolved
-YAY it&#39;s MONDO:0005240
-YAY it&#39;s MONDO:0019540
-not resolved
-not resolved
-YAY it&#39;s MONDO:0002118
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0005240
-not resolved
-not resolved
-not resolved
-not resolved
-YAY it&#39;s MONDO:0016370
-not resolved
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -16043,8 +15832,8 @@ not resolved
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 98 unique Diseases.
-There are 146 unique paths.
+<pre>There are 97 unique Diseases.
+There are 151 unique paths.
 </pre>
 </div>
 </div>
@@ -16135,17 +15924,22 @@ There are 146 unique paths.
       <td>correlated_with</td>
     </tr>
     <tr>
-      <th>37</th>
+      <th>39</th>
       <td>CORD Disease API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>305</th>
+      <th>304</th>
       <td>Ontology Lookup Service API</td>
       <td>has_subclass</td>
     </tr>
     <tr>
-      <th>339</th>
+      <th>37</th>
+      <td>mydisease.info API</td>
+      <td>has_subclass</td>
+    </tr>
+    <tr>
+      <th>402</th>
       <td>mydisease.info API</td>
       <td>subclass_of</td>
     </tr>
@@ -16216,7 +16010,7 @@ There are 146 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>218</th>
+      <th>222</th>
       <td>Automat CORD19 Scibite API</td>
       <td>related_to</td>
     </tr>
@@ -16231,17 +16025,17 @@ There are 146 unique paths.
       <td>correlated_with</td>
     </tr>
     <tr>
-      <th>600</th>
+      <th>650</th>
       <td>CORD Chemical API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>673</th>
+      <th>451</th>
       <td>MyChem.info API</td>
       <td>contraindication</td>
     </tr>
     <tr>
-      <th>395</th>
+      <th>480</th>
       <td>MyChem.info API</td>
       <td>treats</td>
     </tr>
@@ -16342,54 +16136,54 @@ There are 146 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>liver disease</th>
-      <td>0.088235</td>
+      <th>Crohn disease</th>
+      <td>0.083333</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>Crohn disease</th>
-      <td>0.058824</td>
+      <th>liver disease</th>
+      <td>0.083333</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>inflammatory bowel disease 1</th>
+      <td>0.055556</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>colitis (disease)</th>
+      <td>0.055556</td>
       <td>2.0</td>
     </tr>
     <tr>
       <th>diarrheal disease</th>
-      <td>0.058824</td>
+      <td>0.055556</td>
       <td>2.0</td>
     </tr>
     <tr>
+      <th>systemic lupus erythematosus (disease)</th>
+      <td>0.041667</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>anemia (disease)</th>
+      <td>0.041667</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>ulcerative colitis (disease)</th>
+      <td>0.041667</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
       <th>rheumatoid arthritis</th>
-      <td>0.044118</td>
+      <td>0.041667</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>lymphoma</th>
-      <td>0.044118</td>
+      <td>0.041667</td>
       <td>3.0</td>
-    </tr>
-    <tr>
-      <th>systemic lupus erythematosus (disease)</th>
-      <td>0.044118</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>colitis (disease)</th>
-      <td>0.044118</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>systemic sclerosis</th>
-      <td>0.029412</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>digestive system disease</th>
-      <td>0.029412</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>chronic kidney disease</th>
-      <td>0.029412</td>
-      <td>4.0</td>
     </tr>
   </tbody>
 </table>
@@ -16473,7 +16267,7 @@ There are 146 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>217</th>
+      <th>221</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>
@@ -16494,7 +16288,7 @@ There are 146 unique paths.
       <td>None</td>
     </tr>
     <tr>
-      <th>218</th>
+      <th>222</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>
@@ -16515,7 +16309,7 @@ There are 146 unique paths.
       <td>None</td>
     </tr>
     <tr>
-      <th>219</th>
+      <th>223</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>
@@ -16536,7 +16330,7 @@ There are 146 unique paths.
       <td>None</td>
     </tr>
     <tr>
-      <th>235</th>
+      <th>241</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>
@@ -16557,7 +16351,7 @@ There are 146 unique paths.
       <td>None</td>
     </tr>
     <tr>
-      <th>236</th>
+      <th>242</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>
@@ -16578,7 +16372,7 @@ There are 146 unique paths.
       <td>None</td>
     </tr>
     <tr>
-      <th>237</th>
+      <th>243</th>
       <td>MONDO:0005265</td>
       <td>inflammatory bowel disease</td>
       <td>Disease</td>

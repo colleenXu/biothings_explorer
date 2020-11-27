@@ -14495,7 +14495,7 @@ In other words, starting with the Disease MSUD, find entities of type ChemicalSu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">scoring_output</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">q_type</span><span class="p">):</span>
@@ -14580,7 +14580,7 @@ In other words, starting with the Disease MSUD, find entities of type ChemicalSu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## record when cell blocks are executed</span>
@@ -14607,9 +14607,9 @@ In other words, starting with the Disease MSUD, find entities of type ChemicalSu
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-09-19 20:51:31.807879
+2020-11-26 13:48:35.817964
 UTC time: 
-2020-09-20 03:51:31.807994
+2020-11-26 21:48:35.818083
 </pre>
 </div>
 </div>
@@ -14638,7 +14638,7 @@ UTC time:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">Hint</span><span class="p">()</span>  <span class="c1">## neater way to call this BTE module</span>
@@ -14666,10 +14666,10 @@ UTC time:
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 6 BioThings objects returned for maple syrup urine disease:
 Disease, maple syrup urine disease, num of IDs: 6
+Disease, maple syrup urine disease, mild variant, num of IDs: 3
+Disease, pyruvate dehydrogenase E3 deficiency, num of IDs: 4
 Disease, inborn disorder of branched-chain amino acid metabolism, num of IDs: 3
 Disease, classic maple syrup urine disease, num of IDs: 3
-Disease, intermediate maple syrup urine disease, num of IDs: 3
-Disease, intermittent maple syrup urine disease, num of IDs: 3
 Pathway, Maple Syrup Urine Disease, num of IDs: 0
 </pre>
 </div>
@@ -14689,7 +14689,7 @@ Pathway, Maple Syrup Urine Disease, num of IDs: 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
@@ -14710,7 +14710,7 @@ Pathway, Maple Syrup Urine Disease, num of IDs: 0
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
+    <div class="prompt output_prompt">Out[7]:</div>
 
 
 
@@ -14763,7 +14763,7 @@ Pathway, Maple Syrup Urine Disease, num of IDs: 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -14780,40 +14780,10 @@ Pathway, Maple Syrup Urine Disease, num of IDs: 0
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>API 1.1 semmed_phenotype failed
-API 1.12 semmed_phenotype failed
-API 1.8 semmed_phenotype failed
-API 1.9 semmed_phenotype failed
-API 1.10 semmed_phenotype failed
-API 1.13 semmed_phenotype failed
-API 1.11 semmed_phenotype failed
-API 1.3 semmed_phenotype failed
-API 1.5 semmed_phenotype failed
-API 1.2 semmed_phenotype failed
-API 1.7 semmed_phenotype failed
-API 1.4 semmed_phenotype failed
-API 1.6 semmed_phenotype failed
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
@@ -14870,8 +14840,8 @@ API 1.6 semmed_phenotype failed
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 27 unique PhenotypicFeatures for maple syrup urine disease.
-There are 1624 unique Genes linked to those PhenotypicFeatures.
-There are 9112 unique paths.
+There are 1808 unique Genes linked to those PhenotypicFeatures.
+There are 9043 unique paths.
 </pre>
 </div>
 </div>
@@ -14922,7 +14892,7 @@ There are 9112 unique paths.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 9112 unique paths.
+<pre>There are 8960 unique paths.
 </pre>
 </div>
 </div>
@@ -14950,13 +14920,206 @@ There are 9112 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
 <span class="n">q1_scoring</span> <span class="o">=</span> <span class="n">scoring_output</span><span class="p">(</span><span class="n">q1_r_paths_table</span><span class="p">,</span> <span class="n">q1_type</span><span class="p">)</span>
 
 <span class="n">q1_scoring</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[12]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>DBT</th>
+      <td>0.804598</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>BCKDHA</th>
+      <td>0.701149</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>BCKDHB</th>
+      <td>0.678161</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>DLD</th>
+      <td>0.655172</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>PCCB</th>
+      <td>0.448276</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>PCCA</th>
+      <td>0.448276</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>NDUFV1</th>
+      <td>0.413793</td>
+      <td>6.0</td>
+    </tr>
+    <tr>
+      <th>NDUFS4</th>
+      <td>0.402299</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>NUBPL</th>
+      <td>0.402299</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>NDUFS1</th>
+      <td>0.390805</td>
+      <td>8.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
+<p>In the first part of the query (maple syrup urine disease &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[13]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred1_api</th>
+      <th>pred1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>mydisease.info API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the second part of the query (PhenotypicFeatures &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -14992,211 +15155,23 @@ There are 9112 unique paths.
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>score</th>
-      <th>rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>DBT</th>
-      <td>0.903614</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>BCKDHA</th>
-      <td>0.903614</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>BCKDHB</th>
-      <td>0.879518</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>DLD</th>
-      <td>0.686747</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>NDUFV1</th>
-      <td>0.602410</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>NDUFS1</th>
-      <td>0.542169</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>NDUFS7</th>
-      <td>0.481928</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>PCCA</th>
-      <td>0.469880</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>NDUFS4</th>
-      <td>0.469880</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>PCCB</th>
-      <td>0.469880</td>
-      <td>7.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
-<p>In the first part of the query (maple syrup urine disease &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[15]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred1_api</th>
-      <th>pred1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BioLink API</td>
-      <td>related_to</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>mydisease.info API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the second part of the query (PhenotypicFeatures &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[16]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
       <th>pred2_api</th>
       <th>pred2</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>8891</th>
       <td>BioLink API</td>
-      <td>related_to</td>
+      <td>contributes_to_condition</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>0</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>6</th>
       <td>EBIgene2phenotype API</td>
       <td>related_to</td>
     </tr>
@@ -15249,7 +15224,7 @@ There are 9112 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15276,7 +15251,7 @@ There are 9112 unique paths.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>API 7.1 pharos failed
+<pre>API 6.1 pharos failed
 </pre>
 </div>
 </div>
@@ -15287,7 +15262,7 @@ There are 9112 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">q2</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
@@ -15313,7 +15288,7 @@ There are 9112 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -15343,9 +15318,9 @@ There are 9112 unique paths.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 58 unique ChemicalSubstances for maple syrup urine disease.
-There are 11840 unique Genes linked to those ChemicalSubstances.
-There are 62774 unique paths.
+<pre>There are 57 unique ChemicalSubstances for maple syrup urine disease.
+There are 11838 unique Genes linked to those ChemicalSubstances.
+There are 62879 unique paths.
 </pre>
 </div>
 </div>
@@ -15371,7 +15346,7 @@ There are 62774 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">filter_table</span><span class="p">(</span><span class="n">q2_r_paths_table</span><span class="p">)</span>
@@ -15392,7 +15367,7 @@ There are 62774 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -15424,7 +15399,7 @@ There are 62774 unique paths.
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 30 unique ChemicalSubstances for maple syrup urine disease.
 There are 1127 unique Genes linked to those ChemicalSubstances.
-There are 1803 unique paths.
+There are 1807 unique paths.
 </pre>
 </div>
 </div>
@@ -15452,7 +15427,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
@@ -15471,7 +15446,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -15515,14 +15490,19 @@ There are 1803 unique paths.
       <td>3.0</td>
     </tr>
     <tr>
+      <th>INS</th>
+      <td>0.092784</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
       <th>BCAT2</th>
       <td>0.092784</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>INS</th>
-      <td>0.092784</td>
-      <td>4.0</td>
+      <th>TLN1</th>
+      <td>0.082474</td>
+      <td>5.0</td>
     </tr>
     <tr>
       <th>CASP14</th>
@@ -15535,17 +15515,12 @@ There are 1803 unique paths.
       <td>5.0</td>
     </tr>
     <tr>
-      <th>TLN1</th>
-      <td>0.082474</td>
-      <td>5.0</td>
-    </tr>
-    <tr>
-      <th>PTS</th>
+      <th>SDS</th>
       <td>0.072165</td>
       <td>6.0</td>
     </tr>
     <tr>
-      <th>DUOXA1</th>
+      <th>PTS</th>
       <td>0.072165</td>
       <td>6.0</td>
     </tr>
@@ -15571,7 +15546,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates, one each</span>
@@ -15588,7 +15563,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[25]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -15617,12 +15592,12 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>5166</th>
+      <th>5190</th>
       <td>Automat CORD19 Scigraph API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>5148</th>
+      <th>5172</th>
       <td>Automat HMDB API</td>
       <td>related_to</td>
     </tr>
@@ -15647,7 +15622,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15664,7 +15639,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[26]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -15693,42 +15668,42 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>19151</th>
+      <th>19207</th>
       <td>Automat CHEMBIO API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>5253</th>
+      <th>5279</th>
       <td>Automat CORD19 Scibite API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>5258</th>
+      <th>5283</th>
       <td>Automat CORD19 Scigraph API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>7659</th>
+      <th>7678</th>
       <td>Automat HMDB API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>22600</th>
+      <th>21365</th>
       <td>Automat PHAROS API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>5148</th>
+      <th>5172</th>
       <td>CORD Chemical API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>22878</th>
+      <th>22943</th>
       <td>MyChem.info API</td>
       <td>metabolic_processing_affected_by</td>
     </tr>
     <tr>
-      <th>6072</th>
+      <th>6095</th>
       <td>MyChem.info API</td>
       <td>physically_interacts_with</td>
     </tr>
@@ -15772,7 +15747,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">known_answers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BCKDHA&#39;</span><span class="p">,</span> <span class="s1">&#39;BCKDHB&#39;</span><span class="p">,</span> <span class="s1">&#39;DBT&#39;</span><span class="p">]</span>
@@ -15785,7 +15760,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring from the MSUD -&gt; PhenotypicFeature -&gt; Gene query&#39;</span><span class="p">)</span>
@@ -15820,7 +15795,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -15852,20 +15827,20 @@ There are 1803 unique paths.
     <tr>
       <th>0</th>
       <td>DBT</td>
-      <td>0.903614</td>
+      <td>0.804598</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>BCKDHA</td>
-      <td>0.903614</td>
-      <td>1.0</td>
+      <td>0.701149</td>
+      <td>2.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>BCKDHB</td>
-      <td>0.879518</td>
-      <td>2.0</td>
+      <td>0.678161</td>
+      <td>3.0</td>
     </tr>
   </tbody>
 </table>
@@ -15876,7 +15851,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -15904,11 +15879,11 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>64</th>
+      <th>207</th>
       <td>BioLink API</td>
     </tr>
     <tr>
-      <th>66</th>
+      <th>209</th>
       <td>mydisease.info API</td>
     </tr>
   </tbody>
@@ -15920,7 +15895,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[28]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -15948,11 +15923,11 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>64</th>
+      <th>207</th>
       <td>BioLink API</td>
     </tr>
     <tr>
-      <th>67</th>
+      <th>210</th>
       <td>EBIgene2phenotype API</td>
     </tr>
   </tbody>
@@ -15981,7 +15956,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring from the MSUD -&gt; ChemicalSubstance -&gt; Gene query&#39;</span><span class="p">)</span>
@@ -16016,7 +15991,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -16046,14 +16021,14 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>102</th>
-      <td>BCKDHB</td>
+      <th>110</th>
+      <td>BCKDHA</td>
       <td>0.030928</td>
       <td>10.0</td>
     </tr>
     <tr>
-      <th>114</th>
-      <td>BCKDHA</td>
+      <th>139</th>
+      <td>BCKDHB</td>
       <td>0.030928</td>
       <td>10.0</td>
     </tr>
@@ -16066,7 +16041,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -16094,7 +16069,7 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>55638</th>
+      <th>55739</th>
       <td>Automat HMDB API</td>
     </tr>
   </tbody>
@@ -16106,7 +16081,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[29]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -16134,7 +16109,7 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>55638</th>
+      <th>55739</th>
       <td>Automat HMDB API</td>
     </tr>
   </tbody>
@@ -16164,7 +16139,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">other_interesting_genes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;DLD&#39;</span><span class="p">,</span> <span class="s1">&#39;BCAT1&#39;</span><span class="p">,</span> <span class="s1">&#39;BCAT2&#39;</span><span class="p">]</span>
@@ -16198,7 +16173,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -16230,8 +16205,8 @@ There are 1803 unique paths.
     <tr>
       <th>3</th>
       <td>DLD</td>
-      <td>0.686747</td>
-      <td>3.0</td>
+      <td>0.655172</td>
+      <td>4.0</td>
     </tr>
   </tbody>
 </table>
@@ -16242,7 +16217,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -16270,11 +16245,11 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>1383</th>
+      <th>1156</th>
       <td>BioLink API</td>
     </tr>
     <tr>
-      <th>1384</th>
+      <th>1157</th>
       <td>mydisease.info API</td>
     </tr>
   </tbody>
@@ -16286,7 +16261,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[31]:</div>
+    <div class="prompt output_prompt">Out[26]:</div>
 
 
 
@@ -16314,11 +16289,11 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>1383</th>
+      <th>1156</th>
       <td>EBIgene2phenotype API</td>
     </tr>
     <tr>
-      <th>1388</th>
+      <th>1160</th>
       <td>BioLink API</td>
     </tr>
   </tbody>
@@ -16334,7 +16309,7 @@ There are 1803 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring from the MSUD -&gt; ChemicalSubstance -&gt; Gene query&#39;</span><span class="p">)</span>
@@ -16366,7 +16341,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -16402,13 +16377,13 @@ There are 1803 unique paths.
       <td>3.0</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>4</th>
       <td>BCAT2</td>
       <td>0.092784</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>807</th>
+      <th>469</th>
       <td>DLD</td>
       <td>0.010309</td>
       <td>12.0</td>
@@ -16422,7 +16397,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -16450,7 +16425,7 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>22874</th>
+      <th>22939</th>
       <td>Automat HMDB API</td>
     </tr>
   </tbody>
@@ -16462,7 +16437,7 @@ There are 1803 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[32]:</div>
+    <div class="prompt output_prompt">Out[27]:</div>
 
 
 
@@ -16490,11 +16465,11 @@ There are 1803 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>22874</th>
+      <th>22939</th>
       <td>Automat HMDB API</td>
     </tr>
     <tr>
-      <th>22877</th>
+      <th>22940</th>
       <td>MyChem.info API</td>
     </tr>
   </tbody>

@@ -14336,6 +14336,14 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>2020-11-26 update: added code removing unresolved UMLS ids, now runs before the report of how many entities there are in the answer KG</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2>
 </div>
 </div>
@@ -14604,9 +14612,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-10-06 22:14:33.998678
+2020-11-26 17:03:58.988678
 UTC time: 
-2020-10-07 05:14:33.998813
+2020-11-27 01:03:58.988988
 </pre>
 </div>
 </div>
@@ -14661,11 +14669,12 @@ UTC time:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 9 BioThings objects returned for SARS:
+<pre>There are 10 BioThings objects returned for SARS:
 ChemicalSubstance, Anti-SARS-CoV-2 REGN-COV2, num of IDs: 1
 Disease, severe acute respiratory syndrome, num of IDs: 5
 Disease, COVID-19, num of IDs: 2
-Disease, SARS-CoV-2 Kawasaki-like syndrome, num of IDs: 1
+Disease, COVID-19–associated multisystem inflammatory syndrome in children, num of IDs: 2
+Disease, IMD74, num of IDs: 0
 MolecularActivity, selenocysteine-tRNA ligase activity, num of IDs: 2
 MolecularActivity, mRNA (guanine-N7-)-methyltransferase activity, num of IDs: 3
 MolecularActivity, 5&#39;-3&#39; RNA helicase activity, num of IDs: 2
@@ -14751,7 +14760,7 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this section, we dynamically generate a knowledge graph with paths connecting SARS to pathways <em>using PhenotypicFeature and Gene intermediates</em>.</p>
 <p>BTE performs the <strong>query path planning</strong> and <strong>query path execution</strong> by deconstructing the query into individual API calls, executing those API calls, and then assembling the results.</p>
-<p>The code block below takes about 1.5 min to run.</p>
+<p>The code block below takes about 1 min to run.</p>
 
 </div>
 </div>
@@ -14806,7 +14815,7 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -14840,9 +14849,9 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 16 unique PhenotypicFeatures for SARS.
-There are 816 unique Genes for SARS.
-There are 2066 unique Pathways for SARS.
-There are 49630 unique paths.
+There are 805 unique Genes for SARS.
+There are 2058 unique Pathways for SARS.
+There are 47210 unique paths.
 </pre>
 </div>
 </div>
@@ -14861,7 +14870,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[</span><span class="s1">&#39;node1_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -14877,7 +14886,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[11]:</div>
+    <div class="prompt output_prompt">Out[13]:</div>
 
 
 
@@ -14885,9 +14894,9 @@ There are 49630 unique paths.
 <div class="output_text output_subarea output_execute_result">
 <pre>array([&#39;DECREASED IMMUNE FUNCTION&#39;, &#39;ABNORMAL TISSUE MASS&#39;,
        &#39;DIABETES MELLITUS&#39;, &#39;ABNORMALITY OF THE CARDIOVASCULAR SYSTEM&#39;,
-       &#39;FEVER&#39;, &#39;HEADACHE&#39;, &#39;COUGH&#39;, &#39;MUSCLE ACHE&#39;,
-       &#39;CHRONIC LUNG DISEASE&#39;, &#39;ABNORMAL BREATHING&#39;, &#39;HYPOXEMIA&#39;,
-       &#39;BREATHING DIFFICULTIES&#39;,
+       &#39;FEVER&#39;, &#39;HEADACHE&#39;, &#39;COUGH&#39;, &#39;CHRONIC LUNG DISEASE&#39;,
+       &#39;ABNORMAL BREATHING&#39;, &#39;HYPOXEMIA&#39;, &#39;BREATHING DIFFICULTIES&#39;,
+       &#39;MUSCLE ACHE&#39;,
        &#39;RESPIRATORY DISTRESS NECESSITATING MECHANICAL VENTILATION&#39;,
        &#39;ACUTE INFECTIOUS PNEUMONIA&#39;, &#39;ACUTE KIDNEY FAILURE&#39;,
        &#39;PHARYNGITIS&#39;], dtype=object)</pre>
@@ -14926,7 +14935,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
@@ -14947,7 +14956,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -14979,122 +14988,122 @@ There are 49630 unique paths.
     <tr>
       <th>0</th>
       <td>IMMUNE SYSTEM</td>
-      <td>0.286275</td>
+      <td>0.292723</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>SIGNAL TRANSDUCTION</td>
-      <td>0.271373</td>
+      <td>0.280458</td>
       <td>2.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>METABOLISM</td>
-      <td>0.264314</td>
+      <td>0.250204</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>DISEASE</td>
-      <td>0.251765</td>
+      <td>0.239575</td>
       <td>4.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>METABOLISM OF PROTEINS</td>
-      <td>0.208627</td>
+      <td>0.206051</td>
       <td>5.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>GENE EXPRESSION (TRANSCRIPTION)</td>
-      <td>0.142745</td>
+      <td>CYTOKINE SIGNALING IN IMMUNE SYSTEM</td>
+      <td>0.146361</td>
       <td>6.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>INNATE IMMUNE SYSTEM</td>
-      <td>0.142745</td>
-      <td>6.0</td>
+      <td>GENE EXPRESSION (TRANSCRIPTION)</td>
+      <td>0.141455</td>
+      <td>7.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>CYTOKINE SIGNALING IN IMMUNE SYSTEM</td>
-      <td>0.140392</td>
-      <td>7.0</td>
+      <td>INNATE IMMUNE SYSTEM</td>
+      <td>0.140638</td>
+      <td>8.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>RNA POLYMERASE II TRANSCRIPTION</td>
-      <td>0.133333</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>GENERIC TRANSCRIPTION PATHWAY</td>
-      <td>0.130980</td>
+      <td>0.132461</td>
       <td>9.0</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>9</th>
       <td>POST-TRANSLATIONAL PROTEIN MODIFICATION</td>
-      <td>0.130196</td>
+      <td>0.130826</td>
       <td>10.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>GENERIC TRANSCRIPTION PATHWAY</td>
+      <td>0.130008</td>
+      <td>11.0</td>
     </tr>
     <tr>
       <th>11</th>
       <td>DEVELOPMENTAL BIOLOGY</td>
-      <td>0.112157</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>INFECTIOUS DISEASE</td>
-      <td>0.099608</td>
+      <td>0.107114</td>
       <td>12.0</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>12</th>
       <td>HEMOSTASIS</td>
-      <td>0.096471</td>
+      <td>0.098937</td>
       <td>13.0</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>13</th>
       <td>SIGNALING BY RECEPTOR TYROSINE KINASES</td>
-      <td>0.094902</td>
+      <td>0.098119</td>
       <td>14.0</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>14</th>
       <td>CELL CYCLE</td>
-      <td>0.092549</td>
+      <td>0.094849</td>
       <td>15.0</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>15</th>
       <td>DISEASES OF SIGNAL TRANSDUCTION</td>
-      <td>0.088627</td>
+      <td>0.091578</td>
       <td>16.0</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>16</th>
       <td>ADAPTIVE IMMUNE SYSTEM</td>
-      <td>0.084706</td>
+      <td>0.088307</td>
       <td>17.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>INFECTIOUS DISEASE</td>
+      <td>0.087490</td>
+      <td>18.0</td>
     </tr>
     <tr>
       <th>18</th>
       <td>TRANSPORT OF SMALL MOLECULES</td>
-      <td>0.083922</td>
-      <td>18.0</td>
+      <td>0.085854</td>
+      <td>19.0</td>
     </tr>
     <tr>
       <th>19</th>
       <td>SIGNALING BY INTERLEUKINS</td>
-      <td>0.077647</td>
-      <td>19.0</td>
+      <td>0.084219</td>
+      <td>20.0</td>
     </tr>
   </tbody>
 </table>
@@ -15133,7 +15142,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">path_mask</span> <span class="o">=</span> <span class="s1">&#39;RAS | RAS|ACE INHIBITOR|VASCULAR|COAGULATION|CLOT|INFLAMM&#39;</span> \
@@ -15153,7 +15162,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[13]:</div>
+    <div class="prompt output_prompt">Out[15]:</div>
 
 
 
@@ -15183,63 +15192,63 @@ There are 49630 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>54</th>
+      <th>50</th>
       <td>RAS SIGNALING</td>
-      <td>0.043922</td>
+      <td>0.045789</td>
       <td>41.0</td>
     </tr>
     <tr>
-      <th>119</th>
+      <th>124</th>
       <td>CELL SURFACE INTERACTIONS AT THE VASCULAR WALL</td>
-      <td>0.027451</td>
-      <td>61.0</td>
+      <td>0.027800</td>
+      <td>62.0</td>
     </tr>
     <tr>
-      <th>169</th>
+      <th>172</th>
       <td>CARDIAC CONDUCTION</td>
-      <td>0.021961</td>
+      <td>0.022895</td>
       <td>68.0</td>
     </tr>
     <tr>
-      <th>231</th>
-      <td>CALCIUM REGULATION IN THE CARDIAC CELL</td>
-      <td>0.018824</td>
-      <td>72.0</td>
-    </tr>
-    <tr>
-      <th>259</th>
+      <th>179</th>
       <td>CARDIAC PROGENITOR DIFFERENTIATION</td>
-      <td>0.017255</td>
-      <td>74.0</td>
+      <td>0.022077</td>
+      <td>69.0</td>
     </tr>
     <tr>
-      <th>348</th>
+      <th>206</th>
+      <td>CALCIUM REGULATION IN THE CARDIAC CELL</td>
+      <td>0.020442</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>327</th>
       <td>CARDIAC HYPERTROPHIC RESPONSE</td>
-      <td>0.014902</td>
-      <td>77.0</td>
+      <td>0.014718</td>
+      <td>78.0</td>
     </tr>
     <tr>
-      <th>502</th>
+      <th>533</th>
       <td>NEOVASCULARISATION PROCESSES</td>
-      <td>0.010980</td>
-      <td>82.0</td>
-    </tr>
-    <tr>
-      <th>514</th>
-      <td>VEGFR2 MEDIATED VASCULAR PERMEABILITY</td>
-      <td>0.010196</td>
-      <td>83.0</td>
-    </tr>
-    <tr>
-      <th>569</th>
-      <td>SIGNALING BY RAS MUTANTS</td>
-      <td>0.009412</td>
+      <td>0.009812</td>
       <td>84.0</td>
     </tr>
     <tr>
-      <th>586</th>
-      <td>ERYTHROPOIETIN ACTIVATES RAS</td>
-      <td>0.009412</td>
+      <th>537</th>
+      <td>VASOPRESSIN REGULATES RENAL WATER HOMEOSTASIS ...</td>
+      <td>0.009812</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>541</th>
+      <td>VEGFR2 MEDIATED VASCULAR PERMEABILITY</td>
+      <td>0.009812</td>
+      <td>84.0</td>
+    </tr>
+    <tr>
+      <th>552</th>
+      <td>FIBRIN COMPLEMENT RECEPTOR 3 SIGNALING PATHWAY</td>
+      <td>0.009812</td>
       <td>84.0</td>
     </tr>
   </tbody>
@@ -15271,7 +15280,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15288,7 +15297,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[14]:</div>
+    <div class="prompt output_prompt">Out[16]:</div>
 
 
 
@@ -15347,7 +15356,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
@@ -15363,7 +15372,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -15392,7 +15401,7 @@ There are 49630 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>364</th>
+      <th>418</th>
       <td>BioLink API</td>
       <td>contributes_to_condition</td>
     </tr>
@@ -15427,7 +15436,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15444,7 +15453,7 @@ There are 49630 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -15508,7 +15517,7 @@ There are 49630 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15525,38 +15534,10 @@ There are 49630 unique paths.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>API 2.10 semmed_gene failed
-API 2.6 semmed_gene failed
-API 2.11 semmed_gene failed
-API 2.5 semmed_gene failed
-API 2.3 semmed_gene failed
-API 2.8 semmed_gene failed
-API 2.4 semmed_gene failed
-API 2.1 semmed_gene failed
-API 2.7 semmed_gene failed
-API 2.2 semmed_gene failed
-API 2.9 semmed_gene failed
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># q1_r_graph = q1.fc.G   ## for changing the graph object to reflect the table</span>
@@ -15575,7 +15556,21 @@ API 2.9 semmed_gene failed
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## current bug: issue resolving ULMS ids, removing them for now</span>
+<span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="o">~</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="s1">&#39;output_id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;UMLS:&#39;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -15609,9 +15604,9 @@ API 2.9 semmed_gene failed
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 16 unique PhenotypicFeatures for SARS.
-There are 960 unique Genes for SARS.
-There are 5757 unique BiologicalProcesss for SARS.
-There are 90060 unique paths.
+There are 925 unique Genes for SARS.
+There are 5887 unique BiologicalProcesss for SARS.
+There are 86616 unique paths.
 </pre>
 </div>
 </div>
@@ -15630,7 +15625,7 @@ There are 90060 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[</span><span class="s1">&#39;node1_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -15646,7 +15641,7 @@ There are 90060 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -15655,9 +15650,9 @@ There are 90060 unique paths.
 <pre>array([&#39;DECREASED IMMUNE FUNCTION&#39;, &#39;ABNORMAL TISSUE MASS&#39;,
        &#39;ABNORMALITY OF THE CARDIOVASCULAR SYSTEM&#39;, &#39;HEADACHE&#39;,
        &#39;RESPIRATORY DISTRESS NECESSITATING MECHANICAL VENTILATION&#39;,
-       &#39;COUGH&#39;, &#39;DIABETES MELLITUS&#39;, &#39;FEVER&#39;, &#39;ABNORMAL BREATHING&#39;,
-       &#39;BREATHING DIFFICULTIES&#39;, &#39;MUSCLE ACHE&#39;, &#39;ACUTE KIDNEY FAILURE&#39;,
-       &#39;HYPOXEMIA&#39;, &#39;PHARYNGITIS&#39;, &#39;CHRONIC LUNG DISEASE&#39;,
+       &#39;COUGH&#39;, &#39;ABNORMAL BREATHING&#39;, &#39;FEVER&#39;, &#39;DIABETES MELLITUS&#39;,
+       &#39;BREATHING DIFFICULTIES&#39;, &#39;CHRONIC LUNG DISEASE&#39;,
+       &#39;ACUTE KIDNEY FAILURE&#39;, &#39;HYPOXEMIA&#39;, &#39;PHARYNGITIS&#39;, &#39;MUSCLE ACHE&#39;,
        &#39;ACUTE INFECTIOUS PNEUMONIA&#39;], dtype=object)</pre>
 </div>
 
@@ -15694,7 +15689,7 @@ There are 90060 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
@@ -15715,7 +15710,7 @@ There are 90060 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[21]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
@@ -15747,122 +15742,122 @@ There are 90060 unique paths.
     <tr>
       <th>0</th>
       <td>GROWTH</td>
-      <td>0.051838</td>
+      <td>0.052669</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>GENE EXPRESSION</td>
-      <td>0.044036</td>
+      <td>0.045287</td>
       <td>2.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>ACTIVATION OF GLOBAL TRANSCRIPTION FROM RNA PO...</td>
-      <td>0.042449</td>
+      <td>0.041028</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>METABOLIC PROCESS</td>
-      <td>0.031738</td>
+      <td>CATAGEN</td>
+      <td>0.032510</td>
       <td>4.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>CATAGEN</td>
-      <td>0.031341</td>
+      <td>METABOLIC PROCESS</td>
+      <td>0.032084</td>
       <td>5.0</td>
     </tr>
     <tr>
       <th>5</th>
       <td>BREAKDOWN</td>
-      <td>0.030812</td>
+      <td>0.031516</td>
       <td>6.0</td>
     </tr>
     <tr>
       <th>6</th>
       <td>CELL POPULATION PROLIFERATION</td>
-      <td>0.028564</td>
+      <td>0.030097</td>
       <td>7.0</td>
     </tr>
     <tr>
       <th>7</th>
       <td>INNATE IMMUNE RESPONSE</td>
-      <td>0.026977</td>
+      <td>0.028677</td>
       <td>8.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>CONJUGATION</td>
-      <td>0.026977</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>ACTIVATION OF GENE-SPECIFIC TRANSCRIPTION</td>
-      <td>0.024332</td>
+      <td>0.025412</td>
       <td>9.0</td>
     </tr>
     <tr>
+      <th>9</th>
+      <td>SECRETION</td>
+      <td>0.024276</td>
+      <td>10.0</td>
+    </tr>
+    <tr>
       <th>10</th>
-      <td>CELL CYCLE</td>
-      <td>0.024068</td>
+      <td>PATHOGENESIS</td>
+      <td>0.024276</td>
       <td>10.0</td>
     </tr>
     <tr>
       <th>11</th>
-      <td>PATHOGENESIS</td>
-      <td>0.022613</td>
+      <td>INFLAMMATION</td>
+      <td>0.023850</td>
       <td>11.0</td>
     </tr>
     <tr>
       <th>12</th>
-      <td>SECRETION</td>
-      <td>0.022613</td>
+      <td>ACTIVATION OF GENE-SPECIFIC TRANSCRIPTION</td>
+      <td>0.023850</td>
       <td>11.0</td>
     </tr>
     <tr>
       <th>13</th>
-      <td>DOWN REGULATION OF GLOBAL TRANSCRIPTION FROM R...</td>
-      <td>0.022349</td>
+      <td>GO:0016265</td>
+      <td>0.023424</td>
       <td>12.0</td>
     </tr>
     <tr>
       <th>14</th>
-      <td>INFLAMMATION</td>
-      <td>0.022216</td>
+      <td>ANGIOGENESIS</td>
+      <td>0.022714</td>
       <td>13.0</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>GO:0016265</td>
-      <td>0.022084</td>
+      <td>DOWN REGULATION OF GLOBAL TRANSCRIPTION FROM R...</td>
+      <td>0.022147</td>
       <td>14.0</td>
     </tr>
     <tr>
       <th>16</th>
-      <td>ANGIOGENESIS</td>
-      <td>0.020894</td>
+      <td>TRANSDUCTION</td>
+      <td>0.020443</td>
       <td>15.0</td>
     </tr>
     <tr>
       <th>17</th>
-      <td>TRANSDUCTION</td>
-      <td>0.020497</td>
+      <td>ACCIDENTAL CELL DEATH</td>
+      <td>0.020301</td>
       <td>16.0</td>
     </tr>
     <tr>
       <th>18</th>
-      <td>ACCIDENTAL CELL DEATH</td>
-      <td>0.020233</td>
+      <td>CELL CYCLE</td>
+      <td>0.019733</td>
       <td>17.0</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>PROTEIN ANABOLISM</td>
-      <td>0.019439</td>
-      <td>18.0</td>
+      <td>IMMUNE RESPONSE</td>
+      <td>0.019733</td>
+      <td>17.0</td>
     </tr>
   </tbody>
 </table>
@@ -15901,7 +15896,7 @@ There are 90060 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bp_mask</span> <span class="o">=</span> <span class="s1">&#39;RAS |ALDOSTERONE|HYALURONAN|ANGIOTENSIN|VASO|VASCULAR PERMEABILITY|BODY FLUID|&#39;</span>\
@@ -15910,297 +15905,6 @@ There are 90060 unique paths.
 
 <span class="n">q2_scoring_BK</span> <span class="o">=</span> <span class="n">q2_scoring</span><span class="p">[</span><span class="n">q2_scoring</span><span class="p">[</span><span class="s1">&#39;output_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">bp_mask</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">q2_scoring_BK</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[22]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>output_name</th>
-      <th>score</th>
-      <th>rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>14</th>
-      <td>INFLAMMATION</td>
-      <td>0.022216</td>
-      <td>13.0</td>
-    </tr>
-    <tr>
-      <th>63</th>
-      <td>CARDIAC DEVELOPMENT</td>
-      <td>0.010711</td>
-      <td>51.0</td>
-    </tr>
-    <tr>
-      <th>122</th>
-      <td>ANTI-INFLAMMATORY RESPONSE</td>
-      <td>0.007273</td>
-      <td>74.0</td>
-    </tr>
-    <tr>
-      <th>127</th>
-      <td>BLOOD CLOTTING</td>
-      <td>0.007009</td>
-      <td>76.0</td>
-    </tr>
-    <tr>
-      <th>147</th>
-      <td>SODIUM ION MEMBRANE TRANSPORT</td>
-      <td>0.006083</td>
-      <td>83.0</td>
-    </tr>
-    <tr>
-      <th>166</th>
-      <td>BLOOD COAGULATION, PLATELET ACTIVATION</td>
-      <td>0.005554</td>
-      <td>87.0</td>
-    </tr>
-    <tr>
-      <th>177</th>
-      <td>CLOTTING</td>
-      <td>0.005290</td>
-      <td>89.0</td>
-    </tr>
-    <tr>
-      <th>245</th>
-      <td>RAS MEDIATED SIGNAL TRANSDUCTION</td>
-      <td>0.004232</td>
-      <td>97.0</td>
-    </tr>
-    <tr>
-      <th>266</th>
-      <td>CARDIAC LOOPING</td>
-      <td>0.003967</td>
-      <td>99.0</td>
-    </tr>
-    <tr>
-      <th>285</th>
-      <td>CARDIAC MUSCLE CONTRACTION</td>
-      <td>0.003570</td>
-      <td>102.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
-<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[23]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred1_api</th>
-      <th>pred1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BioLink API</td>
-      <td>has_phenotype</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>mydisease.info API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[24]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred2_api</th>
-      <th>pred2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>98</th>
-      <td>BioLink API</td>
-      <td>contributes_to_condition</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>BioLink API</td>
-      <td>has_phenotype</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>EBIgene2phenotype API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the third part of the query (Gene &rarr; Pathway), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -16236,18 +15940,309 @@ There are 90060 unique paths.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>output_name</th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>11</th>
+      <td>INFLAMMATION</td>
+      <td>0.023850</td>
+      <td>11.0</td>
+    </tr>
+    <tr>
+      <th>66</th>
+      <td>CARDIAC DEVELOPMENT</td>
+      <td>0.010363</td>
+      <td>49.0</td>
+    </tr>
+    <tr>
+      <th>93</th>
+      <td>ANTI-INFLAMMATORY RESPONSE</td>
+      <td>0.008518</td>
+      <td>61.0</td>
+    </tr>
+    <tr>
+      <th>115</th>
+      <td>BLOOD CLOTTING</td>
+      <td>0.007382</td>
+      <td>69.0</td>
+    </tr>
+    <tr>
+      <th>139</th>
+      <td>CLOTTING</td>
+      <td>0.006246</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>141</th>
+      <td>SODIUM ION MEMBRANE TRANSPORT</td>
+      <td>0.006246</td>
+      <td>77.0</td>
+    </tr>
+    <tr>
+      <th>147</th>
+      <td>BLOOD COAGULATION, PLATELET ACTIVATION</td>
+      <td>0.006104</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>251</th>
+      <td>CARDIAC MUSCLE CONTRACTION</td>
+      <td>0.004259</td>
+      <td>91.0</td>
+    </tr>
+    <tr>
+      <th>256</th>
+      <td>RAS MEDIATED SIGNAL TRANSDUCTION</td>
+      <td>0.003975</td>
+      <td>93.0</td>
+    </tr>
+    <tr>
+      <th>278</th>
+      <td>REGULATION OF INFLAMMATORY RESPONSE</td>
+      <td>0.003691</td>
+      <td>95.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
+<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[26]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred1_api</th>
+      <th>pred1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18198</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>18199</th>
+      <td>mydisease.info API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred2_api</th>
+      <th>pred2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>18290</th>
+      <td>BioLink API</td>
+      <td>contributes_to_condition</td>
+    </tr>
+    <tr>
+      <th>18200</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>18198</th>
+      <td>EBIgene2phenotype API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the third part of the query (Gene &rarr; Pathway), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
       <th>pred3_api</th>
       <th>pred3</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>18198</th>
       <td>CORD Gene API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>6</th>
+      <th>18202</th>
       <td>MyGene.info API</td>
       <td>functional_association</td>
     </tr>

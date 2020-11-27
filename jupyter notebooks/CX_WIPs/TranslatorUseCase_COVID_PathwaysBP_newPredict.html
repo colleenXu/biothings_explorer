@@ -14336,6 +14336,14 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>2020-11-26 update: moved the code removing unresolved UMLS ids, now runs before the report of how many entities there are in the answer KG</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2>
 </div>
 </div>
@@ -14604,9 +14612,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-10-06 22:42:02.938057
+2020-11-26 16:47:24.271129
 UTC time: 
-2020-10-07 05:42:02.938180
+2020-11-27 00:47:24.271325
 </pre>
 </div>
 </div>
@@ -14661,11 +14669,12 @@ UTC time:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 9 BioThings objects returned for SARS:
+<pre>There are 10 BioThings objects returned for SARS:
 ChemicalSubstance, Anti-SARS-CoV-2 REGN-COV2, num of IDs: 1
 Disease, severe acute respiratory syndrome, num of IDs: 5
 Disease, COVID-19, num of IDs: 2
-Disease, SARS-CoV-2 Kawasaki-like syndrome, num of IDs: 1
+Disease, COVID-19–associated multisystem inflammatory syndrome in children, num of IDs: 2
+Disease, IMD74, num of IDs: 0
 MolecularActivity, selenocysteine-tRNA ligase activity, num of IDs: 2
 MolecularActivity, mRNA (guanine-N7-)-methyltransferase activity, num of IDs: 3
 MolecularActivity, 5&#39;-3&#39; RNA helicase activity, num of IDs: 2
@@ -14841,9 +14850,9 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 16 unique PhenotypicFeatures for SARS.
-There are 816 unique Genes for SARS.
-There are 2067 unique Pathways for SARS.
-There are 54402 unique paths.
+There are 805 unique Genes for SARS.
+There are 2059 unique Pathways for SARS.
+There are 51768 unique paths.
 </pre>
 </div>
 </div>
@@ -14884,13 +14893,13 @@ There are 54402 unique paths.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Cough&#39;, &#39;Fever&#39;, &#39;Respiratory distress&#39;, &#39;Headache&#39;, &#39;Dyspnea&#39;,
-       &#39;Immunodeficiency&#39;, &#39;Myalgia&#39;,
+<pre>array([&#39;Cough&#39;, &#39;Headache&#39;, &#39;Neoplasm&#39;, &#39;Fever&#39;, &#39;Dyspnea&#39;,
+       &#39;Respiratory distress&#39;, &#39;Myalgia&#39;, &#39;Immunodeficiency&#39;,
+       &#39;Diabetes mellitus&#39;,
        &#39;Respiratory failure requiring assisted ventilation&#39;,
-       &#39;Diabetes mellitus&#39;, &#39;Neoplasm&#39;, &#39;Acute infectious pneumonia&#39;,
-       &#39;Hypoxemia&#39;, &#39;Abnormality of the cardiovascular system&#39;,
-       &#39;Acute kidney injury&#39;, &#39;Pharyngitis&#39;, &#39;Chronic lung disease&#39;],
-      dtype=object)</pre>
+       &#39;Acute infectious pneumonia&#39;, &#39;Hypoxemia&#39;,
+       &#39;Abnormality of the cardiovascular system&#39;, &#39;Pharyngitis&#39;,
+       &#39;Acute kidney injury&#39;, &#39;Chronic lung disease&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -14926,7 +14935,7 @@ There are 54402 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
@@ -14947,7 +14956,7 @@ There are 54402 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[12]:</div>
+    <div class="prompt output_prompt">Out[14]:</div>
 
 
 
@@ -14979,122 +14988,122 @@ There are 54402 unique paths.
     <tr>
       <th>0</th>
       <td>Immune System</td>
-      <td>0.286275</td>
+      <td>0.292723</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
       <td>Signal Transduction</td>
-      <td>0.271373</td>
+      <td>0.280458</td>
       <td>2.0</td>
     </tr>
     <tr>
       <th>2</th>
       <td>Metabolism</td>
-      <td>0.264314</td>
+      <td>0.250204</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>3</th>
       <td>Disease</td>
-      <td>0.251765</td>
+      <td>0.239575</td>
       <td>4.0</td>
     </tr>
     <tr>
       <th>4</th>
       <td>Metabolism of proteins</td>
-      <td>0.208627</td>
+      <td>0.206051</td>
       <td>5.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>Gene expression (Transcription)</td>
-      <td>0.142745</td>
+      <td>Cytokine Signaling in Immune system</td>
+      <td>0.146361</td>
       <td>6.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>Innate Immune System</td>
-      <td>0.142745</td>
-      <td>6.0</td>
+      <td>Gene expression (Transcription)</td>
+      <td>0.141455</td>
+      <td>7.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>Cytokine Signaling in Immune system</td>
-      <td>0.140392</td>
-      <td>7.0</td>
+      <td>Innate Immune System</td>
+      <td>0.140638</td>
+      <td>8.0</td>
     </tr>
     <tr>
       <th>8</th>
       <td>RNA Polymerase II Transcription</td>
-      <td>0.133333</td>
-      <td>8.0</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Generic Transcription Pathway</td>
-      <td>0.130980</td>
+      <td>0.132461</td>
       <td>9.0</td>
     </tr>
     <tr>
-      <th>10</th>
+      <th>9</th>
       <td>Post-translational protein modification</td>
-      <td>0.130196</td>
+      <td>0.130826</td>
       <td>10.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Generic Transcription Pathway</td>
+      <td>0.130008</td>
+      <td>11.0</td>
     </tr>
     <tr>
       <th>11</th>
       <td>Cell Cycle</td>
-      <td>0.116863</td>
-      <td>11.0</td>
+      <td>0.119379</td>
+      <td>12.0</td>
     </tr>
     <tr>
       <th>12</th>
       <td>Developmental Biology</td>
-      <td>0.112157</td>
-      <td>12.0</td>
-    </tr>
-    <tr>
-      <th>13</th>
-      <td>Infectious disease</td>
-      <td>0.099608</td>
+      <td>0.107114</td>
       <td>13.0</td>
     </tr>
     <tr>
-      <th>14</th>
+      <th>13</th>
       <td>Hemostasis</td>
-      <td>0.096471</td>
+      <td>0.098937</td>
       <td>14.0</td>
     </tr>
     <tr>
-      <th>15</th>
+      <th>14</th>
       <td>Signaling by Receptor Tyrosine Kinases</td>
-      <td>0.094902</td>
+      <td>0.098119</td>
       <td>15.0</td>
     </tr>
     <tr>
-      <th>16</th>
+      <th>15</th>
       <td>Diseases of signal transduction</td>
-      <td>0.088627</td>
+      <td>0.091578</td>
       <td>16.0</td>
     </tr>
     <tr>
-      <th>17</th>
+      <th>16</th>
       <td>Adaptive Immune System</td>
-      <td>0.084706</td>
+      <td>0.088307</td>
       <td>17.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Infectious disease</td>
+      <td>0.087490</td>
+      <td>18.0</td>
     </tr>
     <tr>
       <th>18</th>
       <td>Transport of small molecules</td>
-      <td>0.083922</td>
-      <td>18.0</td>
+      <td>0.085854</td>
+      <td>19.0</td>
     </tr>
     <tr>
       <th>19</th>
       <td>Signaling by Interleukins</td>
-      <td>0.077647</td>
-      <td>19.0</td>
+      <td>0.084219</td>
+      <td>20.0</td>
     </tr>
   </tbody>
 </table>
@@ -15133,7 +15142,7 @@ There are 54402 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">path_mask</span> <span class="o">=</span> <span class="s1">&#39;RAS|ACE Inhibitor|Vascular|Coagulation|Clot|Inflamm|inflamm|&#39;</span>\
@@ -15142,216 +15151,6 @@ There are 54402 unique paths.
 
 <span class="n">q1_scoring_BK</span> <span class="o">=</span> <span class="n">q1_scoring</span><span class="p">[</span><span class="n">q1_scoring</span><span class="p">[</span><span class="s1">&#39;output_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">path_mask</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">q1_scoring_BK</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[13]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>output_label</th>
-      <th>score</th>
-      <th>rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>38</th>
-      <td>Neutrophil degranulation</td>
-      <td>0.056471</td>
-      <td>32.0</td>
-    </tr>
-    <tr>
-      <th>167</th>
-      <td>Cardiac conduction</td>
-      <td>0.022745</td>
-      <td>69.0</td>
-    </tr>
-    <tr>
-      <th>227</th>
-      <td>Calcium Regulation in the Cardiac Cell</td>
-      <td>0.018824</td>
-      <td>74.0</td>
-    </tr>
-    <tr>
-      <th>277</th>
-      <td>Cardiac Progenitor Differentiation</td>
-      <td>0.017255</td>
-      <td>76.0</td>
-    </tr>
-    <tr>
-      <th>341</th>
-      <td>Cardiac Hypertrophic Response</td>
-      <td>0.014902</td>
-      <td>79.0</td>
-    </tr>
-    <tr>
-      <th>358</th>
-      <td>Inflammatory Response Pathway</td>
-      <td>0.014118</td>
-      <td>80.0</td>
-    </tr>
-    <tr>
-      <th>512</th>
-      <td>Resistin as a regulator of inflammation</td>
-      <td>0.010980</td>
-      <td>84.0</td>
-    </tr>
-    <tr>
-      <th>546</th>
-      <td>Relationship between inflammation, COX-2 and EGFR</td>
-      <td>0.010196</td>
-      <td>85.0</td>
-    </tr>
-    <tr>
-      <th>560</th>
-      <td>Erythropoietin activates RAS</td>
-      <td>0.009412</td>
-      <td>86.0</td>
-    </tr>
-    <tr>
-      <th>576</th>
-      <td>Inflammasomes</td>
-      <td>0.009412</td>
-      <td>86.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
-<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[14]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred1_api</th>
-      <th>pred1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>12</th>
-      <td>BioLink API</td>
-      <td>has_phenotype</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>mydisease.info API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -15387,6 +15186,216 @@ There are 54402 unique paths.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>output_label</th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>38</th>
+      <td>Neutrophil degranulation</td>
+      <td>0.055601</td>
+      <td>34.0</td>
+    </tr>
+    <tr>
+      <th>165</th>
+      <td>Cardiac conduction</td>
+      <td>0.023712</td>
+      <td>67.0</td>
+    </tr>
+    <tr>
+      <th>190</th>
+      <td>Cardiac Progenitor Differentiation</td>
+      <td>0.022077</td>
+      <td>69.0</td>
+    </tr>
+    <tr>
+      <th>213</th>
+      <td>Calcium Regulation in the Cardiac Cell</td>
+      <td>0.020442</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>309</th>
+      <td>Inflammatory Response Pathway</td>
+      <td>0.016353</td>
+      <td>76.0</td>
+    </tr>
+    <tr>
+      <th>337</th>
+      <td>Cardiac Hypertrophic Response</td>
+      <td>0.014718</td>
+      <td>78.0</td>
+    </tr>
+    <tr>
+      <th>399</th>
+      <td>Resistin as a regulator of inflammation</td>
+      <td>0.013083</td>
+      <td>80.0</td>
+    </tr>
+    <tr>
+      <th>452</th>
+      <td>Relationship between inflammation, COX-2 and EGFR</td>
+      <td>0.011447</td>
+      <td>82.0</td>
+    </tr>
+    <tr>
+      <th>492</th>
+      <td>Inflammasomes</td>
+      <td>0.010630</td>
+      <td>83.0</td>
+    </tr>
+    <tr>
+      <th>525</th>
+      <td>Fibrin Complement Receptor 3 Signaling Pathway</td>
+      <td>0.009812</td>
+      <td>84.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
+<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred1_api</th>
+      <th>pred1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>mydisease.info API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
       <th>pred2_api</th>
       <th>pred2</th>
     </tr>
@@ -15398,7 +15407,7 @@ There are 54402 unique paths.
       <td>related_to</td>
     </tr>
     <tr>
-      <th>797</th>
+      <th>284</th>
       <td>EBIgene2phenotype API</td>
       <td>related_to</td>
     </tr>
@@ -15423,7 +15432,7 @@ There are 54402 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15440,7 +15449,7 @@ There are 54402 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -15504,7 +15513,7 @@ There are 54402 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15522,29 +15531,10 @@ There are 54402 unique paths.
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>API call to SEMMED Gene API with input [&#39;C1418752&#39;, &#39;C1424242&#39;, &#39;C1419926&#39;, &#39;C3146739&#39;, &#39;C1419872&#39;, &#39;C2239449&#39;, &#39;C1824763&#39;, &#39;C1367553&#39;, &#39;C1366557&#39;, &#39;C1412062&#39;, &#39;C1417807&#39;, &#39;C1415891&#39;, &#39;C1334530&#39;, &#39;C1416783&#39;, &#39;C1419929&#39;, &#39;C1424232&#39;, &#39;C1414128&#39;, &#39;C1825897&#39;, &#39;C1427727&#39;, &#39;C1414544&#39;, &#39;C1424878&#39;, &#39;C1442485&#39;, &#39;C1456375&#39;, &#39;C1538052&#39;, &#39;C1335203&#39;, &#39;C1823401&#39;, &#39;C0085301&#39;, &#39;C1367342&#39;, &#39;C1335836&#39;, &#39;C1538686&#39;, &#39;C1415044&#39;, &#39;C1538013&#39;, &#39;C1419909&#39;, &#39;C1336620&#39;, &#39;C1336670&#39;, &#39;C1420481&#39;, &#39;C1420649&#39;, &#39;C1412750&#39;, &#39;C1419906&#39;, &#39;C0072502&#39;, &#39;C3147174&#39;, &#39;C1417635&#39;, &#39;C1427712&#39;, &#39;C1419728&#39;, &#39;C1420718&#39;, &#39;C1421305&#39;, &#39;C0919427&#39;, &#39;C1332669&#39;, &#39;C1428703&#39;, &#39;C1832361&#39;, &#39;C1540183&#39;, &#39;C0066357&#39;, &#39;C1418706&#39;, &#39;C1420131&#39;, &#39;C1335270&#39;, &#39;C3539134&#39;, &#39;C1364818&#39;, &#39;C1412373&#39;, &#39;C1414057&#39;, &#39;C1414857&#39;, &#39;C1418756&#39;, &#39;C1332724&#39;, &#39;C1420822&#39;, &#39;C1333359&#39;, &#39;C1823245&#39;, &#39;C0172537&#39;, &#39;C1825593&#39;, &#39;C0085218&#39;, &#39;C1367578&#39;, &#39;C1419758&#39;, &#39;C1825588&#39;, &#39;C1417620&#39;, &#39;C1823479&#39;, &#39;C1367307&#39;, &#39;C1413146&#39;, &#39;C1335280&#39;, &#39;C0080222&#39;, &#39;C1417644&#39;, &#39;C1426196&#39;, &#39;C1334908&#39;, &#39;C0751995&#39;, &#39;C1418649&#39;, &#39;C1335086&#39;, &#39;C3470652&#39;, &#39;C1421583&#39;, &#39;C1853225&#39;, &#39;C1414473&#39;, &#39;C1413803&#39;, &#39;C1412691&#39;, &#39;C3890126&#39;, &#39;C1427586&#39;, &#39;C1335879&#39;, &#39;C1413589&#39;, &#39;C2829592&#39;, &#39;C1416543&#39;, &#39;C1414636&#39;, &#39;C1835898&#39;, &#39;C1413450&#39;, &#39;C1420259&#39;, &#39;C1419396&#39;, &#39;C1336596&#39;, &#39;C1824571&#39;, &#39;C1420337&#39;, &#39;C1537992&#39;, &#39;C1424525&#39;, &#39;C1420490&#39;, &#39;C1332124&#39;, &#39;C1421478&#39;, &#39;C1538002&#39;, &#39;C1426592&#39;, &#39;C1419628&#39;, &#39;C1413916&#39;, &#39;C1425064&#39;, &#39;C1824951&#39;, &#39;C1333356&#39;, &#39;C1418731&#39;, &#39;C1425514&#39;, &#39;C1537396&#39;, &#39;C1366767&#39;, &#39;C1416467&#39;, &#39;C1333663&#39;, &#39;C1826332&#39;, &#39;C1708291&#39;, &#39;C1420748&#39;, &#39;C1418975&#39;, &#39;C1413560&#39;, &#39;C0023816&#39;, &#39;C1420812&#39;, &#39;C0132096&#39;, &#39;C1823139&#39;, &#39;C1413113&#39;, &#39;C1425527&#39;, &#39;C1824631&#39;, &#39;C1417205&#39;, &#39;C1857794&#39;, &#39;C1412402&#39;, &#39;C1538095&#39;, &#39;C1413696&#39;, &#39;C1366529&#39;, &#39;C1420279&#39;, &#39;C1425445&#39;, &#39;C1418754&#39;, &#39;C1412331&#39;, &#39;C1414674&#39;, &#39;C1428017&#39;, &#39;C1425806&#39;, &#39;C1415042&#39;, &#39;C1419903&#39;, &#39;C1424942&#39;, &#39;C0694890&#39;, &#39;C1423546&#39;, &#39;C1417953&#39;, &#39;C1418927&#39;, &#39;C1418544&#39;, &#39;C1540046&#39;, &#39;C1539477&#39;, &#39;C1826392&#39;, &#39;C1864814&#39;, &#39;C1413239&#39;, &#39;C0919509&#39;, &#39;C0079419&#39;, &#39;C1412855&#39;, &#39;C1415068&#39;, &#39;C0919432&#39;, &#39;C1825770&#39;, &#39;C1413206&#39;, &#39;C1419857&#39;, &#39;C1413096&#39;, &#39;C0010461&#39;, &#39;C1425764&#39;, &#39;C1826738&#39;, &#39;C1419413&#39;, &#39;C1420850&#39;, &#39;C1421501&#39;, &#39;C1826624&#39;, &#39;C1826773&#39;, &#39;C1427946&#39;, &#39;C1825621&#39;, &#39;C1419635&#39;, &#39;C1419248&#39;, &#39;C0032140&#39;, &#39;C1414326&#39;, &#39;C1415876&#39;, &#39;C1419105&#39;, &#39;C1418458&#39;, &#39;C1414137&#39;, &#39;C1825552&#39;, &#39;C1418907&#39;, &#39;C1337109&#39;, &#39;C1334083&#39;, &#39;C1420814&#39;, &#39;C1419869&#39;, &#39;C1335876&#39;, &#39;C1419195&#39;, &#39;C1825692&#39;, &#39;C1414119&#39;, &#39;C1419667&#39;, &#39;C1424562&#39;, &#39;C1427260&#39;, &#39;C1537558&#39;, &#39;C1421146&#39;, &#39;C1416768&#39;, &#39;C1415462&#39;, &#39;C1333543&#39;, &#39;C1413590&#39;, &#39;C1539725&#39;, &#39;C1423817&#39;, &#39;C1427359&#39;, &#39;C2239353&#39;, &#39;C0086661&#39;, &#39;C1415457&#39;, &#39;C1412922&#39;, &#39;C1412629&#39;, &#39;C1420826&#39;, &#39;C1336631&#39;, &#39;C1426562&#39;, &#39;C1414157&#39;, &#39;C1334084&#39;, &#39;C1425219&#39;, &#39;C1825620&#39;, &#39;C1417616&#39;, &#39;C1414637&#39;, &#39;C1413648&#39;, &#39;C1427913&#39;, &#39;C1417609&#39;, &#39;C1537985&#39;, &#39;C1425085&#39;, &#39;C1419731&#39;, &#39;C1421375&#39;, &#39;C1412981&#39;, &#39;C0919524&#39;, &#39;C1416902&#39;, &#39;C0059377&#39;, &#39;C1417772&#39;, &#39;C1538440&#39;, &#39;C1335212&#39;, &#39;C1418696&#39;, &#39;C1842747&#39;, &#39;C1824843&#39;, &#39;C1416655&#39;, &#39;C1822686&#39;, &#39;C1335201&#39;, &#39;C1422239&#39;, &#39;C1426761&#39;, &#39;C1332431&#39;, &#39;C1416604&#39;, &#39;C1419216&#39;, &#39;C1417434&#39;, &#39;C1418605&#39;, &#39;C1826473&#39;, &#39;C3890999&#39;, &#39;C1824589&#39;, &#39;C1417123&#39;, &#39;C1366370&#39;, &#39;C1414091&#39;, &#39;C1333652&#39;, &#39;C1826837&#39;, &#39;C1422602&#39;, &#39;C1366536&#39;, &#39;C1412841&#39;, &#39;C1337030&#39;, &#39;C1416877&#39;, &#39;C1413240&#39;, &#39;C1417627&#39;, &#39;C1417651&#39;, &#39;C1417645&#39;, &#39;C1333357&#39;, &#39;C1413661&#39;, &#39;C1426175&#39;, &#39;C2681211&#39;, &#39;C1414561&#39;, &#39;C1412364&#39;, &#39;C1427118&#39;, &#39;C1537987&#39;, &#39;C1442762&#39;, &#39;C1412282&#39;, &#39;C1420431&#39;, &#39;C2677502&#39;, &#39;C1416912&#39;, &#39;C1414330&#39;, &#39;C1418732&#39;, &#39;C1835861&#39;, &#39;C1540079&#39;, &#39;C1537995&#39;, &#39;C0812222&#39;, &#39;C0082978&#39;, &#39;C1366757&#39;, &#39;C1419632&#39;, &#39;C1367482&#39;, &#39;C1417203&#39;, &#39;C1420248&#39;, &#39;C1414056&#39;, &#39;C1413603&#39;, &#39;C1336848&#39;, &#39;C1415882&#39;, &#39;C1426185&#39;, &#39;C1414431&#39;, &#39;C1418478&#39;, &#39;C1421996&#39;, &#39;C1412389&#39;, &#39;C1422496&#39;, &#39;C1413826&#39;, &#39;C1422251&#39;, &#39;C1418423&#39;, &#39;C1419427&#39;, &#39;C1423607&#39;, &#39;C1414683&#39;, &#39;C1424138&#39;, &#39;C3146638&#39;, &#39;C1427995&#39;, &#39;C4320437&#39;, &#39;C0007841&#39;, &#39;C1419864&#39;, &#39;C1420092&#39;, &#39;C0919538&#39;, &#39;C1456413&#39;, &#39;C1366537&#39;, &#39;C1416578&#39;, &#39;C1418518&#39;, &#39;C1824564&#39;, &#39;C1422658&#39;, &#39;C1332803&#39;, &#39;C1826562&#39;, &#39;C0054959&#39;, &#39;C1415629&#39;, &#39;C1413451&#39;, &#39;C1424774&#39;, &#39;C1414532&#39;, &#39;C1413365&#39;, &#39;C1427623&#39;, &#39;C0694897&#39;, &#39;C1335829&#39;, &#39;C1424735&#39;, &#39;C1414860&#39;, &#39;C1417646&#39;, &#39;C1414555&#39;, &#39;C1415491&#39;, &#39;C1423987&#39;, &#39;C1826433&#39;, &#39;C1428691&#39;, &#39;C1420496&#39;, &#39;C1412266&#39;, &#39;C1414528&#39;, &#39;C1420498&#39;, &#39;C1416868&#39;, &#39;C1420653&#39;, &#39;C1427582&#39;, &#39;C1415460&#39;, &#39;C1418876&#39;, &#39;C1417542&#39;, &#39;C1424235&#39;, &#39;C1412304&#39;, &#39;C1417652&#39;, &#39;C0694878&#39;, &#39;C1417015&#39;, &#39;C1823523&#39;, &#39;C1823529&#39;, &#39;C1334114&#39;, &#39;C1367449&#39;, &#39;C1416380&#39;, &#39;C0032923&#39;, &#39;C1538125&#39;, &#39;C1333683&#39;, &#39;C1416865&#39;, &#39;C1420636&#39;, &#39;C1416587&#39;, &#39;C1415803&#39;, &#39;C1412445&#39;, &#39;C1420603&#39;, &#39;C0003595&#39;, &#39;C0694895&#39;, &#39;C1414688&#39;, &#39;C1425842&#39;, &#39;C1824603&#39;, &#39;C1413636&#39;, &#39;C1420141&#39;, &#39;C1424883&#39;, &#39;C1826449&#39;, &#39;C1419862&#39;, &#39;C1539082&#39;, &#39;C1418941&#39;, &#39;C1826618&#39;, &#39;C1417708&#39;, &#39;C1417538&#39;, &#39;C0084715&#39;, &#39;C1413412&#39;, &#39;C1422597&#39;, &#39;C1824336&#39;, &#39;C1422342&#39;, &#39;C0017351&#39;, &#39;C1417523&#39;, &#39;C1384616&#39;, &#39;C1417458&#39;, &#39;C1417608&#39;, &#39;C1423674&#39;, &#39;C1419073&#39;, &#39;C1332802&#39;, &#39;C1427608&#39;, &#39;C1424448&#39;, &#39;C0812377&#39;, &#39;C1416746&#39;, &#39;C1419128&#39;, &#39;C1422163&#39;, &#39;C1417565&#39;, &#39;C1826435&#39;, &#39;C1384510&#39;, &#39;C1366837&#39;, &#39;C1420527&#39;, &#39;C0163617&#39;, &#39;C1418413&#39;, &#39;C1423542&#39;, &#39;C1416786&#39;, &#39;C1335833&#39;, &#39;C1413376&#39;, &#39;C1414085&#39;, &#39;C1417614&#39;, &#39;C1419227&#39;, &#39;C1439306&#39;, &#39;C1708000&#39;, &#39;C1824563&#39;, &#39;C1413856&#39;, &#39;C4085399&#39;, &#39;C1414422&#39;, &#39;C1420306&#39;, &#39;C1417650&#39;, &#39;C1413629&#39;, &#39;C0073320&#39;, &#39;C1417768&#39;, &#39;C1332661&#39;, &#39;C1332125&#39;, &#39;C1334894&#39;, &#39;C1415508&#39;, &#39;C0082420&#39;, &#39;C1826724&#39;, &#39;C0812242&#39;, &#39;C1418285&#39;, &#39;C1421249&#39;, &#39;C1824156&#39;, &#39;C1426171&#39;, &#39;C0006558&#39;, &#39;C1539549&#39;, &#39;C1421437&#39;, &#39;C1414472&#39;, &#39;C1428652&#39;, &#39;C1415078&#39;, &#39;C1538006&#39;, &#39;C1418916&#39;, &#39;C1412856&#39;, &#39;C1412097&#39;, &#39;C1428235&#39;, &#39;C1424456&#39;, &#39;C1332790&#39;, &#39;C1423635&#39;, &#39;C1366583&#39;, &#39;C1538423&#39;, &#39;C1414669&#39;, &#39;C1423814&#39;, &#39;C1539478&#39;, &#39;C1825454&#39;, &#39;C1415614&#39;, &#39;C1417104&#39;, &#39;C1421409&#39;, &#39;C1414083&#39;, &#39;C0812241&#39;, &#39;C1420003&#39;, &#39;C1334137&#39;, &#39;C1421361&#39;, &#39;C1363982&#39;, &#39;C1425041&#39;, &#39;C1363984&#39;, &#39;C2748512&#39;, &#39;C1420295&#39;, &#39;C0079414&#39;, &#39;C1332823&#39;, &#39;C1413713&#39;, &#39;C1539711&#39;, &#39;C1412111&#39;, &#39;C1417767&#39;, &#39;C1415101&#39;, &#39;C4320593&#39;, &#39;C1425020&#39;, &#39;C1538495&#39;, &#39;C0126037&#39;, &#39;C1824460&#39;, &#39;C1420387&#39;, &#39;C1426958&#39;, &#39;C1538832&#39;, &#39;C1416588&#39;, &#39;C1537503&#39;, &#39;C1823843&#39;, &#39;C1413379&#39;, &#39;C1824414&#39;, &#39;C1537399&#39;, &#39;C1826617&#39;, &#39;C1425614&#39;, &#39;C1335580&#39;, &#39;C0083344&#39;, &#39;C1419713&#39;, &#39;C1539102&#39;, &#39;C1415079&#39;, &#39;C1968832&#39;, &#39;C1417326&#39;, &#39;C1415014&#39;, &#39;C1423501&#39;, &#39;C1538016&#39;, &#39;C1337033&#39;, &#39;C1414327&#39;, &#39;C1425364&#39;, &#39;C1419228&#39;, &#39;C1414405&#39;, &#39;C1418954&#39;, &#39;C1412756&#39;, &#39;C1538627&#39;, &#39;C1414426&#39;, &#39;C2240338&#39;, &#39;C1824725&#39;, &#39;C1420193&#39;, &#39;C1413690&#39;, &#39;C0071795&#39;, &#39;C0812228&#39;, &#39;C1334522&#39;, &#39;C1442758&#39;, &#39;C1418643&#39;, &#39;C1414946&#39;, &#39;C1412937&#39;, &#39;C1826496&#39;, &#39;C1412118&#39;, &#39;C1413036&#39;, &#39;C0080113&#39;, &#39;C1335837&#39;, &#39;C1420494&#39;, &#39;C1415077&#39;, &#39;C1421540&#39;, &#39;C1414328&#39;, &#39;C1456390&#39;, &#39;C1415793&#39;, &#39;C1366448&#39;, &#39;C1422337&#39;, &#39;C1422573&#39;, &#39;C3469918&#39;, &#39;C1419283&#39;, &#39;C1419651&#39;, &#39;C1825278&#39;, &#39;C1413172&#39;, &#39;C1414110&#39;, &#39;C0087140&#39;, &#39;C1337112&#39;, &#39;C1537994&#39;, &#39;C1413588&#39;, &#39;C1413219&#39;, &#39;C1418859&#39;, &#39;C1415378&#39;, &#39;C1424823&#39;, &#39;C1823502&#39;, &#39;C1424302&#39;, &#39;C1412481&#39;, &#39;C0079259&#39;, &#39;C1421152&#39;, &#39;C2828877&#39;, &#39;C1415634&#39;, &#39;C1423081&#39;, &#39;C1418434&#39;, &#39;C1824710&#39;, &#39;C1425223&#39;, &#39;C1428204&#39;, &#39;C0694883&#39;, &#39;C1538001&#39;, &#39;C1418727&#39;, &#39;C1332711&#39;, &#39;C1539081&#39;, &#39;C1826310&#39;, &#39;C1413134&#39;, &#39;C1419623&#39;, &#39;C1414996&#39;, &#39;C1413844&#39;, &#39;C1334116&#39;, &#39;C1428293&#39;, &#39;C1413804&#39;, &#39;C1825092&#39;, &#39;C1417641&#39;, &#39;C1427709&#39;, &#39;C1421355&#39;, &#39;C1418272&#39;, &#39;C1826838&#39;, &#39;C1823857&#39;, &#39;C1420121&#39;, &#39;C0080065&#39;, &#39;C1419705&#39;, &#39;C0812295&#39;, &#39;C1419668&#39;, &#39;C0376571&#39;, &#39;C1416613&#39;, &#39;C1418462&#39;, &#39;C1412072&#39;, &#39;C1413238&#39;, &#39;C1413136&#39;, &#39;C1332770&#39;, &#39;C1825263&#39;, &#39;C1439272&#39;, &#39;C1420708&#39;, &#39;C0168552&#39;, &#39;C1824677&#39;, &#39;C1414094&#39;, &#39;C1421525&#39;, &#39;C1824492&#39;, &#39;C1824454&#39;, &#39;C1825868&#39;, &#39;C1418612&#39;, &#39;C1421199&#39;, &#39;C1416697&#39;, &#39;C1416383&#39;, &#39;C1538017&#39;, &#39;C1824104&#39;, &#39;C1414435&#39;, &#39;C1413153&#39;, &#39;C0920288&#39;, &#39;C1333242&#39;, &#39;C1366623&#39;, &#39;C1417061&#39;, &#39;C1413833&#39;, &#39;C1418965&#39;, &#39;C1412697&#39;, &#39;C0017768&#39;, &#39;C1413587&#39;, &#39;C0072108&#39;, &#39;C1423027&#39;, &#39;C1334115&#39;, &#39;C1424064&#39;, &#39;C1418674&#39;, &#39;C1413784&#39;, &#39;C1332029&#39;, &#39;C1413801&#39;, &#39;C0122577&#39;, &#39;C1423585&#39;, &#39;C1426244&#39;, &#39;C1415993&#39;, &#39;C1415701&#39;, &#39;C1538695&#39;, &#39;C1428931&#39;, &#39;C1333358&#39;, &#39;C1425496&#39;, &#39;C1333542&#39;, &#39;C1419068&#39;, &#39;C1427276&#39;, &#39;C3539335&#39;, &#39;C0694898&#39;, &#39;C1412077&#39;, &#39;C1332420&#39;, &#39;C1412471&#39;, &#39;C0020687&#39;, &#39;C1439334&#39;, &#39;C0051844&#39;, &#39;C1366618&#39;, &#39;C1414032&#39;, &#39;C1419771&#39;, &#39;C1332772&#39;, &#39;C1537990&#39;, &#39;C1337090&#39;, &#39;C1414471&#39;, &#39;C1538489&#39;, &#39;C1420365&#39;, &#39;C1426901&#39;, &#39;C1822705&#39;, &#39;C1824382&#39;, &#39;C1424211&#39;, &#39;C1333532&#39;, &#39;C1825595&#39;, &#39;C1414105&#39;, &#39;C1334340&#39;, &#39;C1384665&#39;, &#39;C0001457&#39;, &#39;C1334911&#39;, &#39;C1415375&#39;, &#39;C1413622&#39;, &#39;C1414542&#39;, &#39;C1413222&#39;, &#39;C1416997&#39;, &#39;C1414677&#39;, &#39;C1417701&#39;, &#39;C1824947&#39;, &#39;C1413861&#39;, &#39;C1427303&#39;, &#39;C1415597&#39;, &#39;C1416929&#39;, &#39;C1540215&#39;, &#39;C1424608&#39;, &#39;C1419347&#39;, &#39;C1337031&#39;, &#39;C1367721&#39;, &#39;C1969088&#39;, &#39;C1537630&#39;, &#39;C1418668&#39;, &#39;C1425532&#39;, &#39;C1538150&#39;, &#39;C1425753&#39;, &#39;C1825036&#39;, &#39;C2239666&#39;, &#39;C0108801&#39;, &#39;C1419871&#39;, &#39;C1417759&#39;, &#39;C1421222&#39;, &#39;C1414531&#39;, &#39;C0694872&#39;, &#39;C1418516&#39;, &#39;C1414527&#39;, &#39;C1413266&#39;, &#39;C1824580&#39;, &#39;C1414998&#39;, &#39;C1414504&#39;, &#39;C1418755&#39;, &#39;C1425226&#39;, &#39;C1412492&#39;, &#39;C1332773&#39;, &#39;C1421880&#39;, &#39;C1422011&#39;, &#39;C1823405&#39;, &#39;C1332742&#39;, &#39;C1425844&#39;, &#39;C1427038&#39;, &#39;C2681327&#39;, &#39;C1413580&#39;, &#39;C1417530&#39;, &#39;C1414101&#39;, &#39;C1415481&#39;, &#39;C0812443&#39;, &#39;C2240298&#39;, &#39;C1333669&#39;, &#39;C1420160&#39;, &#39;C1334123&#39;, &#39;C1335623&#39;, &#39;C1415081&#39;, &#39;C0694888&#39;, &#39;C0812273&#39;, &#39;C1415144&#39;, &#39;C1537989&#39;, &#39;C1419873&#39;, &#39;C1423837&#39;, &#39;C1413449&#39;, &#39;C1332455&#39;, &#39;C1826732&#39;, &#39;C1332100&#39;, &#39;C1412387&#39;, &#39;C3469994&#39;, &#39;C1825380&#39;, &#39;C1413942&#39;, &#39;C1419908&#39;, &#39;C0085113&#39;, &#39;C1864650&#39;, &#39;C1427279&#39;, &#39;C1419992&#39;, &#39;C1336929&#39;, &#39;C1538456&#39;, &#39;C1425470&#39;, &#39;C1539328&#39;, &#39;C1424250&#39;, &#39;C1332725&#39;, &#39;C1417504&#39;, &#39;C1417633&#39;, &#39;C1824643&#39;, &#39;C1419751&#39;, &#39;C1415846&#39;, &#39;C1418697&#39;, &#39;C1418901&#39;, &#39;C1417610&#39;, &#39;C1336624&#39;, &#39;C0085114&#39;, &#39;C1419868&#39;, &#39;C1421224&#39;, &#39;C1417388&#39;, &#39;C1423548&#39;, &#39;C1417174&#39;, &#39;C1428074&#39;, &#39;C1415707&#39;, &#39;C1425023&#39;, &#39;C1420090&#39;, &#39;C0082645&#39;, &#39;C1424082&#39;, &#39;C1334091&#39;, &#39;C1335654&#39;, &#39;C1823437&#39;, &#39;C1539574&#39;, &#39;C1825311&#39;, &#39;C0138318&#39;, &#39;C1419778&#39;, &#39;C1412279&#39;, &#39;C1413850&#39;, &#39;C1417046&#39;, &#39;C1421148&#39;, &#39;C1423573&#39;, &#39;C1826414&#39;, &#39;C1826413&#39;, &#39;C1414038&#39;, &#39;C1334102&#39;, &#39;C1419699&#39;, &#39;C1419051&#39;, &#39;C1826825&#39;, &#39;C1442489&#39;, &#39;C1539188&#39;, &#39;C1706652&#39;, &#39;C0162832&#39;, &#39;C1419856&#39;, &#39;C1416777&#39;, &#39;C0812286&#39;, &#39;C1426673&#39;, &#39;C1412110&#39;, &#39;C1417653&#39;, &#39;C0919477&#39;, &#39;C1539327&#39;, &#39;C1412946&#39;, &#39;C1412746&#39;, &#39;C1416576&#39;, &#39;C0059570&#39;, &#39;C1424843&#39;, &#39;C1416731&#39;, &#39;C2681086&#39;, &#39;C1425573&#39;, &#39;C1540111&#39;, &#39;C1417640&#39;, &#39;C2240268&#39;, &#39;C1416811&#39;, &#39;C1422134&#39;, &#39;C1424691&#39;, &#39;C1412747&#39;, &#39;C1537991&#39;, &#39;C1337098&#39;, &#39;C1418729&#39;, &#39;C1414106&#39;, &#39;C1421223&#39;, &#39;C1334088&#39;, &#39;C0694879&#39;, &#39;C1420408&#39;, &#39;C1826645&#39;, &#39;C0598034&#39;, &#39;C1427947&#39;, &#39;C1538151&#39;, &#39;C1412306&#39;, &#39;C0037903&#39;, &#39;C1414329&#39;, &#39;C1424286&#39;, &#39;C1538472&#39;, &#39;C1426334&#39;, &#39;C1417649&#39;, &#39;C1414336&#39;, &#39;C0146283&#39;, &#39;C1426079&#39;, &#39;C1419732&#39;, &#39;C1824106&#39;, &#39;C1413458&#39;, &#39;C1335088&#39;, &#39;C1414104&#39;, &#39;C1825567&#39;, &#39;C1420187&#39;, &#39;C1416486&#39;, &#39;C1442757&#39;, &#39;C1415529&#39;, &#39;C1332009&#39;, &#39;C0171427&#39;, &#39;C1334880&#39;, &#39;C1413681&#39;, &#39;C1412179&#39;, &#39;C1419277&#39;, &#39;C1333583&#39;, &#39;C1413591&#39;, &#39;C1413750&#39;, &#39;C1414172&#39;, &#39;C1414092&#39;, &#39;C1335083&#39;, &#39;C1538866&#39;, &#39;C1537422&#39;, &#39;C1420331&#39;, &#39;C0694894&#39;, &#39;C1417647&#39;, &#39;C1419157&#39;, &#39;C1416406&#39;, &#39;C1825901&#39;, &#39;C1366535&#39;, &#39;C1414899&#39;, &#39;C1419725&#39;, &#39;C1421504&#39;, &#39;C1426228&#39;, &#39;C1413658&#39;, &#39;C1420828&#39;, &#39;C1428025&#39;, &#39;C1418576&#39;, &#39;C1538935&#39;, &#39;C1413605&#39;, &#39;C2678549&#39;, &#39;C1414261&#39;, &#39;C1417001&#39;, &#39;C1415877&#39;, &#39;C1422800&#39;, &#39;C0017626&#39;, &#39;C1332667&#39;, &#39;C1417680&#39;, &#39;C1420385&#39;, &#39;C1414530&#39;, &#39;C1538901&#39;, &#39;C0812385&#39;, &#39;C1414994&#39;, &#39;C1825233&#39;, &#39;C1416407&#39;, &#39;C0105421&#39;, &#39;C1414812&#39;, &#39;C1417547&#39;, &#39;C1412082&#39;, &#39;C1539312&#39;, &#39;C1858105&#39;, &#39;C1415001&#39;, &#39;C1412854&#39;, &#39;C1420017&#39;, &#39;C1414369&#39;, &#39;C1422257&#39;, &#39;C1333342&#39;, &#39;C1416991&#39;, &#39;C3463911&#39;, &#39;C1334090&#39;, &#39;C1333360&#39;, &#39;C0085741&#39;, &#39;C1420132&#39;, &#39;C1424244&#39;, &#39;C1412225&#39;, &#39;C1824808&#39;, &#39;C1333661&#39;, &#39;C1413178&#39;, &#39;C1426489&#39;, &#39;C1424252&#39;, &#39;C1412630&#39;, &#39;C1419907&#39;, &#39;C1420118&#39;, &#39;C1334862&#39;, &#39;C1414541&#39;, &#39;C1412215&#39;, &#39;C1415195&#39;, &#39;C1420150&#39;, &#39;C1418402&#39;, &#39;C1422190&#39;, &#39;C1366515&#39;, &#39;C0017757&#39;, &#39;C1420588&#39;, &#39;C1425272&#39;, &#39;C1335641&#39;, &#39;C1427755&#39;, &#39;C1417474&#39;, &#39;C1418932&#39;, &#39;C1420111&#39;, &#39;C1417508&#39;, &#39;C1418469&#39;, &#39;C0038296&#39;, &#39;C1427642&#39;, &#39;C1423715&#39;, &#39;C1335872&#39;, &#39;C1422601&#39;, &#39;C1540147&#39;, &#39;C1422534&#39;, &#39;C1537595&#39;, &#39;C1414529&#39;, &#39;C1417035&#39;, &#39;C1412749&#39;, &#39;C1418575&#39;, &#39;C1425653&#39;, &#39;C1418779&#39;, &#39;C1537661&#39;, &#39;C1418202&#39;, &#39;C1412573&#39;, &#39;C1825876&#39;, &#39;C1537986&#39;, &#39;C0020818&#39;, &#39;C0812267&#39;, &#39;C1414420&#39;, &#39;C1537562&#39;, &#39;C1427106&#39;, &#39;C1416960&#39;, &#39;C1419867&#39;, &#39;C1426855&#39;, &#39;C1335238&#39;, &#39;C1420596&#39;, &#39;C0001414&#39;, &#39;C1537983&#39;, &#39;C1416293&#39;, &#39;C1425630&#39;, &#39;C1421425&#39;, &#39;C1425325&#39;, &#39;C1419683&#39;, &#39;C1414558&#39;, &#39;C1418634&#39;, &#39;C1413223&#39;, &#39;C1540311&#39;, &#39;C1412844&#39;, &#39;C3891913&#39;, &#39;C1421944&#39;, &#39;C1413903&#39;, &#39;C1824668&#39;, &#39;C0079471&#39;, &#39;C1825275&#39;, &#39;C0809246&#39;, &#39;C1537502&#39;, &#39;C1419695&#39;, &#39;C2680482&#39;, &#39;C1337007&#39;, &#39;C1428503&#39;] failed with timeout error. Current timeout limit is 20 seconds
-API call to CORD Gene API with input [&#39;6257&#39;, &#39;18455&#39;, &#39;2942&#39;, &#39;26013&#39;, &#39;2267&#39;, &#39;175&#39;, &#39;9202&#39;, &#39;7421&#39;, &#39;24245&#39;, &#39;10680&#39;, &#39;10383&#39;, &#39;4886&#39;, &#39;3582&#39;, &#39;1512&#39;, &#39;11922&#39;, &#39;18153&#39;, &#39;11916&#39;, &#39;8761&#39;, &#39;19440&#39;, &#39;9388&#39;, &#39;3951&#39;, &#39;26927&#39;, &#39;6770&#39;, &#39;34016&#39;, &#39;6764&#39;, &#39;20748&#39;, &#39;3586&#39;, &#39;51483&#39;, &#39;11408&#39;, &#39;29091&#39;, &#39;23247&#39;, &#39;9787&#39;, &#39;2212&#39;, &#39;11433&#39;, &#39;4861&#39;, &#39;2689&#39;, &#39;25994&#39;, &#39;2561&#39;, &#39;29796&#39;, &#39;325&#39;, &#39;1149&#39;, &#39;10593&#39;, &#39;93&#39;, &#39;14450&#39;, &#39;11727&#39;, &#39;2578&#39;, &#39;24488&#39;, &#39;1509&#39;, &#39;12572&#39;, &#39;886&#39;, &#39;7456&#39;, &#39;7821&#39;, &#39;894&#39;, &#39;21606&#39;, &#39;59&#39;, &#39;10301&#39;, &#39;4827&#39;, &#39;3585&#39;, &#39;12687&#39;, &#39;3435&#39;, &#39;967&#39;, &#39;7315&#39;, &#39;14432&#39;, &#39;10379&#39;, &#39;6524&#39;, &#39;7162&#39;, &#39;12371&#39;, &#39;16205&#39;, &#39;19960&#39;, &#39;2172&#39;, &#39;2950&#39;, &#39;11936&#39;, &#39;25018&#39;, &#39;12831&#39;, &#39;25244&#39;, &#39;23145&#39;, &#39;10705&#39;, &#39;27659&#39;, &#39;10604&#39;, &#39;8977&#39;, &#39;7910&#39;, &#39;1151&#39;, &#39;29157&#39;, &#39;11274&#39;, &#39;1744&#39;, &#39;1884&#39;, &#39;2514&#39;, &#39;4976&#39;, &#39;11103&#39;, &#39;11782&#39;, &#39;16404&#39;, &#39;9831&#39;, &#39;17993&#39;, &#39;24872&#39;, &#39;2330&#39;, &#39;3512&#39;, &#39;7675&#39;, &#39;186&#39;, &#39;613&#39;, &#39;6898&#39;, &#39;25784&#39;, &#39;24846&#39;, &#39;14378&#39;, &#39;18518&#39;, &#39;10938&#39;, &#39;29937&#39;, &#39;11326&#39;, &#39;644&#39;, &#39;4021&#39;, &#39;3267&#39;, &#39;29882&#39;, &#39;17996&#39;, &#39;12305&#39;, &#39;2198&#39;, &#39;303&#39;, &#39;10801&#39;, &#39;2020&#39;, &#39;17088&#39;, &#39;2852&#39;, &#39;7704&#39;, &#39;25896&#39;, &#39;9071&#39;, &#39;17989&#39;, &#39;6218&#39;, &#39;1748&#39;, &#39;3257&#39;, &#39;10959&#39;, &#39;25489&#39;, &#39;9023&#39;, &#39;25539&#39;, &#39;11280&#39;, &#39;30611&#39;, &#39;877&#39;, &#39;1786&#39;, &#39;11763&#39;, &#39;2019&#39;, &#39;9476&#39;, &#39;28510&#39;, &#39;10970&#39;, &#39;17642&#39;, &#39;6286&#39;, &#39;4315&#39;, &#39;8059&#39;, &#39;6769&#39;, &#39;3482&#39;, &#39;6267&#39;, &#39;15512&#39;, &#39;20990&#39;, &#39;19331&#39;, &#39;11362&#39;, &#39;2226&#39;, &#39;6483&#39;, &#39;11633&#39;, &#39;6858&#39;, &#39;28086&#39;, &#39;26560&#39;, &#39;7481&#39;, &#39;18398&#39;, &#39;4177&#39;, &#39;3602&#39;, &#39;2183&#39;, &#39;13345&#39;, &#39;23406&#39;, &#39;12362&#39;, &#39;7458&#39;, &#39;8907&#39;, &#39;8729&#39;, &#39;19687&#39;, &#39;12399&#39;, &#39;16353&#39;, &#39;1736&#39;, &#39;9069&#39;, &#39;14374&#39;, &#39;535&#39;, &#39;12632&#39;, &#39;3796&#39;, &#39;3625&#39;, &#39;4166&#39;, &#39;2858&#39;, &#39;2591&#39;, &#39;14000&#39;, &#39;13203&#39;, &#39;4704&#39;, &#39;25430&#39;, &#39;2567&#39;, &#39;970&#39;, &#39;16808&#39;, &#39;3801&#39;, &#39;6929&#39;, &#39;38515&#39;, &#39;6716&#39;, &#39;1388&#39;, &#39;1500&#39;, &#39;11164&#39;, &#39;11831&#39;, &#39;8773&#39;, &#39;3097&#39;, &#39;9726&#39;, &#39;12404&#39;, &#39;25751&#39;, &#39;282&#39;, &#39;9153&#39;, &#39;5358&#39;, &#39;1100&#39;, &#39;7872&#39;, &#39;92&#39;, &#39;3255&#39;, &#39;7526&#39;, &#39;4274&#39;, &#39;28887&#39;, &#39;1742&#39;, &#39;25481&#39;, &#39;19368&#39;, &#39;3583&#39;, &#39;25118&#39;, &#39;21732&#39;, &#39;1698&#39;, &#39;362&#39;, &#39;3261&#39;, &#39;10414&#39;, &#39;11386&#39;, &#39;12565&#39;, &#39;11364&#39;, &#39;3437&#39;, &#39;21144&#39;, &#39;3483&#39;, &#39;7217&#39;, &#39;30802&#39;, &#39;9380&#39;, &#39;7715&#39;, &#39;9608&#39;, &#39;11998&#39;, &#39;14211&#39;, &#39;2260&#39;, &#39;32700&#39;, &#39;13664&#39;, &#39;7713&#39;, &#39;24154&#39;, &#39;5970&#39;, &#39;17646&#39;, &#39;25280&#39;, &#39;7461&#39;, &#39;1912&#39;, &#39;1591&#39;, &#39;7501&#39;, &#39;483&#39;, &#39;11179&#39;, &#39;9801&#39;, &#39;1301&#39;, &#39;9016&#39;, &#39;8794&#39;, &#39;26169&#39;, &#39;11765&#39;, &#39;28880&#39;, &#39;1097&#39;, &#39;1133&#39;, &#39;7765&#39;, &#39;3354&#39;, &#39;3775&#39;, &#39;3258&#39;, &#39;7716&#39;, &#39;11824&#39;, &#39;4053&#39;, &#39;2197&#39;, &#39;17412&#39;, &#39;2933&#39;, &#39;28570&#39;, &#39;6009&#39;, &#39;7489&#39;, &#39;7661&#39;, &#39;9411&#39;, &#39;8850&#39;, &#39;30858&#39;, &#39;21708&#39;, &#39;11773&#39;, &#39;3603&#39;, &#39;2959&#39;, &#39;10419&#39;, &#39;17151&#39;, &#39;620&#39;, &#39;9588&#39;, &#39;4803&#39;, &#39;25781&#39;, &#39;1514&#39;, &#39;4296&#39;, &#39;18744&#39;, &#39;16466&#39;, &#39;10295&#39;, &#39;10681&#39;, &#39;10682&#39;, &#39;5541&#39;, &#39;5173&#39;, &#39;9820&#39;, &#39;15864&#39;, &#39;969&#39;, &#39;5440&#39;, &#39;7690&#39;, &#39;33720&#39;, &#39;17288&#39;, &#39;10411&#39;, &#39;76&#39;, &#39;6192&#39;, &#39;26034&#39;, &#39;2953&#39;, &#39;12665&#39;, &#39;26661&#39;, &#39;1546&#39;, &#39;4798&#39;, &#39;14558&#39;, &#39;3481&#39;, &#39;25737&#39;, &#39;9175&#39;, &#39;15598&#39;, &#39;5439&#39;, &#39;9076&#39;, &#39;15899&#39;, &#39;10310&#39;, &#39;3823&#39;, &#39;5024&#39;, &#39;33551&#39;, &#39;10327&#39;, &#39;7577&#39;, &#39;2436&#39;, &#39;28337&#39;, &#39;1839&#39;, &#39;10910&#39;, &#39;4237&#39;, &#39;3052&#39;, &#39;3622&#39;, &#39;10671&#39;, &#39;17756&#39;, &#39;16627&#39;, &#39;12313&#39;, &#39;5477&#39;, &#39;8859&#39;, &#39;800&#39;, &#39;15646&#39;, &#39;603&#39;, &#39;15573&#39;, &#39;4887&#39;, &#39;9204&#39;, &#39;6493&#39;, &#39;7500&#39;, &#39;3381&#39;, &#39;19191&#39;, &#39;10345&#39;, &#39;4010&#39;, &#39;10050&#39;, &#39;4180&#39;, &#39;17997&#39;, &#39;30083&#39;, &#39;16380&#39;, &#39;3438&#39;, &#39;14888&#39;, &#39;27962&#39;, &#39;8975&#39;, &#39;16106&#39;, &#39;30494&#39;, &#39;11918&#39;, &#39;17142&#39;, &#39;7696&#39;, &#39;5870&#39;, &#39;28858&#39;, &#39;1366&#39;, &#39;21143&#39;, &#39;7473&#39;, &#39;3157&#39;, &#39;19353&#39;, &#39;18466&#39;, &#39;8140&#39;, &#39;15832&#39;, &#39;5286&#39;, &#39;5331&#39;, &#39;3584&#39;, &#39;24990&#39;, &#39;10941&#39;, &#39;10472&#39;, &#39;13503&#39;, &#39;20788&#39;, &#39;2891&#39;, &#39;3260&#39;, &#39;25941&#39;, &#39;9439&#39;, &#39;1148&#39;, &#39;25522&#39;, &#39;4801&#39;, &#39;9236&#39;, &#39;16266&#39;, &#39;10683&#39;, &#39;470&#39;, &#39;4171&#39;, &#39;8905&#39;, &#39;7662&#39;, &#39;14275&#39;, &#39;7660&#39;, &#39;8011&#39;, &#39;15710&#39;, &#39;29678&#39;, &#39;7782&#39;, &#39;5383&#39;, &#39;15894&#39;, &#39;24856&#39;, &#39;7939&#39;, &#39;3229&#39;, &#39;9107&#39;, &#39;25070&#39;, &#39;9878&#39;, &#39;5391&#39;, &#39;30550&#39;, &#39;14006&#39;, &#39;6006&#39;, &#39;7882&#39;, &#39;1675&#39;, &#39;4006&#39;, &#39;7237&#39;, &#39;6997&#39;, &#39;10483&#39;, &#39;450&#39;, &#39;6973&#39;, &#39;18550&#39;, &#39;10961&#39;, &#39;17296&#39;, &#39;5971&#39;, &#39;28216&#39;, &#39;3349&#39;, &#39;23246&#39;, &#39;6446&#39;, &#39;2027&#39;, &#39;2516&#39;, &#39;1160&#39;, &#39;12791&#39;, &#39;4195&#39;, &#39;11795&#39;, &#39;5273&#39;, &#39;5960&#39;, &#39;28303&#39;, &#39;11142&#39;, &#39;14153&#39;, &#39;3005&#39;, &#39;1674&#39;, &#39;6430&#39;, &#39;9688&#39;, &#39;397&#39;, &#39;634&#39;, &#39;8803&#39;, &#39;6998&#39;, &#39;9205&#39;, &#39;438&#39;, &#39;9330&#39;, &#39;2577&#39;, &#39;4982&#39;, &#39;11920&#39;, &#39;3606&#39;, &#39;14372&#39;, &#39;16412&#39;, &#39;20001&#39;, &#39;4451&#39;, &#39;10599&#39;, &#39;16446&#39;, &#39;9600&#39;, &#39;1527&#39;, &#39;8522&#39;, &#39;15518&#39;, &#39;7710&#39;, &#39;20188&#39;, &#39;11429&#39;, &#39;6255&#39;, &#39;7419&#39;, &#39;14951&#39;, &#39;7490&#39;, &#39;21054&#39;, &#39;6601&#39;, &#39;9180&#39;, &#39;10360&#39;, &#39;2701&#39;, &#39;1247&#39;, &#39;13176&#39;, &#39;7029&#39;, &#39;3416&#39;, &#39;4387&#39;, &#39;321&#39;, &#39;2252&#39;, &#39;14377&#39;, &#39;24265&#39;, &#39;9498&#39;, &#39;10344&#39;, &#39;30074&#39;, &#39;15455&#39;, &#39;11647&#39;, &#39;8156&#39;, &#39;132&#39;, &#39;3372&#39;, &#39;10802&#39;, &#39;13210&#39;, &#39;3413&#39;, &#39;29021&#39;, &#39;29605&#39;, &#39;6460&#39;, &#39;18640&#39;, &#39;20087&#39;, &#39;8487&#39;, &#39;11825&#39;, &#39;22938&#39;, &#39;1014&#39;, &#39;14202&#39;, &#39;1541&#39;, &#39;8941&#39;, &#39;16473&#39;, &#39;17493&#39;, &#39;9832&#39;, &#39;5985&#39;, &#39;735&#39;, &#39;6139&#39;, &#39;12363&#39;, &#39;30000&#39;, &#39;12796&#39;, &#39;2988&#39;, &#39;15559&#39;, &#39;16725&#39;, &#39;8632&#39;, &#39;2210&#39;, &#39;2211&#39;, &#39;5157&#39;, &#39;3377&#39;, &#39;6535&#39;, &#39;11094&#39;, &#39;3036&#39;, &#39;12874&#39;, &#39;29670&#39;, &#39;12731&#39;, &#39;4284&#39;, &#39;1058&#39;, &#39;6008&#39;, &#39;26144&#39;, &#39;3546&#39;, &#39;12269&#39;, &#39;6912&#39;, &#39;1633&#39;, &#39;5389&#39;, &#39;9475&#39;, &#39;237&#39;, &#39;4286&#39;, &#39;4235&#39;, &#39;18420&#39;, &#39;11474&#39;, &#39;7583&#39;, &#39;9644&#39;, &#39;4392&#39;, &#39;1582&#39;, &#39;7551&#39;, &#39;8979&#39;, &#39;3395&#39;, &#39;11244&#39;, &#39;16784&#39;, &#39;6636&#39;, &#39;12829&#39;, &#39;18318&#39;, &#39;14313&#39;, &#39;2488&#39;, &#39;6106&#39;, &#39;4883&#39;, &#39;10418&#39;, &#39;20371&#39;, &#39;11120&#39;, &#39;13861&#39;, &#39;20318&#39;, &#39;8490&#39;, &#39;9585&#39;, &#39;583&#39;, &#39;6677&#39;, &#39;29203&#39;, &#39;25792&#39;, &#39;2584&#39;, &#39;18873&#39;, &#39;2230&#39;, &#39;44477&#39;, &#39;492&#39;, &#39;1391&#39;, &#39;20626&#39;, &#39;29253&#39;, &#39;10306&#39;, &#39;21576&#39;, &#39;21034&#39;, &#39;11766&#39;, &#39;6392&#39;, &#39;1966&#39;, &#39;6107&#39;, &#39;1152&#39;, &#39;17233&#39;, &#39;7711&#39;, &#39;5467&#39;, &#39;13890&#39;, &#39;28672&#39;, &#39;5401&#39;, &#39;17634&#39;, &#39;18437&#39;, &#39;21715&#39;, &#39;5466&#39;, &#39;33867&#39;, &#39;9142&#39;, &#39;23096&#39;, &#39;33&#39;, &#39;3018&#39;, &#39;6554&#39;, &#39;983&#39;, &#39;10602&#39;, &#39;24212&#39;, &#39;6819&#39;, &#39;2295&#39;, &#39;30500&#39;, &#39;8768&#39;, &#39;25455&#39;, &#39;6692&#39;, &#39;11917&#39;, &#39;7462&#39;, &#39;7108&#39;, &#39;17021&#39;, &#39;2940&#39;, &#39;2873&#39;, &#39;5005&#39;, &#39;2955&#39;, &#39;14628&#39;, &#39;6621&#39;, &#39;28648&#39;, &#39;21497&#39;, &#39;9766&#39;, &#39;2209&#39;, &#39;4174&#39;, &#39;5382&#39;, &#39;16028&#39;, &#39;6081&#39;, &#39;28027&#39;, &#39;30492&#39;, &#39;16391&#39;, &#39;3535&#39;, &#39;9864&#39;, &#39;12403&#39;, &#39;26513&#39;, &#39;3755&#39;, &#39;9399&#39;, &#39;7717&#39;, &#39;15901&#39;, &#39;9580&#39;, &#39;26789&#39;, &#39;7479&#39;, &#39;13771&#39;, &#39;11389&#39;, &#39;12816&#39;, &#39;24537&#39;, &#39;5961&#39;, &#39;11730&#39;, &#39;3756&#39;, &#39;11367&#39;, &#39;7602&#39;, &#39;11027&#39;, &#39;11919&#39;, &#39;10931&#39;, &#39;18828&#39;, &#39;3309&#39;, &#39;15888&#39;, &#39;19027&#39;, &#39;6010&#39;, &#39;24576&#39;, &#39;1321&#39;, &#39;7392&#39;, &#39;10820&#39;, &#39;801&#39;, &#39;11431&#39;, &#39;1915&#39;, &#39;7121&#39;, &#39;21057&#39;, &#39;10600&#39;, &#39;9967&#39;, &#39;1137&#39;, &#39;2979&#39;, &#39;9479&#39;, &#39;2555&#39;, &#39;4285&#39;, &#39;11740&#39;, &#39;1228&#39;, &#39;2200&#39;, &#39;11772&#39;, &#39;26293&#39;, &#39;2600&#39;, &#39;40050&#39;, &#39;7459&#39;, &#39;13478&#39;, &#39;3809&#39;, &#39;7422&#39;, &#39;6547&#39;, &#39;30546&#39;, &#39;2505&#39;, &#39;9586&#39;, &#39;21493&#39;, &#39;4057&#39;, &#39;8805&#39;, &#39;9237&#39;, &#39;88&#39;, &#39;10702&#39;, &#39;7414&#39;, &#39;4115&#39;, &#39;10799&#39;, &#39;9206&#39;, &#39;9968&#39;, &#39;14335&#39;, &#39;2294&#39;, &#39;7683&#39;, &#39;17209&#39;, &#39;2348&#39;, &#39;18358&#39;, &#39;11272&#39;, &#39;18060&#39;, &#39;16400&#39;, &#39;10989&#39;, &#39;23287&#39;, &#39;17371&#39;, &#39;6826&#39;, &#39;7714&#39;, &#39;37212&#39;, &#39;1343&#39;, &#39;10898&#39;, &#39;46&#39;, &#39;10019&#39;, &#39;9179&#39;, &#39;10402&#39;, &#39;28188&#39;, &#39;1701&#39;, &#39;26291&#39;, &#39;5031&#39;, &#39;17697&#39;, &#39;37234&#39;, &#39;16636&#39;, &#39;7794&#39;, &#39;2519&#39;, &#39;25568&#39;, &#39;18874&#39;, &#39;9655&#39;, &#39;11947&#39;, &#39;2336&#39;, &#39;6295&#39;, &#39;18179&#39;, &#39;2518&#39;, &#39;738&#39;, &#39;26837&#39;, &#39;6469&#39;, &#39;6266&#39;, &#39;2364&#39;, &#39;3688&#39;, &#39;4232&#39;, &#39;1101&#39;, &#39;2291&#39;, &#39;9871&#39;, &#39;10979&#39;, &#39;2890&#39;, &#39;7892&#39;, &#39;10069&#39;, &#39;17869&#39;, &#39;30883&#39;, &#39;7708&#39;, &#39;966&#39;, &#39;17042&#39;, &#39;19412&#39;, &#39;25671&#39;, &#39;11943&#39;, &#39;1699&#39;, &#39;21082&#39;, &#39;225&#39;, &#39;25009&#39;, &#39;25230&#39;, &#39;11653&#39;, &#39;7758&#39;, &#39;11251&#39;, &#39;9449&#39;, &#39;14234&#39;, &#39;9817&#39;, &#39;7883&#39;, &#39;7773&#39;, &#39;12649&#39;, &#39;1677&#39;, &#39;53&#39;, &#39;11425&#39;, &#39;16393&#39;, &#39;19341&#39;, &#39;11212&#39;, &#39;989&#39;, &#39;9884&#39;, &#39;10783&#39;, &#39;7436&#39;, &#39;17967&#39;, &#39;30521&#39;, &#39;5351&#39;, &#39;7160&#39;, &#39;7698&#39;, &#39;12666&#39;, &#39;29331&#39;, &#39;18119&#39;, &#39;16873&#39;, &#39;2939&#39;, &#39;12736&#39;, &#39;11630&#39;, &#39;3436&#39;, &#39;15766&#39;, &#39;8609&#39;, &#39;16187&#39;, &#39;6005&#39;, &#39;103&#39;, &#39;9143&#39;, &#39;2279&#39;, &#39;11021&#39;, &#39;8881&#39;, &#39;7530&#39;, &#39;30539&#39;, &#39;6833&#39;, &#39;1673&#39;, &#39;8783&#39;, &#39;4065&#39;, &#39;13879&#39;, &#39;30794&#39;, &#39;11949&#39;, &#39;24116&#39;, &#39;2954&#39;, &#39;10990&#39;, &#39;1480&#39;, &#39;10389&#39;, &#39;10603&#39;, &#39;468&#39;, &#39;44095&#39;, &#39;6342&#39;, &#39;20330&#39;, &#39;7455&#39;, &#39;18576&#39;, &#39;31750&#39;, &#39;7795&#39;, &#39;1529&#39;, &#39;6617&#39;, &#39;5465&#39;, &#39;2213&#39;, &#39;7497&#39;, &#39;23639&#39;, &#39;12509&#39;, &#39;795&#39;, &#39;897&#39;, &#39;23734&#39;, &#39;24036&#39;, &#39;4707&#39;, &#39;7562&#39;, &#39;21558&#39;, &#39;23216&#39;, &#39;51409&#39;, &#39;7573&#39;, &#39;3587&#39;, &#39;1455&#39;, &#39;17800&#39;, &#39;4172&#39;, &#39;6697&#39;, &#39;9349&#39;, &#39;20278&#39;, &#39;16783&#39;, &#39;9462&#39;, &#39;17755&#39;, &#39;12440&#39;, &#39;903&#39;, &#39;28403&#39;, &#39;25583&#39;, &#39;20473&#39;, &#39;10597&#39;, &#39;3513&#39;, &#39;23700&#39;, &#39;6490&#39;, &#39;3806&#39;, &#39;2671&#39;, &#39;565&#39;, &#39;9059&#39;, &#39;3619&#39;, &#39;26970&#39;, &#39;26193&#39;, &#39;4170&#39;, &#39;12762&#39;, &#39;9115&#39;, &#39;11581&#39;, &#39;54277&#39;, &#39;12592&#39;, &#39;12631&#39;, &#39;1356&#39;, &#39;1057&#39;, &#39;13164&#39;, &#39;16384&#39;, &#39;7703&#39;, &#39;11592&#39;, &#39;26648&#39;, &#39;7553&#39;, &#39;11976&#39;, &#39;4288&#39;, &#39;10586&#39;, &#39;26090&#39;, &#39;22140&#39;, &#39;7652&#39;, &#39;3444&#39;, &#39;10449&#39;, &#39;11005&#39;, &#39;15516&#39;, &#39;9177&#39;, &#39;8840&#39;, &#39;3588&#39;, &#39;1260&#39;, &#39;26944&#39;, &#39;14294&#39;, &#39;18871&#39;, &#39;2321&#39;, &#39;19750&#39;, &#39;20372&#39;, &#39;11571&#39;, &#39;37276&#39;, &#39;758&#39;, &#39;29918&#39;, &#39;360&#39;, &#39;7989&#39;, &#39;19863&#39;, &#39;13723&#39;, &#39;7448&#39;, &#39;10591&#39;, &#39;10471&#39;, &#39;2435&#39;, &#39;5163&#39;, &#39;9802&#39;, &#39;2718&#39;, &#39;391&#39;, &#39;10440&#39;, &#39;11935&#39;, &#39;6407&#39;, &#39;6024&#39;, &#39;3434&#39;, &#39;4837&#39;, &#39;2928&#39;, &#39;23845&#39;, &#39;2018&#39;, &#39;11927&#39;, &#39;1665&#39;, &#39;7166&#39;, &#39;1968&#39;, &#39;23147&#39;, &#39;8800&#39;, &#39;626&#39;, &#39;7707&#39;, &#39;10912&#39;, &#39;12765&#39;, &#39;18621&#39;, &#39;3816&#39;, &#39;3178&#39;, &#39;1739&#39;, &#39;12405&#39;, &#39;12814&#39;, &#39;1090&#39;, &#39;12307&#39;, &#39;3690&#39;, &#39;15925&#39;, &#39;18758&#39;, &#39;27561&#39;, &#39;1078&#39;, &#39;3689&#39;, &#39;27337&#39;, &#39;1573&#39;, &#39;10397&#39;, &#39;15561&#39;, &#39;592&#39;, &#39;13444&#39;, &#39;10585&#39;, &#39;18592&#39;, &#39;2973&#39;, &#39;3259&#39;, &#39;8029&#39;, &#39;7678&#39;, &#39;11204&#39;, &#39;20761&#39;, &#39;23168&#39;, &#39;11301&#39;, &#39;16762&#39;, &#39;30718&#39;, &#39;12799&#39;, &#39;10031&#39;, &#39;29947&#39;, &#39;30213&#39;, &#39;3432&#39;] failed with timeout error. Current timeout limit is 20 seconds
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># q1_r_graph = q1.fc.G   ## for changing the graph object to reflect the table</span>
@@ -15563,7 +15553,21 @@ API call to CORD Gene API with input [&#39;6257&#39;, &#39;18455&#39;, &#39;2942
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## current bug: issue resolving UMLS ids, removing them for now</span>
+<span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="o">~</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="s1">&#39;output_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;UMLS:&#39;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -15597,9 +15601,9 @@ API call to CORD Gene API with input [&#39;6257&#39;, &#39;18455&#39;, &#39;2942
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 16 unique PhenotypicFeatures for SARS.
-There are 960 unique Genes for SARS.
-There are 6622 unique BiologicalProcesss for SARS.
-There are 105362 unique paths.
+There are 924 unique Genes for SARS.
+There are 5736 unique BiologicalProcesss for SARS.
+There are 73030 unique paths.
 </pre>
 </div>
 </div>
@@ -15618,7 +15622,7 @@ There are 105362 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[</span><span class="s1">&#39;node1_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -15634,18 +15638,19 @@ There are 105362 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[24]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;Cough&#39;, &#39;Fever&#39;, &#39;Respiratory distress&#39;, &#39;Headache&#39;,
-       &#39;Chronic lung disease&#39;, &#39;Dyspnea&#39;, &#39;Immunodeficiency&#39;, &#39;Myalgia&#39;,
+<pre>array([&#39;Cough&#39;, &#39;Headache&#39;, &#39;Neoplasm&#39;, &#39;Fever&#39;, &#39;Dyspnea&#39;,
+       &#39;Respiratory distress&#39;, &#39;Myalgia&#39;, &#39;Immunodeficiency&#39;,
+       &#39;Diabetes mellitus&#39;,
        &#39;Respiratory failure requiring assisted ventilation&#39;,
-       &#39;Diabetes mellitus&#39;, &#39;Neoplasm&#39;, &#39;Acute infectious pneumonia&#39;,
-       &#39;Hypoxemia&#39;, &#39;Abnormality of the cardiovascular system&#39;,
-       &#39;Acute kidney injury&#39;, &#39;Pharyngitis&#39;], dtype=object)</pre>
+       &#39;Acute infectious pneumonia&#39;, &#39;Hypoxemia&#39;, &#39;Chronic lung disease&#39;,
+       &#39;Abnormality of the cardiovascular system&#39;, &#39;Acute kidney injury&#39;,
+       &#39;Pharyngitis&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -15681,21 +15686,7 @@ There are 105362 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## current bug: issue resolving ULMS ids, removing them for now</span>
-<span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="o">~</span> <span class="n">q2_r_paths_table</span><span class="p">[</span><span class="s1">&#39;output_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s1">&#39;UMLS:&#39;</span><span class="p">)]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for Genes (output nodes)</span>
@@ -15716,7 +15707,7 @@ There are 105362 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[22]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -15747,122 +15738,122 @@ There are 105362 unique paths.
   <tbody>
     <tr>
       <th>0</th>
-      <td>positive regulation of transcription by RNA po...</td>
-      <td>0.117763</td>
+      <td>growth</td>
+      <td>0.102507</td>
       <td>1.0</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>negative regulation of transcription by RNA po...</td>
-      <td>0.089474</td>
+      <td>positive regulation of transcription by RNA po...</td>
+      <td>0.094708</td>
       <td>2.0</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>positive regulation of transcription, DNA-temp...</td>
-      <td>0.086842</td>
+      <td>gene expression</td>
+      <td>0.089694</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>signal transduction</td>
-      <td>0.083553</td>
+      <td>negative regulation of transcription by RNA po...</td>
+      <td>0.071309</td>
       <td>4.0</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>positive regulation of gene expression</td>
-      <td>0.069737</td>
+      <td>innate immune response</td>
+      <td>0.069081</td>
       <td>5.0</td>
     </tr>
     <tr>
       <th>5</th>
-      <td>positive regulation of cell population prolife...</td>
-      <td>0.063816</td>
+      <td>positive regulation of transcription, DNA-temp...</td>
+      <td>0.068524</td>
       <td>6.0</td>
     </tr>
     <tr>
       <th>6</th>
-      <td>negative regulation of cell population prolife...</td>
-      <td>0.061842</td>
+      <td>signal transduction</td>
+      <td>0.067409</td>
       <td>7.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>response to drug</td>
-      <td>0.061842</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>negative regulation of apoptotic process</td>
-      <td>0.058553</td>
+      <td>inflammatory response</td>
+      <td>0.066852</td>
       <td>8.0</td>
     </tr>
     <tr>
-      <th>9</th>
-      <td>protein phosphorylation</td>
-      <td>0.054605</td>
+      <th>8</th>
+      <td>cell population proliferation</td>
+      <td>0.064067</td>
       <td>9.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>cytokine-mediated signaling pathway</td>
-      <td>0.053947</td>
+      <th>9</th>
+      <td>catagen</td>
+      <td>0.060724</td>
       <td>10.0</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>catabolic process</td>
+      <td>0.060167</td>
+      <td>11.0</td>
     </tr>
     <tr>
       <th>11</th>
       <td>regulation of transcription by RNA polymerase II</td>
-      <td>0.052632</td>
-      <td>11.0</td>
-    </tr>
-    <tr>
-      <th>12</th>
-      <td>viral process</td>
-      <td>0.051974</td>
+      <td>0.057939</td>
       <td>12.0</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>apoptotic process</td>
-      <td>0.049342</td>
+      <th>12</th>
+      <td>positive regulation of gene expression</td>
+      <td>0.056825</td>
       <td>13.0</td>
     </tr>
     <tr>
+      <th>13</th>
+      <td>metabolic process</td>
+      <td>0.056267</td>
+      <td>14.0</td>
+    </tr>
+    <tr>
       <th>14</th>
-      <td>heart development</td>
-      <td>0.048684</td>
-      <td>14.0</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>innate immune response</td>
-      <td>0.048684</td>
-      <td>14.0</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>MAPK cascade</td>
-      <td>0.048026</td>
+      <td>positive regulation of cell population prolife...</td>
+      <td>0.055710</td>
       <td>15.0</td>
     </tr>
     <tr>
-      <th>17</th>
-      <td>neutrophil degranulation</td>
-      <td>0.047368</td>
+      <th>15</th>
+      <td>immune response</td>
+      <td>0.052925</td>
       <td>16.0</td>
     </tr>
     <tr>
+      <th>16</th>
+      <td>negative regulation of apoptotic process</td>
+      <td>0.052925</td>
+      <td>16.0</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>MAPK cascade</td>
+      <td>0.051811</td>
+      <td>17.0</td>
+    </tr>
+    <tr>
       <th>18</th>
-      <td>cilium movement</td>
-      <td>0.045395</td>
+      <td>angiogenesis</td>
+      <td>0.051811</td>
       <td>17.0</td>
     </tr>
     <tr>
       <th>19</th>
-      <td>inflammatory response</td>
-      <td>0.044079</td>
+      <td>conjugation</td>
+      <td>0.050696</td>
       <td>18.0</td>
     </tr>
   </tbody>
@@ -15902,7 +15893,7 @@ There are 105362 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">bp_mask</span> <span class="o">=</span> <span class="s1">&#39;aldosterone|angiotensin|hyaluronan|vaso|vascular permeability|&#39;</span>\
@@ -15911,292 +15902,6 @@ There are 105362 unique paths.
 
 <span class="n">q2_scoring_BK</span> <span class="o">=</span> <span class="n">q2_scoring</span><span class="p">[</span><span class="n">q2_scoring</span><span class="p">[</span><span class="s1">&#39;output_label&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">bp_mask</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 <span class="n">q2_scoring_BK</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[23]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>output_label</th>
-      <th>score</th>
-      <th>rank</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>17</th>
-      <td>neutrophil degranulation</td>
-      <td>0.047368</td>
-      <td>16.0</td>
-    </tr>
-    <tr>
-      <th>19</th>
-      <td>inflammatory response</td>
-      <td>0.044079</td>
-      <td>18.0</td>
-    </tr>
-    <tr>
-      <th>35</th>
-      <td>blood coagulation</td>
-      <td>0.033553</td>
-      <td>30.0</td>
-    </tr>
-    <tr>
-      <th>75</th>
-      <td>negative regulation of inflammatory response</td>
-      <td>0.023684</td>
-      <td>45.0</td>
-    </tr>
-    <tr>
-      <th>142</th>
-      <td>sodium ion transmembrane transport</td>
-      <td>0.016447</td>
-      <td>56.0</td>
-    </tr>
-    <tr>
-      <th>148</th>
-      <td>cardiac muscle contraction</td>
-      <td>0.015789</td>
-      <td>57.0</td>
-    </tr>
-    <tr>
-      <th>184</th>
-      <td>regulation of inflammatory response</td>
-      <td>0.014474</td>
-      <td>59.0</td>
-    </tr>
-    <tr>
-      <th>213</th>
-      <td>sodium ion transport</td>
-      <td>0.013158</td>
-      <td>61.0</td>
-    </tr>
-    <tr>
-      <th>244</th>
-      <td>regulation of blood pressure</td>
-      <td>0.012500</td>
-      <td>62.0</td>
-    </tr>
-    <tr>
-      <th>303</th>
-      <td>regulation of cardiac conduction</td>
-      <td>0.011184</td>
-      <td>64.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
-<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[24]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred1_api</th>
-      <th>pred1</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>11</th>
-      <td>BioLink API</td>
-      <td>has_phenotype</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>mydisease.info API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[25]:</div>
-
-
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>pred2_api</th>
-      <th>pred2</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>BioLink API</td>
-      <td>related_to</td>
-    </tr>
-    <tr>
-      <th>2979</th>
-      <td>EBIgene2phenotype API</td>
-      <td>related_to</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the third part of the query (Gene &rarr; Pathway), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
-<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -16232,11 +15937,302 @@ There are 105362 unique paths.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>output_label</th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>inflammatory response</td>
+      <td>0.066852</td>
+      <td>8.0</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>neutrophil degranulation</td>
+      <td>0.037883</td>
+      <td>34.0</td>
+    </tr>
+    <tr>
+      <th>62</th>
+      <td>blood coagulation</td>
+      <td>0.029526</td>
+      <td>43.0</td>
+    </tr>
+    <tr>
+      <th>87</th>
+      <td>negative regulation of inflammatory response</td>
+      <td>0.024513</td>
+      <td>51.0</td>
+    </tr>
+    <tr>
+      <th>180</th>
+      <td>cardiac muscle contraction</td>
+      <td>0.015042</td>
+      <td>68.0</td>
+    </tr>
+    <tr>
+      <th>210</th>
+      <td>sodium ion transmembrane transport</td>
+      <td>0.013370</td>
+      <td>71.0</td>
+    </tr>
+    <tr>
+      <th>223</th>
+      <td>vasoconstriction</td>
+      <td>0.012813</td>
+      <td>72.0</td>
+    </tr>
+    <tr>
+      <th>281</th>
+      <td>regulation of inflammatory response</td>
+      <td>0.011142</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>288</th>
+      <td>sodium ion transport</td>
+      <td>0.011142</td>
+      <td>75.0</td>
+    </tr>
+    <tr>
+      <th>297</th>
+      <td>regulation of blood pressure</td>
+      <td>0.010585</td>
+      <td>76.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="APIs-used">APIs used<a class="anchor-link" href="#APIs-used">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
+<p>In the first part of the query (SARS &rarr; PhenotypicFeature), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[27]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred1_api</th>
+      <th>pred1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>7</th>
+      <td>BioLink API</td>
+      <td>has_phenotype</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>mydisease.info API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the second part of the query (PhenotypicFeature &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[28]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred2_api</th>
+      <th>pred2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>BioLink API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>1964</th>
+      <td>EBIgene2phenotype API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the third part of the query (Gene &rarr; Pathway), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q2_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred3_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred3&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[29]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
       <th>pred3_api</th>
       <th>pred3</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <th>98</th>
+      <td>CORD Gene API</td>
+      <td>related_to</td>
+    </tr>
     <tr>
       <th>0</th>
       <td>MyGene.info API</td>

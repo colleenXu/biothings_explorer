@@ -14590,9 +14590,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-09-28 19:35:17.776939
+2020-11-26 17:55:36.454409
 UTC time: 
-2020-09-29 02:35:17.777061
+2020-11-27 01:55:36.454540
 </pre>
 </div>
 </div>
@@ -14647,11 +14647,12 @@ UTC time:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 9 BioThings objects returned for SARS:
+<pre>There are 10 BioThings objects returned for SARS:
 ChemicalSubstance, Anti-SARS-CoV-2 REGN-COV2, num of IDs: 1
 Disease, severe acute respiratory syndrome, num of IDs: 5
 Disease, COVID-19, num of IDs: 2
-Disease, SARS-CoV-2 Kawasaki-like syndrome, num of IDs: 1
+Disease, COVID-19–associated multisystem inflammatory syndrome in children, num of IDs: 2
+Disease, IMD74, num of IDs: 0
 MolecularActivity, selenocysteine-tRNA ligase activity, num of IDs: 2
 MolecularActivity, mRNA (guanine-N7-)-methyltransferase activity, num of IDs: 3
 MolecularActivity, 5&#39;-3&#39; RNA helicase activity, num of IDs: 2
@@ -14737,7 +14738,7 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this section, we dynamically generate a knowledge graph with paths connecting SARS to genes <em>using PhenotypicFeature intermediates</em> (representing the symptoms part of the question).</p>
 <p>BTE performs the <strong>query path planning</strong> and <strong>query path execution</strong> by deconstructing the query into individual API calls, executing those API calls, and then assembling the results.</p>
-<p>The code block below takes about 1 minute to run.</p>
+<p>The code block below takes about 18 seconds to run.</p>
 
 </div>
 </div>
@@ -14775,7 +14776,7 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 ========== QUERY PARAMETER SUMMARY ==========
 ==========
 
-BTE will find paths that join &#39;severe acute respiratory syndrome&#39; and &#39;Gene&#39;.                   Paths will have 1 intermediate node.
+BTE will find paths that join &#39;severe acute respiratory syndrome&#39; and &#39;Gene&#39;. Paths will have 1 intermediate node.
 
 Intermediate node #1 will have these type constraints: PhenotypicFeature
 
@@ -14790,44 +14791,44 @@ Because severe acute respiratory syndrome is of type &#39;Disease&#39;, BTE will
 
 BTE found 3 apis:
 
-API 1. semmed_disease(11 API calls)
+API 1. mydisease(1 API call)
 API 2. biolink(1 API call)
-API 3. mydisease(1 API call)
+API 3. semmed_disease(11 API calls)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 3.1: https://mydisease.info/v1/query?fields=hpo.phenotype_related_to_disease (POST -d q=140896&amp;scopes=hpo.orphanet)
-API 1.7: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
-API 1.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.10: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
-API 1.9: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
-API 1.2: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
-API 1.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.5: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.6: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.8: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
-API 1.4: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.3: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.1: https://mydisease.info/v1/query?fields=hpo.phenotype_related_to_disease (POST -d q=140896&amp;scopes=hpo.orphanet)
+API 3.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
+API 3.10: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
+API 3.2: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
+API 3.7: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
+API 3.4: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
+API 3.5: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
+API 3.9: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
+API 3.3: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
+API 3.8: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
+API 3.6: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
+API 3.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
 API 2.1: https://api.monarchinitiative.org/api/bioentity/disease/MONDO:0005091/phenotypes?rows=200&amp;direct=true
 
 
 ==== Step #3: Output normalization ====
 
-API 1.1 semmed_disease: No hits
-API 1.2 semmed_disease: No hits
-API 1.3 semmed_disease: No hits
-API 1.4 semmed_disease: No hits
+API 3.1 semmed_disease: No hits
+API 3.2 semmed_disease: No hits
+API 3.3 semmed_disease: No hits
+API 3.4 semmed_disease: No hits
 API 2.1 biolink: 16 hits
-API 1.5 semmed_disease: No hits
-API 1.6 semmed_disease: No hits
-API 1.7 semmed_disease: No hits
-API 1.8 semmed_disease: No hits
-API 3.1 mydisease: 16 hits
-API 1.9 semmed_disease: No hits
-API 1.10 semmed_disease: No hits
-API 1.11 semmed_disease: No hits
+API 3.5 semmed_disease: No hits
+API 3.6 semmed_disease: No hits
+API 3.7 semmed_disease: No hits
+API 3.8 semmed_disease: No hits
+API 1.1 mydisease: 16 hits
+API 3.9 semmed_disease: No hits
+API 3.10 semmed_disease: No hits
+API 3.11 semmed_disease: No hits
 
 After id-to-object translation, BTE retrieved 16 unique objects.
 
@@ -14841,112 +14842,112 @@ Because None is of type &#39;PhenotypicFeature&#39;, BTE will query our meta-KG 
 
 BTE found 3 apis:
 
-API 1. ebi_gene2phenotype(1 API call)
-API 2. semmed_phenotype(13 API calls)
-API 3. biolink(32 API calls)
+API 1. biolink(32 API calls)
+API 2. ebi_gene2phenotype(1 API call)
+API 3. semmed_phenotype(13 API calls)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 2.5: https://biothings.ncats.io/semmedphenotype/query?fields=manifestation_of (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.9: https://biothings.ncats.io/semmedphenotype/query?fields=positively_regulates (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.1: https://biothings.ncats.io/semmedphenotype/query?fields=has_part (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.11: https://biothings.ncats.io/semmedphenotype/query?fields=produces (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.4: https://biothings.ncats.io/semmedphenotype/query?fields=produced_by (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.7: https://biothings.ncats.io/semmedphenotype/query?fields=negatively_regulated_by (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.12: https://biothings.ncats.io/semmedphenotype/query?fields=negatively_regulates (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.2: https://biothings.ncats.io/semmedphenotype/query?fields=affected_by (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.6: https://biothings.ncats.io/semmedphenotype/query?fields=physically_interacts_with (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.13: https://biothings.ncats.io/semmedphenotype/query?fields=positively_regulated_by (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.8: https://biothings.ncats.io/semmedphenotype/query?fields=disrupted_by (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.3: https://biothings.ncats.io/semmedphenotype/query?fields=related_to (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 2.10: https://biothings.ncats.io/semmedphenotype/query?fields=subclass_of (POST -d q=C0007222,C0022660,C0011849,C0476273,C0027651,C4025279,C4023112,C0010200,C0021051,C0018681,C0006826,C0746102,C0700292,C2609414,C0013404,C0243050,C0015967,C0231528&amp;scopes=umls)
-API 1.1: https://pending.biothings.io/ebigene2phenotype/query?fields=_id&amp;size=350 (POST -d q=HP:0002094,HP:0001919,HP:0011949,HP:0012418,HP:0002315,HP:0012735,HP:0002721,HP:0001626,HP:0002098,HP:0000819,HP:0002664,HP:0025439,HP:0001945,HP:0006528,HP:0004887,HP:0003326&amp;scopes=gene2phenotype.phenotypes)
-API 3.28: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0025439/genes?rows=200
-API 3.15: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0004887/genes?rows=200&amp;direct=true
-API 3.13: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001945/genes?rows=200&amp;direct=true
-API 3.12: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0025439/genes?rows=200&amp;direct=true
-API 3.9: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002098/genes?rows=200&amp;direct=true
-API 3.10: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0000819/genes?rows=200&amp;direct=true
-API 3.14: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0006528/genes?rows=200&amp;direct=true
-API 3.4: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012418/genes?rows=200&amp;direct=true
-API 3.8: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001626/genes?rows=200&amp;direct=true
-API 3.16: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0003326/genes?rows=200&amp;direct=true
-API 3.17: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002094/genes?rows=200
-API 3.3: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0011949/genes?rows=200&amp;direct=true
-API 3.22: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012735/genes?rows=200
-API 3.27: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002664/genes?rows=200
-API 3.7: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002721/genes?rows=200&amp;direct=true
-API 3.29: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001945/genes?rows=200
-API 3.30: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0006528/genes?rows=200
-API 3.31: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0004887/genes?rows=200
-API 3.32: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0003326/genes?rows=200
-API 3.26: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0000819/genes?rows=200
-API 3.21: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002315/genes?rows=200
-API 3.19: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0011949/genes?rows=200
-API 3.18: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001919/genes?rows=200
-API 3.6: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012735/genes?rows=200&amp;direct=true
-API 3.25: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002098/genes?rows=200
-API 3.1: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002094/genes?rows=200&amp;direct=true
-API 3.11: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002664/genes?rows=200&amp;direct=true
-API 3.20: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012418/genes?rows=200
-API 3.2: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001919/genes?rows=200&amp;direct=true
-API 3.5: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002315/genes?rows=200&amp;direct=true
-API 3.23: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002721/genes?rows=200
-API 3.24: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001626/genes?rows=200
+API 3.12: https://biothings.ncats.io/semmedphenotype/query?fields=negatively_regulates (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.1: https://biothings.ncats.io/semmedphenotype/query?fields=has_part (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.5: https://biothings.ncats.io/semmedphenotype/query?fields=manifestation_of (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.11: https://biothings.ncats.io/semmedphenotype/query?fields=produces (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.6: https://biothings.ncats.io/semmedphenotype/query?fields=physically_interacts_with (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.10: https://biothings.ncats.io/semmedphenotype/query?fields=subclass_of (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.2: https://biothings.ncats.io/semmedphenotype/query?fields=affected_by (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.9: https://biothings.ncats.io/semmedphenotype/query?fields=positively_regulates (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.3: https://biothings.ncats.io/semmedphenotype/query?fields=related_to (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.4: https://biothings.ncats.io/semmedphenotype/query?fields=produced_by (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.8: https://biothings.ncats.io/semmedphenotype/query?fields=disrupted_by (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.7: https://biothings.ncats.io/semmedphenotype/query?fields=negatively_regulated_by (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 3.13: https://biothings.ncats.io/semmedphenotype/query?fields=positively_regulated_by (POST -d q=C0011849,C0018681,C0010200,C0243050,C0022660,C4025279,C4023112,C0007222,C0476273,C0006826,C0021051,C0027651,C0015967,C0746102,C0013404,C2609414,C0231528,C0700292&amp;scopes=umls)
+API 2.1: https://pending.biothings.io/ebigene2phenotype/query?fields=_id&amp;size=350 (POST -d q=HP:0002721,HP:0002094,HP:0001919,HP:0000819,HP:0002315,HP:0012418,HP:0004887,HP:0012735,HP:0025439,HP:0006528,HP:0001945,HP:0002664,HP:0003326,HP:0002098,HP:0001626,HP:0011949&amp;scopes=gene2phenotype.phenotypes)
+API 1.6: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012418/genes?rows=200&amp;direct=true
+API 1.7: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0004887/genes?rows=200&amp;direct=true
+API 1.1: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002721/genes?rows=200&amp;direct=true
+API 1.4: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0000819/genes?rows=200&amp;direct=true
+API 1.21: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002315/genes?rows=200
+API 1.32: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0011949/genes?rows=200
+API 1.9: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0025439/genes?rows=200&amp;direct=true
+API 1.16: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0011949/genes?rows=200&amp;direct=true
+API 1.3: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001919/genes?rows=200&amp;direct=true
+API 1.14: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002098/genes?rows=200&amp;direct=true
+API 1.28: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002664/genes?rows=200
+API 1.22: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012418/genes?rows=200
+API 1.20: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0000819/genes?rows=200
+API 1.27: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001945/genes?rows=200
+API 1.13: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0003326/genes?rows=200&amp;direct=true
+API 1.17: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002721/genes?rows=200
+API 1.31: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001626/genes?rows=200
+API 1.24: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012735/genes?rows=200
+API 1.26: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0006528/genes?rows=200
+API 1.19: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001919/genes?rows=200
+API 1.8: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0012735/genes?rows=200&amp;direct=true
+API 1.5: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002315/genes?rows=200&amp;direct=true
+API 1.18: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002094/genes?rows=200
+API 1.10: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0006528/genes?rows=200&amp;direct=true
+API 1.25: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0025439/genes?rows=200
+API 1.30: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002098/genes?rows=200
+API 1.2: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002094/genes?rows=200&amp;direct=true
+API 1.29: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0003326/genes?rows=200
+API 1.11: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001945/genes?rows=200&amp;direct=true
+API 1.23: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0004887/genes?rows=200
+API 1.15: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0001626/genes?rows=200&amp;direct=true
+API 1.12: https://api.monarchinitiative.org/api/bioentity/phenotype/HP:0002664/genes?rows=200&amp;direct=true
 
 
 ==== Step #3: Output normalization ====
 
-API 2.1 semmed_phenotype: No hits
-API 1.1 ebi_gene2phenotype: 99 hits
-API 2.2 semmed_phenotype: No hits
-API 2.3 semmed_phenotype: No hits
-API 2.4 semmed_phenotype: No hits
-API 2.5 semmed_phenotype: No hits
-API 3.1 biolink: 161 hits
-API 3.2 biolink: 15 hits
-API 3.3 biolink: 5 hits
-API 3.4 biolink: 12 hits
-API 3.5 biolink: 159 hits
-API 3.6 biolink: 112 hits
-API 3.7 biolink: 147 hits
-API 3.8 biolink: 50 hits
-API 3.9 biolink: 156 hits
-API 3.10 biolink: 171 hits
-API 3.11 biolink: 151 hits
-API 3.12 biolink: 5 hits
-API 3.13 biolink: 180 hits
-API 3.14 biolink: 22 hits
-API 3.15 biolink: 15 hits
-API 3.16 biolink: 108 hits
-API 2.6 semmed_phenotype: No hits
-API 3.17 biolink: No hits
-API 3.18 biolink: 1 hits
-API 3.19 biolink: No hits
-API 3.20 biolink: No hits
-API 3.21 biolink: No hits
-API 3.22 biolink: 1 hits
-API 3.23 biolink: No hits
-API 3.24 biolink: No hits
-API 3.25 biolink: No hits
-API 3.26 biolink: No hits
-API 3.27 biolink: No hits
-API 3.28 biolink: No hits
-API 3.29 biolink: No hits
-API 3.30 biolink: No hits
-API 3.31 biolink: No hits
-API 3.32 biolink: No hits
-API 2.7 semmed_phenotype: No hits
-API 2.8 semmed_phenotype: No hits
-API 2.9 semmed_phenotype: No hits
-API 2.10 semmed_phenotype: No hits
-API 2.11 semmed_phenotype: No hits
-API 2.12 semmed_phenotype: No hits
-API 2.13 semmed_phenotype: No hits
+API 3.1 semmed_phenotype: No hits
+API 2.1 ebi_gene2phenotype: 99 hits
+API 3.2 semmed_phenotype: No hits
+API 3.3 semmed_phenotype: No hits
+API 3.4 semmed_phenotype: No hits
+API 3.5 semmed_phenotype: No hits
+API 1.1 biolink: 143 hits
+API 1.2 biolink: 171 hits
+API 1.3 biolink: 18 hits
+API 1.4 biolink: 174 hits
+API 1.5 biolink: 129 hits
+API 1.6 biolink: 14 hits
+API 1.7 biolink: 17 hits
+API 1.8 biolink: 78 hits
+API 1.9 biolink: 5 hits
+API 1.10 biolink: 39 hits
+API 1.11 biolink: 178 hits
+API 1.12 biolink: 74 hits
+API 1.13 biolink: 102 hits
+API 1.14 biolink: 117 hits
+API 1.15 biolink: 51 hits
+API 1.16 biolink: 5 hits
+API 3.6 semmed_phenotype: No hits
+API 1.17 biolink: No hits
+API 1.18 biolink: No hits
+API 1.19 biolink: No hits
+API 1.20 biolink: No hits
+API 1.21 biolink: No hits
+API 1.22 biolink: No hits
+API 1.23 biolink: No hits
+API 1.24 biolink: No hits
+API 1.25 biolink: No hits
+API 1.26 biolink: No hits
+API 1.27 biolink: No hits
+API 1.28 biolink: 5 hits
+API 1.29 biolink: No hits
+API 1.30 biolink: No hits
+API 1.31 biolink: No hits
+API 1.32 biolink: No hits
+API 3.7 semmed_phenotype: No hits
+API 3.8 semmed_phenotype: No hits
+API 3.9 semmed_phenotype: No hits
+API 3.10 semmed_phenotype: No hits
+API 3.11 semmed_phenotype: No hits
+API 3.12 semmed_phenotype: No hits
+API 3.13 semmed_phenotype: No hits
 
-After id-to-object translation, BTE retrieved 985 unique objects.
+After id-to-object translation, BTE retrieved 951 unique objects.
 
 ==========
 ========== Final assembly of results ==========
@@ -14954,7 +14955,7 @@ After id-to-object translation, BTE retrieved 985 unique objects.
 
 
 In the #1 query, BTE found 16 unique PhenotypicFeature nodes
-In the #2 query, BTE found 985 unique Gene nodes
+In the #2 query, BTE found 951 unique Gene nodes
 </pre>
 </div>
 </div>
@@ -15023,8 +15024,8 @@ In the #2 query, BTE found 985 unique Gene nodes
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 16 unique PhenotypicFeatures for SARS.
-There are 985 unique Genes linked to those PhenotypicFeatures.
-There are 3140 unique paths.
+There are 951 unique Genes linked to those PhenotypicFeatures.
+There are 2838 unique paths.
 </pre>
 </div>
 </div>
@@ -15075,7 +15076,7 @@ There are 3140 unique paths.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 3140 unique paths.
+<pre>There are 2828 unique paths.
 </pre>
 </div>
 </div>
@@ -15148,42 +15149,22 @@ There are 3140 unique paths.
   </thead>
   <tbody>
     <tr>
+      <th>MTHFR</th>
+      <td>0.225806</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
       <th>GBA</th>
       <td>0.225806</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>MTHFR</th>
-      <td>0.193548</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>HBB</th>
-      <td>0.193548</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>ATM</th>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>RET</th>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>WT1</th>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>GAA</th>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
       <th>CSF2RB</th>
+      <td>0.193548</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>CSF2RA</th>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
@@ -15193,7 +15174,27 @@ There are 3140 unique paths.
       <td>3.0</td>
     </tr>
     <tr>
+      <th>ATM</th>
+      <td>0.161290</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
       <th>PDGFRA</th>
+      <td>0.161290</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>CTNNB1</th>
+      <td>0.161290</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>GAA</th>
+      <td>0.161290</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>DMPK</th>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
@@ -15317,14 +15318,13 @@ There are 3140 unique paths.
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>array([&#39;DECREASED IMMUNE FUNCTION&#39;, &#39;HEADACHE&#39;, &#39;DIABETES MELLITUS&#39;,
-       &#39;FEVER&#39;, &#39;CHRONIC LUNG DISEASE&#39;, &#39;ABNORMAL TISSUE MASS&#39;,
-       &#39;BREATHING DIFFICULTIES&#39;, &#39;MUSCLE ACHE&#39;, &#39;ABNORMAL BREATHING&#39;,
-       &#39;COUGH&#39;,
+<pre>array([&#39;DECREASED IMMUNE FUNCTION&#39;, &#39;HEADACHE&#39;,
        &#39;RESPIRATORY DISTRESS NECESSITATING MECHANICAL VENTILATION&#39;,
+       &#39;CHRONIC LUNG DISEASE&#39;, &#39;FEVER&#39;, &#39;MUSCLE ACHE&#39;,
+       &#39;DIABETES MELLITUS&#39;, &#39;COUGH&#39;, &#39;ABNORMAL TISSUE MASS&#39;,
+       &#39;ABNORMAL BREATHING&#39;, &#39;BREATHING DIFFICULTIES&#39;, &#39;PHARYNGITIS&#39;,
        &#39;HYPOXEMIA&#39;, &#39;ABNORMALITY OF THE CARDIOVASCULAR SYSTEM&#39;,
-       &#39;ACUTE INFECTIOUS PNEUMONIA&#39;, &#39;ACUTE KIDNEY FAILURE&#39;,
-       &#39;PHARYNGITIS&#39;], dtype=object)</pre>
+       &#39;ACUTE INFECTIOUS PNEUMONIA&#39;, &#39;ACUTE KIDNEY FAILURE&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -15389,7 +15389,7 @@ There are 3140 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>628</th>
+      <th>782</th>
       <td>BioLink API</td>
       <td>contributes_to_condition</td>
     </tr>
@@ -15462,7 +15462,7 @@ There are 3140 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">article_genes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;AGT&#39;</span><span class="p">,</span> <span class="c1">## AGT = angiotensin precursor. </span>
@@ -15513,7 +15513,7 @@ There are 3140 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring from SARS -&gt; PhenotypicFeature -&gt; Gene query&#39;</span><span class="p">)</span>
@@ -15546,7 +15546,7 @@ There are 3140 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -15576,31 +15576,31 @@ There are 3140 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>194</th>
+      <th>261</th>
       <td>IKBKG</td>
       <td>0.064516</td>
       <td>6.0</td>
     </tr>
     <tr>
-      <th>342</th>
-      <td>SERPING1</td>
-      <td>0.064516</td>
-      <td>6.0</td>
-    </tr>
-    <tr>
-      <th>528</th>
-      <td>NOS1</td>
-      <td>0.032258</td>
-      <td>7.0</td>
-    </tr>
-    <tr>
-      <th>589</th>
+      <th>309</th>
       <td>NFKB2</td>
       <td>0.032258</td>
       <td>7.0</td>
     </tr>
     <tr>
-      <th>658</th>
+      <th>614</th>
+      <td>SERPING1</td>
+      <td>0.032258</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>617</th>
+      <td>NOS1</td>
+      <td>0.032258</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>650</th>
       <td>NFKB1</td>
       <td>0.032258</td>
       <td>7.0</td>
@@ -15614,7 +15614,7 @@ There are 3140 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt output_prompt">Out[17]:</div>
 
 
 
@@ -15668,61 +15668,49 @@ There are 3140 unique paths.
       <td>IKBKG</td>
     </tr>
     <tr>
-      <th>122</th>
+      <th>302</th>
       <td>DECREASED IMMUNE FUNCTION</td>
       <td>has_phenotype</td>
       <td>NFKB2</td>
     </tr>
     <tr>
-      <th>123</th>
+      <th>303</th>
       <td>DECREASED IMMUNE FUNCTION</td>
       <td>has_phenotype</td>
       <td>NFKB2</td>
     </tr>
     <tr>
-      <th>124</th>
+      <th>304</th>
       <td>DECREASED IMMUNE FUNCTION</td>
       <td>has_phenotype</td>
       <td>NFKB1</td>
     </tr>
     <tr>
-      <th>125</th>
+      <th>305</th>
       <td>DECREASED IMMUNE FUNCTION</td>
       <td>has_phenotype</td>
       <td>NFKB1</td>
     </tr>
     <tr>
-      <th>1134</th>
+      <th>916</th>
       <td>COUGH</td>
       <td>has_phenotype</td>
       <td>NOS1</td>
     </tr>
     <tr>
-      <th>1135</th>
+      <th>917</th>
       <td>COUGH</td>
       <td>has_phenotype</td>
       <td>NOS1</td>
     </tr>
     <tr>
-      <th>1812</th>
-      <td>BREATHING DIFFICULTIES</td>
-      <td>has_phenotype</td>
-      <td>SERPING1</td>
-    </tr>
-    <tr>
-      <th>1813</th>
-      <td>BREATHING DIFFICULTIES</td>
-      <td>has_phenotype</td>
-      <td>SERPING1</td>
-    </tr>
-    <tr>
-      <th>1814</th>
+      <th>1760</th>
       <td>ABNORMAL BREATHING</td>
       <td>has_phenotype</td>
       <td>SERPING1</td>
     </tr>
     <tr>
-      <th>1815</th>
+      <th>1761</th>
       <td>ABNORMAL BREATHING</td>
       <td>has_phenotype</td>
       <td>SERPING1</td>
@@ -15748,7 +15736,7 @@ There are 3140 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show APIs/sources for the underlying info for these answers</span>
@@ -15766,7 +15754,7 @@ There are 3140 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -15810,7 +15798,7 @@ There are 3140 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[19]:</div>
+    <div class="prompt output_prompt">Out[18]:</div>
 
 
 
@@ -15873,7 +15861,7 @@ There are 3140 unique paths.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_scoring_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="s1">&#39;output_name&#39;</span><span class="p">],</span> <span class="n">ascending</span> <span class="o">=</span> <span class="p">[</span><span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">])</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
@@ -15889,7 +15877,7 @@ There are 3140 unique paths.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[19]:</div>
 
 
 
@@ -15919,122 +15907,122 @@ There are 3140 unique paths.
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <th>1</th>
       <td>GBA</td>
       <td>0.225806</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>2</th>
-      <td>HBB</td>
-      <td>0.193548</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
+      <th>0</th>
       <td>MTHFR</td>
+      <td>0.225806</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>CSF2RB</td>
       <td>0.193548</td>
       <td>2.0</td>
     </tr>
     <tr>
-      <th>10</th>
-      <td>ADA2</td>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>8</th>
+      <th>4</th>
       <td>APC</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>3</th>
+      <th>5</th>
       <td>ATM</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>CAV1</td>
+      <th>3</th>
+      <td>CSF2RA</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
       <th>7</th>
-      <td>CSF2RB</td>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>11</th>
       <td>CTNNB1</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>13</th>
+      <th>9</th>
       <td>DMPK</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>14</th>
-      <td>FBP1</td>
-      <td>0.161290</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>6</th>
+      <th>8</th>
       <td>GAA</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>9</th>
+      <th>12</th>
+      <td>HBB</td>
+      <td>0.161290</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>6</th>
       <td>PDGFRA</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>4</th>
-      <td>RET</td>
+      <th>11</th>
+      <td>PIK3CA</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>5</th>
-      <td>WT1</td>
+      <th>10</th>
+      <td>TERT</td>
       <td>0.161290</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>30</th>
+      <th>29</th>
+      <td>ADA2</td>
+      <td>0.129032</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>34</th>
       <td>ATP6</td>
       <td>0.129032</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>43</th>
-      <td>CFTR</td>
+      <th>22</th>
+      <td>BLM</td>
       <td>0.129032</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>32</th>
-      <td>CSF2RA</td>
-      <td>0.129032</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>17</th>
-      <td>DNAAF3</td>
+      <th>24</th>
+      <td>FBP1</td>
       <td>0.129032</td>
       <td>4.0</td>
     </tr>
     <tr>
       <th>15</th>
-      <td>ETFA</td>
+      <td>GATA6</td>
+      <td>0.129032</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>GNAS</td>
+      <td>0.129032</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>JAK2</td>
       <td>0.129032</td>
       <td>4.0</td>
     </tr>
@@ -16083,7 +16071,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[</span><span class="n">q1_r_paths_table</span><span class="p">[</span><span class="s1">&#39;output_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;CSF2RB&#39;</span><span class="p">]</span>
@@ -16099,7 +16087,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[23]:</div>
+    <div class="prompt output_prompt">Out[20]:</div>
 
 
 
@@ -16144,7 +16132,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
   </thead>
   <tbody>
     <tr>
-      <th>1430</th>
+      <th>836</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>has_phenotype</td>
@@ -16165,7 +16153,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1431</th>
+      <th>837</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>related_to</td>
@@ -16186,7 +16174,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1432</th>
+      <th>838</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>has_phenotype</td>
@@ -16207,7 +16195,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1433</th>
+      <th>839</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>related_to</td>
@@ -16228,7 +16216,49 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1434</th>
+      <th>840</th>
+      <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
+      <td>Disease</td>
+      <td>has_phenotype</td>
+      <td>hpoa</td>
+      <td>BioLink API</td>
+      <td>None</td>
+      <td>None</td>
+      <td>PhenotypicFeature</td>
+      <td>BREATHING DIFFICULTIES</td>
+      <td>UMLS:C0013404</td>
+      <td>has_phenotype</td>
+      <td>orphanet,hpoa</td>
+      <td>BioLink API</td>
+      <td>None</td>
+      <td>None</td>
+      <td>Gene</td>
+      <td>CSF2RB</td>
+      <td>NCBIGene:1439</td>
+    </tr>
+    <tr>
+      <th>841</th>
+      <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
+      <td>Disease</td>
+      <td>related_to</td>
+      <td>hpo</td>
+      <td>mydisease.info API</td>
+      <td>None</td>
+      <td>TAS</td>
+      <td>PhenotypicFeature</td>
+      <td>BREATHING DIFFICULTIES</td>
+      <td>UMLS:C0013404</td>
+      <td>has_phenotype</td>
+      <td>orphanet,hpoa</td>
+      <td>BioLink API</td>
+      <td>None</td>
+      <td>None</td>
+      <td>Gene</td>
+      <td>CSF2RB</td>
+      <td>NCBIGene:1439</td>
+    </tr>
+    <tr>
+      <th>842</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>has_phenotype</td>
@@ -16249,7 +16279,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1435</th>
+      <th>843</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>related_to</td>
@@ -16270,7 +16300,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1436</th>
+      <th>844</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>has_phenotype</td>
@@ -16291,7 +16321,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1437</th>
+      <th>845</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>related_to</td>
@@ -16312,7 +16342,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1438</th>
+      <th>846</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>has_phenotype</td>
@@ -16333,7 +16363,7 @@ For more information on GM-CSF and its role in suppressing autoimmunity, <a href
       <td>NCBIGene:1439</td>
     </tr>
     <tr>
-      <th>1439</th>
+      <th>847</th>
       <td>ACUTE RESPIRATORY CORONAVIRUS INFECTION</td>
       <td>Disease</td>
       <td>related_to</td>

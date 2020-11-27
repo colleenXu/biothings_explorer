@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>TranslatorUseCase_Q5_IBD_Imuran_SideEffects</title>
+<title>TranslatorUseCase_Q4_ExplainQuery</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -14329,7 +14329,7 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Translator-Use-Case-Question-5:-IBD,-Imuran,-and-side-effects">Translator Use Case Question 5: IBD, Imuran, and side effects<a class="anchor-link" href="#Translator-Use-Case-Question-5:-IBD,-Imuran,-and-side-effects">&#182;</a></h1>
+<h1 id="Translator-Use-Case-Question-4:-Multiple-situations">Translator Use Case Question 4: Multiple situations<a class="anchor-link" href="#Translator-Use-Case-Question-4:-Multiple-situations">&#182;</a></h1>
 </div>
 </div>
 </div>
@@ -14344,54 +14344,34 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Understanding-the-question">Understanding the question<a class="anchor-link" href="#Understanding-the-question">&#182;</a></h2>
+<h2 id="Understanding-the-Question">Understanding the Question<a class="anchor-link" href="#Understanding-the-Question">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>To experiment with an executable version of this notebook, <a href="https://colab.research.google.com/github/colleenXu/biothings_explorer/blob/relay/jupyter%20notebooks/TranslatorUseCases/TranslatorUseCase_Q5_IBD_Imuran_SideEffects.ipynb">load it in Google Colaboratory</a>.</strong></p>
-<p>The Translator Use Case Question #5 is:</p>
-<blockquote><p>If a patient with disease X is treated off-label with drug Y, what are some potential side effects?</p>
+<p>The Translator Use Case Question #4 is:</p>
+<blockquote><p>For a patient with disease X, what are some factors (such as genetic features, comorbidities, etc) that could cause sensitivity or resistance to drug Y?</p>
 </blockquote>
-<p>We interpret the Translator Use Case Question to be about <strong>unintended drug-disease interactions</strong>. These occur when a drug has an unintended effect on a person due to the person’s existing medical conditions.</p>
+<p>We interpret the Translator Use Case Question to be about several somewhat-related issues:</p>
 <ul>
-<li>The interaction could be beneficial: for example, a person taking <a href="https://www.drugs.com/ppa/lorazepam.html">lorazepam</a> for nighttime anxiety may also experience drowsiness (a common side effect), which may help them with their insomnia. </li>
-<li>On the other hand, the interaction could be harmful: for example, a person with peptic ulcers may want to take <a href="https://www.drugs.com/ppa/ibuprofen.html">ibuprofen</a> for a headache. However, NSAIDS can increase the risk of serious gastrointestinal inflammation, ulceration, bleeding, and perforation, especially for people with a history of GI ulcers or current GI ulcers. Some adverse drug-disease interactions, like the example here, are described in formal drug warnings and contraindications.</li>
-</ul>
-<p>We notice that unintended drug-disease interactions occur in more contexts than off-label drug use. They can also occur when the drug is used following its label-indication and in <a href="https://www.bmj.com/content/350/bmj.h949">the context of comorbidity / multimorbidity</a>, when a person is taking a drug to treat one of their diseases and the drug affects a comorbid condition.</p>
-<p><strong>We therefore decided to reframe this question and find potential unintended drug-disease interactions with the following type of question:</strong></p>
-<blockquote><p>What symptoms do <code>Disease</code> X and <code>ChemicalSubstance</code> Y have in common?</p>
-</blockquote>
-<p>BioThings Explorer (BTE) can answer two classes of queries -- "EXPLAIN" and "PREDICT". This Question fits the EXPLAIN  template of starting with <strong>a specific biomedical entity</strong> (a specific <code>Disease</code> X) and finding indirect relationships with <strong>another specific biomedical entity</strong> (a specific <code>ChemicalSubstance</code> Y).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Specific-use-case:-IBD-treatment-linked-to-cancer">Specific use case: IBD treatment linked to cancer<a class="anchor-link" href="#Specific-use-case:-IBD-treatment-linked-to-cancer">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We will use <strong>inflammatory bowel disease (IBD)</strong> as our specific disease of interest. We will use <strong>Imuran</strong> as our drug of interest. <a href="https://www.uptodate.com/contents/azathioprine-drug-information">Imuran / azathioprine</a> has been <a href="https://www.mayoclinic.org/diseases-conditions/crohns-disease/diagnosis-treatment/drc-20353309">commonly used <strong>off-label</strong> to treat Crohn disease (a form of IBD)</a>.</p>
-<p>However, the use of Imuran to treat IBD has been linked to hepatosplenic T-cell lymphoma (HSTCL) and other lymphomas (references <a href="https://pubmed.ncbi.nlm.nih.gov/20888436/">1</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/21830262/">2</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/23891975/">3</a> and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710465/">4</a>). In particular, <a href="https://pubmed.ncbi.nlm.nih.gov/29337025/">hepatosplenic T-cell lymphoma is a rare, aggressive, and usually fatal disease</a>. This serious adverse effect is made clear in the black box warning for <a href="https://www.drugs.com/pro/imuran.html">Imuran</a>.</p>
-<p>We tackle the search for side-effects associated with using Imuran to treat IBD using the query:</p>
-<ul>
-<li><code>Disease</code> Crohn disease  &rarr; results:<code>Disease</code> &larr; <code>ChemicalSubstance</code> Imuran. <ul>
-<li>Note that we use <code>Disease</code> as the intermediate node type to represent disease symptoms and drug effects. With the current APIs available and issues around BioThings type annotation (PhenotypicFeatures vs Diseases), it made more sense to use Disease as the intermediate node. </li>
+<li>in the context of cancer, drug sensitivity means that the drug has the desired effect of killing or inhibiting cancerous cells and drug resistance means that the drug does not have this desired effect (this resistance can be pre-existing or can develop with time / exposure to the drug). <a href="https://www.merckmanuals.com/home/drugs/factors-affecting-response-to-drugs/tolerance-and-resistance-to-drugs">Reference</a>.<ul>
+<li>There are <a href="https://www.nature.com/articles/s41586-019-1730-1">multiple overarching factors</a> to drug resistance in this context.</li>
 </ul>
 </li>
-<li>The query will return a graph object with entities as nodes and relationships as edges. We then use edge provenance information to <strong>filter</strong> the results. For each intermediate Disease node, we use the number of unique paths from the input nodes to that node to <strong>score</strong> it. The scores can then be used to sort the results.  </li>
+<li>in the context of pathogens and the diseases they cause, drug sensitivity (similar to the cancer context) means that the drug has the desired effect of killing or inhibiting the pathogens and drug resistance (similar to the cancer context) means that the drug does not have this desired effect. <a href="https://www.merckmanuals.com/home/drugs/factors-affecting-response-to-drugs/tolerance-and-resistance-to-drugs">Reference</a>. </li>
+<li>outside of the above contexts, drug sensitivity often means that <a href="https://en.wikipedia.org/wiki/Drug_intolerance">the patient is unable to tolerate the drug due to adverse events</a>. These adverse events could be <a href="https://www.racgp.org.au/afp/2013/januaryfebruary/adverse-drug-reactions/">drug allergies / hypersensitivity reactions, drug side effects, drug intolerances</a>, or <a href="https://www.drugs.com/drug_interactions.html">adverse drug-disease interactions</a>. Drug tolerance can refer to <a href="https://www.merckmanuals.com/professional/clinical-pharmacology/factors-affecting-response-to-drugs/pharmacogenetics">patients who require greater doses of a drug</a> to achieve therapeutic concentrations and effects. <ul>
+<li>Genetic factors, environmental factors, and developmental factors affect drug response and metabolism. <a href="https://www.merckmanuals.com/professional/clinical-pharmacology/factors-affecting-response-to-drugs/pharmacogenetics">Reference</a>. </li>
+<li>This question then begins to overlap with Translator Use Case Question #5. </li>
 </ul>
-<p><br></p>
-<p>Note 1: This example was inspired by the [information shared by Jeff McKnight], <a href="http://molbio.uoregon.edu/mcknight/">a molecular biology researcher</a> who is currently fighting hepatosplenic T-cell lymphoma after 16 years of taking Imuran and Remicade to treat Crohn disease. To help, he has a <a href="https://www.gofundme.com/f/mcknight-fund-help-jeff-buy-time-with-his-family">fundraiser here</a>.</p>
-<p>Note 2: many of those with IBD, this drug treatment, and this cancer are <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710465/">men &lt; 40 years old</a>. Jeff may be in this age group.</p>
+</li>
+</ul>
+<p>**In this notebook, we will tackle situations (1) and (3) above, exploring genes involved with both the disease and the drug.</p>
+<p><strong>We therefore decided to reframe this question and ask:</strong></p>
+<blockquote><p>What genes are associated with both <code>Disease</code> X AND <code>ChemicalSubstance</code> Y?</p>
+</blockquote>
+<p>BioThings Explorer (BTE) can answer two classes of queries -- "EXPLAIN" and "PREDICT". This Question fits the EXPLAIN  template of starting with <strong>a specific biomedical entity</strong> (a specific <code>Disease</code> X) and finding indirect relationships with <strong>another specific biomedical entity</strong> (a specific <code>ChemicalSubstance</code> Y).</p>
 
 </div>
 </div>
@@ -14402,21 +14382,6 @@ $(document).ready(function () {
 <h2 id="Step-0:-Load-BTE-modules,-notebook-functions">Step 0: Load BTE modules, notebook functions<a class="anchor-link" href="#Step-0:-Load-BTE-modules,-notebook-functions">&#182;</a></h2>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## for Google Colab</span>
-<span class="o">%%capture</span>
-<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">colleenXu</span><span class="o">/</span><span class="n">biothings_explorer</span><span class="nd">@relay</span><span class="c1">#egg=biothings_explorer</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14437,9 +14402,9 @@ $(document).ready(function () {
 <span class="c1">## packages to work with objects </span>
 <span class="kn">import</span> <span class="nn">re</span>
 
-<span class="c1">## to get around bugs</span>
+<span class="c1">## to get around jupyter notebook bug</span>
 <span class="kn">import</span> <span class="nn">nest_asyncio</span>
-<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span> 
 </pre></div>
 
     </div>
@@ -14639,9 +14604,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-11-26 16:17:02.830608
+2020-11-26 17:57:39.141272
 UTC time: 
-2020-11-27 00:17:02.830752
+2020-11-27 01:57:39.141408
 </pre>
 </div>
 </div>
@@ -14653,15 +14618,35 @@ UTC time:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-1:-Find-representation-of-&quot;inflammatory-bowel-disease&quot;-in-BTE">Step 1: Find representation of "inflammatory bowel disease" in BTE<a class="anchor-link" href="#Step-1:-Find-representation-of-&quot;inflammatory-bowel-disease&quot;-in-BTE">&#182;</a></h2>
+<h2 id="Specific-use-case-#1:-lung-adenocarcinoma-and-brigatinib">Specific use case #1: lung adenocarcinoma and brigatinib<a class="anchor-link" href="#Specific-use-case-#1:-lung-adenocarcinoma-and-brigatinib">&#182;</a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this step, BioThings Explorer translates our query string "IBD"  into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want (inflammatory bowel disease).</p>
-<p>Note: the query failed to retrieve Disease &rarr; PhenotypicFeatures for Crohn disease (a child of IBD in the Mondo ontology).</p>
+<p>This use case illustrates situation (1) discussed above in "Understanding the Question". We will use <strong>lung adenocarcinoma</strong> as our specific disease of interest. We will use <strong>brigatinib</strong> as our drug of interest. <a href="https://www.drugs.com/ppa/brigatinib.html">Brigatinib</a> is an inhibitor of ALK, ROS1, IGF-1R, FLT3, and mutant-EGFR. This drug is indicated (currently approved) for use in ALK-positive metastatic non-small cell lung cancer (which includes lung adenocarcinoma as a subclass).</p>
+<p>This drug has been <a href="https://pubmed.ncbi.nlm.nih.gov/32353596/">studied for its potential to help overcome acquired resistance to other EGFR-tyrosine kinase inhibitors (TKIs), which occurs when the cancer cells acquire specific EGFR mutations</a>. Brigatinib is <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5355811/">known to preferentially bind to triple-mutant-EGFR over wild-type EGFR, inhibiting it, and to inhibit growth (a synergistic effect) in <em>in vivo</em> studies when used with another anti-EGFR antibody treatment</a>.</p>
+<p>We tackle the search for genes associated with brigatinib and lung adenocarcinoma using the query:</p>
+<ul>
+<li><code>Disease</code>lung adenocarcinoma  &rarr; results:<code>Gene</code> &larr; <code>ChemicalSubstance</code> brigatinib. </li>
+<li>The query will return a graph object with entities as nodes and relationships as edges. We then use edge provenance information to <strong>filter</strong> the results. For each intermediate Disease node, we use the number of unique paths from the input nodes to that node to <strong>score</strong> it. The scores can then be used to sort the results.  </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-1:-Find-representation-of-&quot;lung-adenocarcinoma&quot;-in-BTE">Step 1: Find representation of "lung adenocarcinoma" in BTE<a class="anchor-link" href="#Step-1:-Find-representation-of-&quot;lung-adenocarcinoma&quot;-in-BTE">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this step, BioThings Explorer translates our query string "lung adenocarcinoma" into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want.</p>
 <p>Generally, the top result returned by the Hint module for your BioThings type of interest will match what you want, but you should confirm that using the identifiers shown.</p>
 <blockquote><p>BioThings types correspond to children and descendants of <a href="https://biolink.github.io/biolink-model/docs/BiologicalEntity.html">BiologicalEntity</a> from the <a href="https://biolink.github.io/biolink-model/docs/">Biolink Model</a>, including <code>Disease</code> (e.g., "lupus"), <code>ChemicalSubstance</code> (e.g., "acetaminophen"), <code>Gene</code> (e.g., "CDK2"), <code>BiologicalProcess</code> (e.g., "T cell differentiation"), and <code>Pathway</code> (e.g., "Citric acid cycle"). <strong>However, <a href="https://smart-api.info/portal/translator/metakg">only a subset of the Biolink BiologicalEntity children / descendants are currently implemented in BTE</a></strong>. More biomedical object types will be available as more knowledge sources (APIs) are added to the system. <strong>Note that the type <code>BiologicalEntity</code> means any BioThings type currently implemented in BTE will be accepted.</strong></p>
 </blockquote>
@@ -14677,10 +14662,1006 @@ UTC time:
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">Hint</span><span class="p">()</span>  <span class="c1">## neater way to call this BTE module</span>
 
 <span class="c1">## the human user gives this input</span>
-<span class="n">disease_starting_str</span> <span class="o">=</span> <span class="s2">&quot;IBD&quot;</span>
+<span class="n">disease_starting_str</span> <span class="o">=</span> <span class="s2">&quot;lung adenocarcinoma&quot;</span>
 
 <span class="n">disease_hint</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">disease_starting_str</span><span class="p">)</span>
 <span class="n">hint_display</span><span class="p">(</span><span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">disease_hint</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 9 BioThings objects returned for lung adenocarcinoma:
+Gene, lung adenocarcinoma-associated transcript 1, num of IDs: 2
+Gene, lung adenocarcinoma associated transcript 1, num of IDs: 5
+Gene, metastasis associated lung adenocarcinoma transcript 1, num of IDs: 5
+Disease, lung occult adenocarcinoma, num of IDs: 3
+Disease, lung adenocarcinoma, num of IDs: 4
+Disease, papillary lung adenocarcinoma, num of IDs: 3
+Disease, acinar lung adenocarcinoma, num of IDs: 3
+Disease, lung colloid adenocarcinoma, num of IDs: 3
+PhenotypicFeature, Lung adenocarcinoma, num of IDs: 4
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Based on the information above, we'll pick the second <code>Disease</code> choice (indexed at 1) for our query because we want lung adenocarcinoma. We can look at identifier mappings inside this BioThings object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
+<span class="n">disease_choice_type</span> <span class="o">=</span> <span class="s1">&#39;Disease&#39;</span>
+<span class="n">disease_choice_idx</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">disease_hint_obj</span> <span class="o">=</span> <span class="n">disease_hint</span><span class="p">[</span><span class="n">disease_choice_type</span><span class="p">][</span><span class="n">disease_choice_idx</span><span class="p">]</span>  
+<span class="n">disease_hint_obj</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;MONDO&#39;: &#39;MONDO:0005061&#39;,
+ &#39;DOID&#39;: &#39;DOID:3910&#39;,
+ &#39;UMLS&#39;: &#39;C0152013&#39;,
+ &#39;name&#39;: &#39;lung adenocarcinoma&#39;,
+ &#39;MESH&#39;: &#39;C538231&#39;,
+ &#39;primary&#39;: {&#39;identifier&#39;: &#39;MONDO&#39;,
+  &#39;cls&#39;: &#39;Disease&#39;,
+  &#39;value&#39;: &#39;MONDO:0005061&#39;},
+ &#39;display&#39;: &#39;MONDO(MONDO:0005061) DOID(DOID:3910) UMLS(C0152013) MESH(C538231) name(lung adenocarcinoma)&#39;,
+ &#39;type&#39;: &#39;Disease&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-2:-Find-representation-of-&quot;brigatinib&quot;-in-BTE">Step 2: Find representation of "brigatinib" in BTE<a class="anchor-link" href="#Step-2:-Find-representation-of-&quot;brigatinib&quot;-in-BTE">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this step, BioThings Explorer translates our query string "brigatinib"  into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
+<span class="n">drug_starting_str</span> <span class="o">=</span> <span class="s2">&quot;brigatinib&quot;</span>
+
+<span class="n">drug_hint</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">drug_starting_str</span><span class="p">)</span>
+<span class="n">hint_display</span><span class="p">(</span><span class="n">drug_starting_str</span><span class="p">,</span> <span class="n">drug_hint</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 2 BioThings objects returned for brigatinib:
+ChemicalSubstance, BRIGATINIB, num of IDs: 11
+ChemicalSubstance, brigatinib, num of IDs: 2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All of these <code>ChemicalSubstance</code> entries seem to be the right object. We'll pick the entry with the most identifiers (indexed at 0) for our query. We can look at identifier mappings inside this BioThings object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
+<span class="n">drug_choice_type</span> <span class="o">=</span> <span class="s1">&#39;ChemicalSubstance&#39;</span>
+<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="n">drug_hint_obj</span> <span class="o">=</span> <span class="n">drug_hint</span><span class="p">[</span><span class="n">drug_choice_type</span><span class="p">][</span><span class="n">drug_choice_idx</span><span class="p">]</span>  
+<span class="n">drug_hint_obj</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;CHEMBL.COMPOUND&#39;: &#39;CHEMBL3545311&#39;,
+ &#39;DRUGBANK&#39;: &#39;DB12267&#39;,
+ &#39;PUBCHEM&#39;: 68165256,
+ &#39;UMLS&#39;: &#39;C3274459&#39;,
+ &#39;MESH&#39;: &#39;C000598580&#39;,
+ &#39;UNII&#39;: &#39;HYW8DB273J&#39;,
+ &#39;INCHIKEY&#39;: &#39;AILRADAXUVEEIR-UHFFFAOYSA-N&#39;,
+ &#39;INCHI&#39;: &#39;InChI=1S/C29H39ClN7O2P/c1-35-15-17-37(18-16-35)21-11-13-36(14-12-21)22-9-10-24(26(19-22)39-2)33-29-31-20-23(30)28(34-29)32-25-7-5-6-8-27(25)40(3,4)38/h5-10,19-21H,11-18H2,1-4H3,(H2,31,32,33,34)&#39;,
+ &#39;name&#39;: &#39;BRIGATINIB&#39;,
+ &#39;CAS&#39;: &#39;1197953-54-0&#39;,
+ &#39;IUPAC&#39;: &#39;[5-chloro-4-(2-dimethylphosphorylanilino)pyrimidin-2-yl]-[2-methoxy-4-[4-(4-methylpiperazino)piperidino]phenyl]amine&#39;,
+ &#39;formula&#39;: &#39;C29H39ClN7O2P&#39;,
+ &#39;primary&#39;: {&#39;identifier&#39;: &#39;CHEMBL.COMPOUND&#39;,
+  &#39;cls&#39;: &#39;ChemicalSubstance&#39;,
+  &#39;value&#39;: &#39;CHEMBL3545311&#39;},
+ &#39;display&#39;: &#39;CHEMBL.COMPOUND(CHEMBL3545311) DRUGBANK(DB12267) PUBCHEM(68165256) MESH(C000598580) UNII(HYW8DB273J) UMLS(C3274459) name(BRIGATINIB) CAS(1197953-54-0) IUPAC([5-chloro-4-(2-dimethylphosphorylanilino)pyrimidin-2-yl]-[2-methoxy-4-[4-(4-methylpiperazino)piperidino]phenyl]amine) formula(C29H39ClN7O2P)&#39;,
+ &#39;type&#39;: &#39;ChemicalSubstance&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3>Step 3: lung adenocarcinoma &rarr; Gene &larr; brigatinib</h3>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this section, we dynamically generate a knowledge graph with paths connecting lung adenocarcinoma and the drug brigatinib to <code>Genes</code> . We will then look at the <code>Genes</code> that have relationships with both lung adenocarcinoma and brigatinib.</p>
+<p>BTE performs the <strong>query path planning</strong> and <strong>query path execution</strong> by deconstructing the query into individual API calls, executing those API calls, and then assembling the results.</p>
+<p>The code block below takes ~1 min 40 seconds to run.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
+<span class="n">q1_intermediate</span> <span class="o">=</span> <span class="s1">&#39;Gene&#39;</span>
+
+<span class="n">q1</span> <span class="o">=</span> <span class="n">FindConnection</span><span class="p">(</span><span class="n">input_obj</span> <span class="o">=</span> <span class="n">disease_hint_obj</span><span class="p">,</span>\
+                     <span class="n">output_obj</span> <span class="o">=</span> <span class="n">drug_hint_obj</span><span class="p">,</span> \
+                    <span class="n">intermediate_nodes</span> <span class="o">=</span> <span class="n">q1_intermediate</span><span class="p">)</span>
+<span class="n">q1</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>==========
+========== QUERY PARAMETER SUMMARY ==========
+==========
+
+BTE will find paths that join &#39;lung adenocarcinoma&#39; and &#39;BRIGATINIB&#39;. Paths will have 1 intermediate node.
+
+Intermediate node #1 will have these type constraints: Gene
+
+
+==========
+========== QUERY #1 -- fetch all Gene entities linked to &#39;lung adenocarcinoma&#39; ==========
+==========
+
+==== Step #1: Query path planning ====
+
+Because lung adenocarcinoma is of type &#39;Disease&#39;, BTE will query our meta-KG for APIs that can take &#39;Disease&#39; as input and &#39;Gene&#39; as output
+
+BTE found 10 apis:
+
+API 1. mgi_gene2phenotype(1 API call)
+API 2. scibite(1 API call)
+API 3. pharos(1 API call)
+API 4. DISEASES(1 API call)
+API 5. semmed_disease(15 API calls)
+API 6. biolink(1 API call)
+API 7. mydisease(1 API call)
+API 8. hetio(1 API call)
+API 9. scigraph(1 API call)
+API 10. cord_disease(1 API call)
+
+
+==== Step #2: Query path execution ====
+NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
+
+API 1.1: https://pending.biothings.io/mgigene2phenotype/query?fields=_id&amp;size=300 (POST -d q=DOID:3910&amp;scopes=mgi.associated_with_disease.doid)
+API 6.1: https://mydisease.info/v1/query?fields=disgenet.genes_related_to_disease.gene_id (POST -d q=C1335060,C0152013&amp;scopes=mondo.xrefs.umls, disgenet.xrefs.umls)
+API 4.1: https://pending.biothings.io/DISEASES/query?fields=DISEASES.associatedWith (POST -d q=DOID:3910&amp;scopes=DISEASES.doid)
+API 5.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.3: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.5: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.9: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.12: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.8: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.14: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.1: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.10: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 10.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:3910&amp;scopes=doid)
+API 5.2: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.13: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.4: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 5.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1335060,C0152013&amp;scopes=umls)
+API 7.1: https://api.monarchinitiative.org/api/bioentity/disease/MONDO:0005061/genes?rows=200&amp;direct=true
+API 9.1: https://automat.renci.org/cord19-scigraph/disease/gene/MONDO:0005061
+API 8.1: https://automat.renci.org/hetio/disease/gene/MONDO:0005061
+API 2.1: https://automat.renci.org/cord19-scibite/disease/gene/MONDO:0005061
+API 3.1: https://automat.renci.org/pharos/disease/gene/MONDO:0005061
+
+
+==== Step #3: Output normalization ====
+
+API 1.1 mgi_gene2phenotype: 2 hits
+API 5.1 semmed_disease: No hits
+API 5.2 semmed_disease: No hits
+API 4.1 DISEASES: 3 hits
+API 5.3 semmed_disease: No hits
+API 5.4 semmed_disease: No hits
+API 5.5 semmed_disease: No hits
+API 5.6 semmed_disease: No hits
+API 5.7 semmed_disease: No hits
+API 9.1 scigraph: 1 hits
+API 3.1 pharos: 212 hits
+API 7.1 biolink: 94 hits
+API 5.8 semmed_disease: No hits
+API 5.9 semmed_disease: 2 hits
+API 10.1 cord_disease: 212 hits
+API 5.10 semmed_disease: No hits
+API 2.1 scibite: 20 hits
+API 8.1 hetio: No hits
+API 5.11 semmed_disease: No hits
+API 5.12 semmed_disease: 21 hits
+API 6.1 mydisease: 10 hits
+API 5.13 semmed_disease: No hits
+API 5.14 semmed_disease: 3 hits
+API 5.15 semmed_disease: No hits
+
+After id-to-object translation, BTE retrieved 529 unique objects.
+
+
+==========
+========== QUERY #2 -- fetch all Gene entities linked to &#39;BRIGATINIB&#39; ==========
+==========
+
+==== Step #1: Query path planning ====
+
+Because BRIGATINIB is of type &#39;ChemicalSubstance&#39;, BTE will query our meta-KG for APIs that can take &#39;ChemicalSubstance&#39; as input and &#39;Gene&#39; as output
+
+BTE found 4 apis:
+
+API 1. dgidb(1 API call)
+API 2. semmed_chemical(13 API calls)
+API 3. mychem(3 API calls)
+API 4. ctd(1 API call)
+
+
+==== Step #2: Query path execution ====
+NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
+
+API 2.4: https://biothings.ncats.io/semmedchemical/query?fields=disrupted_by (POST -d q=C3274459&amp;scopes=umls)
+API 2.11: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C3274459&amp;scopes=umls)
+API 2.9: https://biothings.ncats.io/semmedchemical/query?fields=produced_by (POST -d q=C3274459&amp;scopes=umls)
+API 2.2: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C3274459&amp;scopes=umls)
+API 2.12: https://biothings.ncats.io/semmedchemical/query?fields=affected_by (POST -d q=C3274459&amp;scopes=umls)
+API 2.8: https://biothings.ncats.io/semmedchemical/query?fields=produces (POST -d q=C3274459&amp;scopes=umls)
+API 2.10: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulates (POST -d q=C3274459&amp;scopes=umls)
+API 2.13: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulated_by (POST -d q=C3274459&amp;scopes=umls)
+API 2.5: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C3274459&amp;scopes=umls)
+API 2.3: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulated_by (POST -d q=C3274459&amp;scopes=umls)
+API 2.1: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C3274459&amp;scopes=umls)
+API 2.7: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C3274459&amp;scopes=umls)
+API 2.6: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C3274459&amp;scopes=umls)
+API 1.1: http://dgidb.genome.wustl.edu/api/v2/interactions.json?drugs=CHEMBL3545311
+API 4.1: http://ctdbase.org/tools/batchQuery.go?inputType=chem&amp;report=genes_curated&amp;format=json&amp;inputTerms=C000598580
+API 4.1 ctd failed
+
+
+==== Step #3: Output normalization ====
+
+API 2.1 semmed_chemical: No hits
+API 3.1 mychem: 9 hits
+API 3.2 mychem: 6 hits
+API 3.3 mychem: 2 hits
+API 2.2 semmed_chemical: No hits
+API 2.3 semmed_chemical: No hits
+API 2.4 semmed_chemical: No hits
+API 2.5 semmed_chemical: No hits
+API 1.1 dgidb: No hits
+API 2.6 semmed_chemical: No hits
+API 2.7 semmed_chemical: No hits
+API 2.8 semmed_chemical: No hits
+API 2.9 semmed_chemical: No hits
+API 2.10 semmed_chemical: No hits
+API 2.11 semmed_chemical: No hits
+API 2.12 semmed_chemical: No hits
+API 2.13 semmed_chemical: No hits
+
+After id-to-object translation, BTE retrieved 12 unique objects.
+
+==========
+========== Final assembly of results ==========
+==========
+
+
+BTE found 5 unique intermediate nodes connecting &#39;lung adenocarcinoma&#39; and &#39;BRIGATINIB&#39;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># q1_r_graph = q1.fc.G  ## for changing the graph object to reflect the table</span>
+<span class="n">q1_r_paths_table</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
+
+<span class="n">q1_type</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;dispatcher.([a-zA-Z]+)&#39;&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">q1</span><span class="o">.</span><span class="n">fc</span><span class="p">)))</span>
+<span class="n">q1_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">q1_type</span><span class="p">)</span>  <span class="c1">## convert to string</span>
+
+<span class="c1"># q1 = None  ## clear memory</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see the number of Genes that were linked to both lung adenocarcinoma and to brigatinib and the total number of paths from the lung adenocarcinoma node to the brigatinib node.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique </span><span class="si">{1}</span><span class="s2">s linked to both </span><span class="si">{2}</span><span class="s2"> and </span><span class="si">{3}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q1_intermediate</span><span class="p">,</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+
+<span class="c1">## show number of paths from disease to drug</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique paths between </span><span class="si">{1}</span><span class="s2"> and </span><span class="si">{2}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 5 unique Genes linked to both lung adenocarcinoma and brigatinib.
+There are 25 unique paths between lung adenocarcinoma and brigatinib.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Filtering-and-scoring">Filtering and scoring<a class="anchor-link" href="#Filtering-and-scoring">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Filtering involves using edge provenance, like the source this relationship came from and the method used to make this association, to filter out edges (removing nodes in the process).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span> <span class="o">=</span> <span class="n">filter_table</span><span class="p">(</span><span class="n">q1_r_paths_table</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>After filtering, there are fewer paths in the answer knowledge graph.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique </span><span class="si">{1}</span><span class="s2">s linked to both </span><span class="si">{2}</span><span class="s2"> and </span><span class="si">{3}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q1_intermediate</span><span class="p">,</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+
+<span class="c1">## show number of paths from IBD to Imuran</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique paths between </span><span class="si">{1}</span><span class="s2"> and </span><span class="si">{2}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
+    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>There are 5 unique Genes linked to both lung adenocarcinoma and brigatinib.
+There are 19 unique paths between lung adenocarcinoma and brigatinib.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The scoring process for two-hop Explain queries (the type of query we're using now, has one intermediate step):</p>
+<ol>
+<li>To score individual intermediate nodes (Genes), we first take a copy of the knowledge graph (KG) and remove some multi-edges. <ul>
+<li>Each edge has predicate, API, method, source, and pubmed information. For scoring purposes, we will ignore pubmed and source information because APIs handle this information differently (returning multiple edges or single edges). </li>
+</ul>
+</li>
+<li>We then count the number of edges to each intermediate node (from lung adenocarcinoma and brigatinib nodes).        </li>
+<li>Finally, we "normalize" the score by dividing those counts by maximum-possible number of edges to an intermediate node (from lung adenocarcinoma and brigatinib nodes).</li>
+</ol>
+<p>We can then see the top-scored intermediate nodes. A score of closer to 1 means that the many relationships link this node to lung adenocarcinoma and brigatinib. A score closer to 0 means that only a few relationships link this node to lung adenocarcinoma and brigatinib.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for results</span>
+<span class="n">q1_scoring</span> <span class="o">=</span> <span class="n">scoring_output</span><span class="p">(</span><span class="n">q1_r_paths_table</span><span class="p">,</span> <span class="n">q1_type</span><span class="p">)</span>
+
+<span class="n">q1_scoring</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>EGFR</th>
+      <td>1.00</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ROS1</th>
+      <td>0.75</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>ALK</th>
+      <td>0.75</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>MET</th>
+      <td>0.25</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>ERBB2</th>
+      <td>0.25</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Different knowledge sources (APIs) were called in different parts of the query.</p>
+<p>In the first part of the query (lung adenocarcinoma &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred1&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred1_api</th>
+      <th>pred1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>Automat CORD19 Scibite API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Automat CORD19 Scigraph API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Automat PHAROS API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CORD Disease API</td>
+      <td>related_to</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the second part of the query (brigatinib &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
+<span class="n">q1_r_paths_table</span><span class="p">[[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">,</span> <span class="s1">&#39;pred2&#39;</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred2_api</th>
+      <th>pred2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>MyChem.info API</td>
+      <td>physically_interacts_with</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>[TO DO: Actual code depends on graph object (ReasonerStd object or Networkx MultiDiGraph) used.]</p>
+<p>We then add the scores and score provenance information to the graph object that will be returned to the ARS. These stored as node attributes on the Gene nodes of the "answer graph".</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nx.set_node_attributes(q1_r_graph, values = q1_scoring.to_dict(), \</span>
+<span class="c1">#                        name = &#39;score&#39;)</span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;(0-1]&#39;, name = &#39;score_range&#39;)</span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;normalized path count&#39;, name = &#39;score_method&#39;)</span>
+<span class="c1"># ## what is a good score, larger or smaller? </span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;larger&#39;, name = &#39;score_better_direction&#39;)  </span>
+
+<span class="c1"># ## example of Gene node object with score-related attributes</span>
+<span class="c1"># q1_r_graph.nodes()[&#39;NDUFS1&#39;]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Evaluate-results">Evaluate results<a class="anchor-link" href="#Evaluate-results">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lung adenocarcinoma is linked to <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5542927/">mutations or fusions in all of the gene</a> found by BTE.</p>
+<p>As mentioned above, <a href="https://www.drugs.com/ppa/brigatinib.html">brigatinib</a> is an inhibitor of ALK, ROS1, and mutant-EGFR and is indicated (currently approved) for use in ALK-positive metastatic non-small cell lung cancer (which includes lung adenocarcinoma as a subclass).</p>
+<p>This drug has also showed <a href="https://www.drugs.com/ppa/brigatinib.html"><em>in vitro</em> and clinical activity against cancer cells expressing EML4-ALK mutant forms associated with ALK inhibitor resistance</a>.</p>
+<p>A quick literature search did not find links between brigatinib and MET.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_scoring</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>score</th>
+      <th>rank</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>EGFR</th>
+      <td>1.00</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>ROS1</th>
+      <td>0.75</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>ALK</th>
+      <td>0.75</td>
+      <td>2.0</td>
+    </tr>
+    <tr>
+      <th>MET</th>
+      <td>0.25</td>
+      <td>3.0</td>
+    </tr>
+    <tr>
+      <th>ERBB2</th>
+      <td>0.25</td>
+      <td>3.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Specific-use-case-#2:-inflammatory-bowel-disease-and-imuran">Specific use case #2: inflammatory bowel disease and imuran<a class="anchor-link" href="#Specific-use-case-#2:-inflammatory-bowel-disease-and-imuran">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This use case illustrates situation (3) discussed above in "Understanding the Question". We will use <strong>inflammatory bowel disease (IBD)</strong> as our specific disease of interest. We will use <strong>Imuran</strong> as our drug of interest. <a href="https://www.uptodate.com/contents/azathioprine-drug-information">Imuran / azathioprine</a> has been <a href="https://www.mayoclinic.org/diseases-conditions/crohns-disease/diagnosis-treatment/drc-20353309">commonly used <strong>off-label</strong> to treat Crohn disease (a form of IBD)</a>.</p>
+<p>However, people taking this drug <a href="https://www.drugs.com/pro/imuran.html">should be tested for</a>...</p>
+<ul>
+<li>TPMT deficiency: ~10% of patients of European/African ancestry have one loss-of-function allele (intermediate metabolizers)</li>
+<li>NUDT15 deficiency: 2% of patients of East Asian ancestry have two loss-of-function alleles in this gene, and ~21% have one loss-of-function allele  </li>
+</ul>
+<p>We tackle the search for genes associated with inflammatory bowel disease and Imuran using the query:</p>
+<ul>
+<li><code>Disease</code>inflammatory bowel disease &rarr; results:<code>Gene</code> &larr; <code>ChemicalSubstance</code> imuran. </li>
+<li>The query will return a graph object with entities as nodes and relationships as edges. We then use edge provenance information to <strong>filter</strong> the results. For each intermediate Disease node, we use the number of unique paths from the input nodes to that node to <strong>score</strong> it. The scores can then be used to sort the results.  </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Step-1:-Find-representation-of-&quot;inflammatory-bowel-disease&quot;-in-BTE">Step 1: Find representation of "inflammatory bowel disease" in BTE<a class="anchor-link" href="#Step-1:-Find-representation-of-&quot;inflammatory-bowel-disease&quot;-in-BTE">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this step, BioThings Explorer translates our query string "IBD" into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want.</p>
+<p>Generally, the top result returned by the Hint module for your BioThings type of interest will match what you want, but you should confirm that using the identifiers shown.</p>
+<blockquote><p>BioThings types correspond to children and descendants of <a href="https://biolink.github.io/biolink-model/docs/BiologicalEntity.html">BiologicalEntity</a> from the <a href="https://biolink.github.io/biolink-model/docs/">Biolink Model</a>, including <code>Disease</code> (e.g., "lupus"), <code>ChemicalSubstance</code> (e.g., "acetaminophen"), <code>Gene</code> (e.g., "CDK2"), <code>BiologicalProcess</code> (e.g., "T cell differentiation"), and <code>Pathway</code> (e.g., "Citric acid cycle"). <strong>However, <a href="https://smart-api.info/portal/translator/metakg">only a subset of the Biolink BiologicalEntity children / descendants are currently implemented in BTE</a></strong>. More biomedical object types will be available as more knowledge sources (APIs) are added to the system. <strong>Note that the type <code>BiologicalEntity</code> means any BioThings type currently implemented in BTE will be accepted.</strong></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ht</span> <span class="o">=</span> <span class="n">Hint</span><span class="p">()</span>  <span class="c1">## neater way to call this BTE module</span>
+
+<span class="c1">## the human user gives this input</span>
+<span class="n">disease2_starting_str</span> <span class="o">=</span> <span class="s2">&quot;IBD&quot;</span>
+
+<span class="n">disease2_hint</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">disease2_starting_str</span><span class="p">)</span>
+<span class="n">hint_display</span><span class="p">(</span><span class="n">disease2_starting_str</span><span class="p">,</span> <span class="n">disease2_hint</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14721,22 +15702,22 @@ Pathway, Inflammatory bowel disease (IBD) - Mus musculus (mouse), num of IDs: 1
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Based on the information above, we'll pick the second <code>Disease</code> choice (indexed at 1) for our query because we want inflammatory bowel disease. We can look at identifier mappings inside this BioThings object.</p>
+<p>Based on the information above, we'll pick the second <code>Disease</code> choice (indexed at 1) for our query. We can look at identifier mappings inside this BioThings object.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
-<span class="n">disease_choice_type</span> <span class="o">=</span> <span class="s1">&#39;Disease&#39;</span>
-<span class="n">disease_choice_idx</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">disease2_choice_type</span> <span class="o">=</span> <span class="s1">&#39;Disease&#39;</span>
+<span class="n">disease2_choice_idx</span> <span class="o">=</span> <span class="mi">1</span>
 
-<span class="n">disease_hint_obj</span> <span class="o">=</span> <span class="n">disease_hint</span><span class="p">[</span><span class="n">disease_choice_type</span><span class="p">][</span><span class="n">disease_choice_idx</span><span class="p">]</span>  
-<span class="n">disease_hint_obj</span>
+<span class="n">disease2_hint_obj</span> <span class="o">=</span> <span class="n">disease2_hint</span><span class="p">[</span><span class="n">disease2_choice_type</span><span class="p">][</span><span class="n">disease2_choice_idx</span><span class="p">]</span>  
+<span class="n">disease2_hint_obj</span>
 </pre></div>
 
     </div>
@@ -14749,7 +15730,7 @@ Pathway, Inflammatory bowel disease (IBD) - Mus musculus (mouse), num of IDs: 1
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[7]:</div>
+    <div class="prompt output_prompt">Out[21]:</div>
 
 
 
@@ -14776,28 +15757,28 @@ Pathway, Inflammatory bowel disease (IBD) - Mus musculus (mouse), num of IDs: 1
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Step-2:-Find-representation-of-&quot;Imuran&quot;-in-BTE">Step 2: Find representation of "Imuran" in BTE<a class="anchor-link" href="#Step-2:-Find-representation-of-&quot;Imuran&quot;-in-BTE">&#182;</a></h2>
+<h3 id="Step-2:-Find-representation-of-&quot;Imuran&quot;-in-BTE">Step 2: Find representation of "Imuran" in BTE<a class="anchor-link" href="#Step-2:-Find-representation-of-&quot;Imuran&quot;-in-BTE">&#182;</a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this step, BioThings Explorer translates our query string "Imuran"  into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want (the drug, also known as azathioprine).</p>
+<p>In this step, BioThings Explorer translates our query string "imuran"  into BioThings objects, which contain mappings to many common identifiers. We then pick the BioThings object that best matches what we want.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
-<span class="n">drug_starting_str</span> <span class="o">=</span> <span class="s2">&quot;Imuran&quot;</span>
+<span class="n">drug2_starting_str</span> <span class="o">=</span> <span class="s2">&quot;imuran&quot;</span>
 
-<span class="n">drug_hint</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">drug_starting_str</span><span class="p">)</span>
-<span class="n">hint_display</span><span class="p">(</span><span class="n">drug_starting_str</span><span class="p">,</span> <span class="n">drug_hint</span><span class="p">)</span>
+<span class="n">drug2_hint</span> <span class="o">=</span> <span class="n">ht</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">drug2_starting_str</span><span class="p">)</span>
+<span class="n">hint_display</span><span class="p">(</span><span class="n">drug2_starting_str</span><span class="p">,</span> <span class="n">drug2_hint</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14814,7 +15795,7 @@ Pathway, Inflammatory bowel disease (IBD) - Mus musculus (mouse), num of IDs: 1
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 3 BioThings objects returned for Imuran:
+<pre>There are 3 BioThings objects returned for imuran:
 ChemicalSubstance, AZATHIOPRINE, num of IDs: 13
 ChemicalSubstance, Imuran, num of IDs: 2
 ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
@@ -14836,15 +15817,15 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
-<span class="n">drug_choice_type</span> <span class="o">=</span> <span class="s1">&#39;ChemicalSubstance&#39;</span>
-<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">drug2_choice_type</span> <span class="o">=</span> <span class="s1">&#39;ChemicalSubstance&#39;</span>
+<span class="n">drug2_choice_idx</span> <span class="o">=</span> <span class="mi">0</span>
 
-<span class="n">drug_hint_obj</span> <span class="o">=</span> <span class="n">drug_hint</span><span class="p">[</span><span class="n">drug_choice_type</span><span class="p">][</span><span class="n">drug_choice_idx</span><span class="p">]</span>  
-<span class="n">drug_hint_obj</span>
+<span class="n">drug2_hint_obj</span> <span class="o">=</span> <span class="n">drug2_hint</span><span class="p">[</span><span class="n">drug2_choice_type</span><span class="p">][</span><span class="n">drug2_choice_idx</span><span class="p">]</span>  
+<span class="n">drug2_hint_obj</span>
 </pre></div>
 
     </div>
@@ -14857,7 +15838,7 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[9]:</div>
+    <div class="prompt output_prompt">Out[23]:</div>
 
 
 
@@ -14893,7 +15874,7 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>Step 3: IBD &rarr; Disease &larr; Imuran</h2>
+<h3>Step 3: inflammatory bowel disease &rarr; Gene &larr; imuran</h3>
 
 </div>
 </div>
@@ -14901,25 +15882,25 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this section, we dynamically generate a knowledge graph with paths connecting inflammatory bowel disease (IBD) and the drug Imuran to <code>Diseases</code> (symptoms / side effects). We will then look at the <code>Diseases</code> that have relationships with both IBD and Imuran.</p>
+<p>In this section, we dynamically generate a knowledge graph with paths connecting inflammatory bowel disease and the drug imuran to <code>Genes</code> . We will then look at the <code>Genes</code> that have relationships with both inflammatory bowel disease and imuran.</p>
 <p>BTE performs the <strong>query path planning</strong> and <strong>query path execution</strong> by deconstructing the query into individual API calls, executing those API calls, and then assembling the results.</p>
-<p>The code block below takes ~5 seconds to run.</p>
+<p>The code block below takes ~1 min 50 seconds to run.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
-<span class="n">q1_intermediate</span> <span class="o">=</span> <span class="s1">&#39;Disease&#39;</span>
+<span class="n">q2_intermediate</span> <span class="o">=</span> <span class="s1">&#39;Gene&#39;</span>
 
-<span class="n">q1</span> <span class="o">=</span> <span class="n">FindConnection</span><span class="p">(</span><span class="n">input_obj</span> <span class="o">=</span> <span class="n">disease_hint_obj</span><span class="p">,</span>\
-                     <span class="n">output_obj</span> <span class="o">=</span> <span class="n">drug_hint_obj</span><span class="p">,</span> \
-                    <span class="n">intermediate_nodes</span> <span class="o">=</span> <span class="n">q1_intermediate</span><span class="p">)</span>
-<span class="n">q1</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">q2</span> <span class="o">=</span> <span class="n">FindConnection</span><span class="p">(</span><span class="n">input_obj</span> <span class="o">=</span> <span class="n">disease2_hint_obj</span><span class="p">,</span>\
+                     <span class="n">output_obj</span> <span class="o">=</span> <span class="n">drug2_hint_obj</span><span class="p">,</span> \
+                    <span class="n">intermediate_nodes</span> <span class="o">=</span> <span class="n">q2_intermediate</span><span class="p">)</span>
+<span class="n">q2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">verbose</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14936,7 +15917,181 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>API 4.1 pharos failed
+<pre>==========
+========== QUERY PARAMETER SUMMARY ==========
+==========
+
+BTE will find paths that join &#39;inflammatory bowel disease&#39; and &#39;AZATHIOPRINE&#39;. Paths will have 1 intermediate node.
+
+Intermediate node #1 will have these type constraints: Gene
+
+
+==========
+========== QUERY #1 -- fetch all Gene entities linked to &#39;inflammatory bowel disease&#39; ==========
+==========
+
+==== Step #1: Query path planning ====
+
+Because inflammatory bowel disease is of type &#39;Disease&#39;, BTE will query our meta-KG for APIs that can take &#39;Disease&#39; as input and &#39;Gene&#39; as output
+
+BTE found 10 apis:
+
+API 1. mgi_gene2phenotype(1 API call)
+API 2. scibite(1 API call)
+API 3. pharos(1 API call)
+API 4. DISEASES(1 API call)
+API 5. semmed_disease(15 API calls)
+API 6. biolink(1 API call)
+API 7. mydisease(1 API call)
+API 8. hetio(1 API call)
+API 9. scigraph(1 API call)
+API 10. cord_disease(1 API call)
+
+
+==== Step #2: Query path execution ====
+NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
+
+API 6.1: https://mydisease.info/v1/query?fields=disgenet.genes_related_to_disease.gene_id (POST -d q=C0021390&amp;scopes=mondo.xrefs.umls, disgenet.xrefs.umls)
+API 10.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:0050589&amp;scopes=doid)
+API 5.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0021390&amp;scopes=umls)
+API 5.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.5: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0021390&amp;scopes=umls)
+API 5.4: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0021390&amp;scopes=umls)
+API 5.13: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C0021390&amp;scopes=umls)
+API 5.1: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0021390&amp;scopes=umls)
+API 5.8: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C0021390&amp;scopes=umls)
+API 5.9: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.10: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.14: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0021390&amp;scopes=umls)
+API 5.2: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0021390&amp;scopes=umls)
+API 5.12: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0021390&amp;scopes=umls)
+API 5.3: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0021390&amp;scopes=umls)
+API 1.1: https://pending.biothings.io/mgigene2phenotype/query?fields=_id&amp;size=300 (POST -d q=DOID:0050589&amp;scopes=mgi.associated_with_disease.doid)
+API 4.1: https://pending.biothings.io/DISEASES/query?fields=DISEASES.associatedWith (POST -d q=DOID:0050589&amp;scopes=DISEASES.doid)
+API 9.1: https://automat.renci.org/cord19-scigraph/disease/gene/MONDO:0005265
+API 2.1: https://automat.renci.org/cord19-scibite/disease/gene/MONDO:0005265
+API 8.1: https://automat.renci.org/hetio/disease/gene/MONDO:0005265
+API 3.1: https://automat.renci.org/pharos/disease/gene/MONDO:0005265
+API 7.1: https://api.monarchinitiative.org/api/bioentity/disease/MONDO:0005265/genes?rows=200&amp;direct=true
+
+
+==== Step #3: Output normalization ====
+
+API 1.1 mgi_gene2phenotype: 12 hits
+API 5.1 semmed_disease: No hits
+API 5.2 semmed_disease: No hits
+API 4.1 DISEASES: 914 hits
+API 5.3 semmed_disease: 4 hits
+API 5.4 semmed_disease: No hits
+API 5.5 semmed_disease: No hits
+API 5.6 semmed_disease: 233 hits
+API 5.7 semmed_disease: No hits
+API 9.1 scigraph: 38 hits
+API 3.1 pharos: 203 hits
+API 7.1 biolink: 169 hits
+API 5.8 semmed_disease: No hits
+API 5.9 semmed_disease: 28 hits
+API 10.1 cord_disease: 156 hits
+API 5.10 semmed_disease: 94 hits
+API 2.1 scibite: 13 hits
+API 8.1 hetio: No hits
+API 5.11 semmed_disease: No hits
+API 5.12 semmed_disease: 675 hits
+API 6.1 mydisease: 1841 hits
+API 5.13 semmed_disease: No hits
+API 5.14 semmed_disease: 105 hits
+API 5.15 semmed_disease: No hits
+
+After id-to-object translation, BTE retrieved 2590 unique objects.
+
+
+==========
+========== QUERY #2 -- fetch all Gene entities linked to &#39;AZATHIOPRINE&#39; ==========
+==========
+
+==== Step #1: Query path planning ====
+
+Because AZATHIOPRINE is of type &#39;ChemicalSubstance&#39;, BTE will query our meta-KG for APIs that can take &#39;ChemicalSubstance&#39; as input and &#39;Gene&#39; as output
+
+BTE found 10 apis:
+
+API 1. dgidb(2 API calls)
+API 2. semmed_chemical(13 API calls)
+API 3. mychem(3 API calls)
+API 4. scibite(1 API call)
+API 5. pharos(1 API call)
+API 6. hmdb(1 API call)
+API 7. ctd(1 API call)
+API 8. cord_chemical(1 API call)
+API 9. chembio(1 API call)
+API 10. scigraph(1 API call)
+
+
+==== Step #2: Query path execution ====
+NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
+
+API 8.1: https://biothings.ncats.io/cord_chemical/query?fields=associated_with (POST -d q=CHEBI:2948&amp;scopes=chebi)
+API 2.12: https://biothings.ncats.io/semmedchemical/query?fields=affected_by (POST -d q=C0004482&amp;scopes=umls)
+API 2.4: https://biothings.ncats.io/semmedchemical/query?fields=disrupted_by (POST -d q=C0004482&amp;scopes=umls)
+API 2.10: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulates (POST -d q=C0004482&amp;scopes=umls)
+API 2.6: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C0004482&amp;scopes=umls)
+API 2.9: https://biothings.ncats.io/semmedchemical/query?fields=produced_by (POST -d q=C0004482&amp;scopes=umls)
+API 2.11: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C0004482&amp;scopes=umls)
+API 2.7: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C0004482&amp;scopes=umls)
+API 2.1: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C0004482&amp;scopes=umls)
+API 2.3: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulated_by (POST -d q=C0004482&amp;scopes=umls)
+API 2.2: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C0004482&amp;scopes=umls)
+API 2.13: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulated_by (POST -d q=C0004482&amp;scopes=umls)
+API 2.5: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C0004482&amp;scopes=umls)
+API 2.8: https://biothings.ncats.io/semmedchemical/query?fields=produces (POST -d q=C0004482&amp;scopes=umls)
+API 9.1: https://automat.renci.org/chembio/chemical_substance/gene/CHEBI:2948
+API 10.1: https://automat.renci.org/cord19-scigraph/chemical_substance/gene/CHEBI:2948
+API 5.1: https://automat.renci.org/pharos/chemical_substance/gene/CHEBI:2948
+API 4.1: https://automat.renci.org/cord19-scibite/chemical_substance/gene/CHEBI:2948
+API 7.1: https://automat.renci.org/hmdb/chemical_substance/gene/CHEBI:2948
+API 1.1: http://dgidb.genome.wustl.edu/api/v2/interactions.json?drugs=CHEMBL1542
+API 1.2: http://dgidb.genome.wustl.edu/api/v2/interactions.json?drugs=CHEMBL1200400
+API 6.1: http://ctdbase.org/tools/batchQuery.go?inputType=chem&amp;report=genes_curated&amp;format=json&amp;inputTerms=D001379
+API 6.1 ctd failed
+
+
+==== Step #3: Output normalization ====
+
+API 2.1 semmed_chemical: 34 hits
+API 9.1 chembio: No hits
+API 4.1 scibite: 1 hits
+API 3.1 mychem: 1 hits
+API 3.2 mychem: 5 hits
+API 3.3 mychem: 12 hits
+API 5.1 pharos: No hits
+API 2.2 semmed_chemical: 18 hits
+API 10.1 scigraph: 15 hits
+API 2.3 semmed_chemical: 13 hits
+API 2.4 semmed_chemical: No hits
+API 2.5 semmed_chemical: No hits
+API 1.1 dgidb: No hits
+API 1.2 dgidb: No hits
+API 7.1 hmdb: 3 hits
+API 2.6 semmed_chemical: No hits
+API 2.7 semmed_chemical: 30 hits
+API 2.8 semmed_chemical: No hits
+API 2.9 semmed_chemical: No hits
+API 8.1 cord_chemical: 12 hits
+API 2.10 semmed_chemical: 31 hits
+API 2.11 semmed_chemical: No hits
+API 2.12 semmed_chemical: No hits
+API 2.13 semmed_chemical: 9 hits
+
+After id-to-object translation, BTE retrieved 130 unique objects.
+
+==========
+========== Final assembly of results ==========
+==========
+
+
+BTE found 71 unique intermediate nodes connecting &#39;inflammatory bowel disease&#39; and &#39;AZATHIOPRINE&#39;
 </pre>
 </div>
 </div>
@@ -14947,15 +16102,16 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span> <span class="o">=</span> <span class="n">q1</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># q2_r_graph = q2.fc.G  ## for changing the graph object to reflect the table</span>
+<span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">q2</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
 
-<span class="n">q1_type</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;dispatcher.([a-zA-Z]+)&#39;&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">q1</span><span class="o">.</span><span class="n">fc</span><span class="p">)))</span>
-<span class="n">q1_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">q1_type</span><span class="p">)</span>  <span class="c1">## convert to string</span>
+<span class="n">q2_type</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s2">&quot;dispatcher.([a-zA-Z]+)&#39;&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">q2</span><span class="o">.</span><span class="n">fc</span><span class="p">)))</span>
+<span class="n">q2_type</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">q2_type</span><span class="p">)</span>  <span class="c1">## convert to string</span>
 
-<span class="n">q1</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1">## clear memory</span>
+<span class="c1"># q1 = None  ## clear memory</span>
 </pre></div>
 
     </div>
@@ -14966,23 +16122,23 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see the number of Diseases that were linked to both IBD and to Imuran and the total number of paths from the IBD node to the Imuran node.</p>
+<p>We can see the number of Genes that were linked to both lung adenocarcinoma and to brigatinib and the total number of paths from the lung adenocarcinoma node to the brigatinib node.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique </span><span class="si">{1}</span><span class="s2">s linked to both </span><span class="si">{2}</span><span class="s2"> and </span><span class="si">{3}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
-    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q1_intermediate</span><span class="p">,</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+    <span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q2_intermediate</span><span class="p">,</span> <span class="n">disease2_starting_str</span><span class="p">,</span> <span class="n">drug2_starting_str</span><span class="p">))</span>
 
-<span class="c1">## show number of paths from IBD to Imuran</span>
+<span class="c1">## show number of paths from disease to drug</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique paths between </span><span class="si">{1}</span><span class="s2"> and </span><span class="si">{2}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
-    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+    <span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease2_starting_str</span><span class="p">,</span> <span class="n">drug2_starting_str</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14999,8 +16155,8 @@ ChemicalSubstance, AZATHIOPRINE SODIUM, num of IDs: 8
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 336 unique Diseases linked to both IBD and Imuran.
-There are 1267 unique paths between IBD and Imuran.
+<pre>There are 71 unique Genes linked to both IBD and imuran.
+There are 324 unique paths between IBD and imuran.
 </pre>
 </div>
 </div>
@@ -15012,7 +16168,7 @@ There are 1267 unique paths between IBD and Imuran.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Filtering-and-scoring">Filtering and scoring<a class="anchor-link" href="#Filtering-and-scoring">&#182;</a></h3>
+<h4 id="Filtering-and-scoring">Filtering and scoring<a class="anchor-link" href="#Filtering-and-scoring">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -15026,10 +16182,10 @@ There are 1267 unique paths between IBD and Imuran.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span> <span class="o">=</span> <span class="n">filter_table</span><span class="p">(</span><span class="n">q1_r_paths_table</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q2_r_paths_table</span> <span class="o">=</span> <span class="n">filter_table</span><span class="p">(</span><span class="n">q2_r_paths_table</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15040,23 +16196,23 @@ There are 1267 unique paths between IBD and Imuran.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After filtering, there are fewer results in the answer knowledge graph.</p>
+<p>After filtering, there are fewer paths in the answer knowledge graph.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique </span><span class="si">{1}</span><span class="s2">s linked to both </span><span class="si">{2}</span><span class="s2"> and </span><span class="si">{3}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
-    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q1_intermediate</span><span class="p">,</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+    <span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">q2_intermediate</span><span class="p">,</span> <span class="n">disease2_starting_str</span><span class="p">,</span> <span class="n">drug2_starting_str</span><span class="p">))</span>
 
-<span class="c1">## show number of paths from IBD to Imuran</span>
+<span class="c1">## show number of paths from disease to drug</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There are </span><span class="si">{0}</span><span class="s2"> unique paths between </span><span class="si">{1}</span><span class="s2"> and </span><span class="si">{2}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> \
-    <span class="n">q1_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease_starting_str</span><span class="p">,</span> <span class="n">drug_starting_str</span><span class="p">))</span>
+    <span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">disease2_starting_str</span><span class="p">,</span> <span class="n">drug2_starting_str</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -15073,8 +16229,8 @@ There are 1267 unique paths between IBD and Imuran.
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 46 unique Diseases linked to both IBD and Imuran.
-There are 56 unique paths between IBD and Imuran.
+<pre>There are 27 unique Genes linked to both IBD and imuran.
+There are 67 unique paths between IBD and imuran.
 </pre>
 </div>
 </div>
@@ -15088,27 +16244,27 @@ There are 56 unique paths between IBD and Imuran.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The scoring process for two-hop Explain queries (the type of query we're using now, has one intermediate step):</p>
 <ol>
-<li>To score individual intermediate nodes (Diseases), we first take a copy of the knowledge graph (KG) and remove some multi-edges. <ul>
+<li>To score individual intermediate nodes (Genes), we first take a copy of the knowledge graph (KG) and remove some multi-edges. <ul>
 <li>Each edge has predicate, API, method, source, and pubmed information. For scoring purposes, we will ignore pubmed and source information because APIs handle this information differently (returning multiple edges or single edges). </li>
 </ul>
 </li>
-<li>We then count the number of edges to each intermediate node (from IBD and Imuran nodes).        </li>
-<li>Finally, we "normalize" the score by dividing those counts by maximum-possible number of edges to an intermediate node (from IBD and Imuran nodes).</li>
+<li>We then count the number of edges to each intermediate node (from lung adenocarcinoma and brigatinib nodes).        </li>
+<li>Finally, we "normalize" the score by dividing those counts by maximum-possible number of edges to an intermediate node (from lung adenocarcinoma and brigatinib nodes).</li>
 </ol>
-<p>We can then see the top-scored intermediate nodes. A score of closer to 1 means that the many relationships link this node to IBD and Imuran. A score closer to 0 means that only a few relationships link this node to IBD and Imuran.</p>
+<p>We can then see the top-scored intermediate nodes. A score of closer to 1 means that the many relationships link this node to lung adenocarcinoma and brigatinib. A score closer to 0 means that only a few relationships link this node to lung adenocarcinoma and brigatinib.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## create scoring table for results</span>
-<span class="n">q1_scoring</span> <span class="o">=</span> <span class="n">scoring_output</span><span class="p">(</span><span class="n">q1_r_paths_table</span><span class="p">,</span> <span class="n">q1_type</span><span class="p">)</span>
+<span class="n">q2_scoring</span> <span class="o">=</span> <span class="n">scoring_output</span><span class="p">(</span><span class="n">q2_r_paths_table</span><span class="p">,</span> <span class="n">q2_type</span><span class="p">)</span>
 
-<span class="n">q1_scoring</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">q2_scoring</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -15121,7 +16277,7 @@ There are 56 unique paths between IBD and Imuran.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[15]:</div>
+    <div class="prompt output_prompt">Out[29]:</div>
 
 
 
@@ -15150,54 +16306,54 @@ There are 56 unique paths between IBD and Imuran.
   </thead>
   <tbody>
     <tr>
-      <th>CROHN DISEASE</th>
-      <td>0.571429</td>
+      <th>TPMT</th>
+      <td>0.521739</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>LYMPHOID CANCER</th>
-      <td>0.428571</td>
+      <th>TNF</th>
+      <td>0.260870</td>
       <td>2.0</td>
     </tr>
     <tr>
-      <th>ANAEMIA</th>
-      <td>0.285714</td>
+      <th>CRP</th>
+      <td>0.173913</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>ARTHRITIS OR POLYARTHRITIS, RHEUMATIC</th>
-      <td>0.285714</td>
+      <th>NUDT15</th>
+      <td>0.173913</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>DISEASE OF LIVER</th>
-      <td>0.285714</td>
+      <th>FOXP3</th>
+      <td>0.173913</td>
       <td>3.0</td>
     </tr>
     <tr>
-      <th>DISSEMINATED LUPUS ERYTHEMATOSUS</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>COLITIS</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>CHRONIC KIDNEY DISEASE</th>
-      <td>0.142857</td>
+      <th>CAT</th>
+      <td>0.130435</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>CELIAC DISEASE</th>
-      <td>0.142857</td>
+      <th>CD4</th>
+      <td>0.130435</td>
       <td>4.0</td>
     </tr>
     <tr>
-      <th>EPILEPSY</th>
-      <td>0.142857</td>
+      <th>ITPA</th>
+      <td>0.130435</td>
       <td>4.0</td>
+    </tr>
+    <tr>
+      <th>AHR</th>
+      <td>0.130435</td>
+      <td>4.0</td>
+    </tr>
+    <tr>
+      <th>CAST</th>
+      <td>0.086957</td>
+      <td>5.0</td>
     </tr>
   </tbody>
 </table>
@@ -15214,14 +16370,14 @@ There are 56 unique paths between IBD and Imuran.
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Different knowledge sources (APIs) were called in different parts of the query.</p>
-<p>In the first part of the query (IBD &rarr; Disease), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+<p>In the first part of the query (lung adenocarcinoma &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15238,7 +16394,7 @@ There are 56 unique paths between IBD and Imuran.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[16]:</div>
+    <div class="prompt output_prompt">Out[30]:</div>
 
 
 
@@ -15267,14 +16423,24 @@ There are 56 unique paths between IBD and Imuran.
   </thead>
   <tbody>
     <tr>
-      <th>317</th>
-      <td>CORD Disease API</td>
+      <th>2</th>
+      <td>Automat CORD19 Scibite API</td>
       <td>related_to</td>
     </tr>
     <tr>
-      <th>570</th>
-      <td>Ontology Lookup Service API</td>
-      <td>has_subclass</td>
+      <th>9</th>
+      <td>Automat CORD19 Scigraph API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Automat PHAROS API</td>
+      <td>related_to</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>CORD Disease API</td>
+      <td>related_to</td>
     </tr>
   </tbody>
 </table>
@@ -15290,14 +16456,14 @@ There are 56 unique paths between IBD and Imuran.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In the second part of the query (Imuran &rarr; Disease), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
+<p>In the second part of the query (brigatinib &rarr; Gene), the following APIs returned results and the following predicates (semantic relationships) were found.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show that the APIs use different predicates</span>
@@ -15314,7 +16480,7 @@ There are 56 unique paths between IBD and Imuran.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[17]:</div>
+    <div class="prompt output_prompt">Out[31]:</div>
 
 
 
@@ -15343,29 +16509,9 @@ There are 56 unique paths between IBD and Imuran.
   </thead>
   <tbody>
     <tr>
-      <th>387</th>
-      <td>Automat CORD19 Scibite API</td>
-      <td>related_to</td>
-    </tr>
-    <tr>
-      <th>321</th>
-      <td>Automat CORD19 Scigraph API</td>
-      <td>related_to</td>
-    </tr>
-    <tr>
-      <th>379</th>
-      <td>CORD Chemical API</td>
-      <td>related_to</td>
-    </tr>
-    <tr>
-      <th>403</th>
+      <th>0</th>
       <td>MyChem.info API</td>
-      <td>contraindication</td>
-    </tr>
-    <tr>
-      <th>317</th>
-      <td>MyChem.info API</td>
-      <td>treats</td>
+      <td>physically_interacts_with</td>
     </tr>
   </tbody>
 </table>
@@ -15381,48 +16527,75 @@ There are 56 unique paths between IBD and Imuran.
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Still in progress: adding the scores/ranks and provenance to the Reasoner Standard (TRAPI) object that will be returned to the ARS.</p>
-<ul>
-<li>likely provenance will include score's range, method, what is a good score (larger or smaller numbers)</li>
-</ul>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Evaluate-results">Evaluate results<a class="anchor-link" href="#Evaluate-results">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>BTE's top results (score above 0.2)*</strong> include (1) diseases that are treated with the drug Imuran and are related to IBD, (2) <strong>potential adverse side effects</strong> of using Imuran to treat IBD, and (3) <strong>potential beneficial side effects</strong> of using Imuran to treat IBD. <strong>BTE successfully identifies the connections between Imuran, IBD, and lymphoma that we described above.</strong></p>
-<p>*Note that the actual BTE results (diseases identified and their scores) vary because BTE dynamically generates its knowledge graph from current API results.</p>
-<h1 id="1:-diseases-that-are-treated-with-the-drug-Imuran-and-are-related-to-IBD">1: diseases that are treated with the drug Imuran and are related to IBD<a class="anchor-link" href="#1:-diseases-that-are-treated-with-the-drug-Imuran-and-are-related-to-IBD">&#182;</a></h1><ul>
-<li><a href="https://www.mayoclinic.org/diseases-conditions/crohns-disease/diagnosis-treatment/drc-20353309">Crohn disease, ulcerative colitis, IBD</a>, <a href="https://beta.monarchinitiative.org/disease/MONDO:0009960">IBD1</a>: all forms of inflammatory bowel disease</li>
-<li><a href="https://monarchinitiative.org/disease/MONDO:0007915">Disseminated / systemic lupus erythematosus aka SLE</a>: <a href="https://www.sciencedirect.com/science/article/pii/S1873994612001328">drug-induced lupus has occurred in patients with IBD</a>, and <a href="https://www.hopkinslupus.org/lupus-treatment/lupus-medications/immunosuppressive-medications/">Imuran has been used to treat SLE</a></li>
-</ul>
-<h1 id="2:-potential-adverse-side-effects-of-using-Imuran-to-treat-IBD">2: <strong>potential adverse side effects of using Imuran to treat IBD</strong><a class="anchor-link" href="#2:-potential-adverse-side-effects-of-using-Imuran-to-treat-IBD">&#182;</a></h1><ul>
-<li><a href="https://monarchinitiative.org/disease/MONDO:0005062">Lymphoid cancer aka lymphoma</a>: as mentioned above, with references <a href="https://pubmed.ncbi.nlm.nih.gov/20888436/">1</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/21830262/">2</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/23891975/">3</a> and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3710465/">4</a></li>
-<li><a href="https://www.drugs.com/cg/colitis.html">Colitis aka inflammation of the colon</a>: this can <a href="https://www.mayoclinic.org/diseases-conditions/inflammatory-bowel-disease/symptoms-causes/syc-20353315">occur in IBD</a> and shares symptoms (nausea, diarrhea, fever, malaise) with <a href="https://www.drugs.com/pro/imuran.html#s-34084-4">adverse GI side effects of Imuran treatment</a>. </li>
-<li>Liver disease: <a href="https://www.crohnscolitisfoundation.org/what-is-ibd/extraintestinal-complications-ibd">people with IBD can experience liver damage</a> and <a href="https://www.merckmanuals.com/professional/gastrointestinal-disorders/inflammatory-bowel-disease-ibd/overview-of-inflammatory-bowel-disease#v894353">liver disease affects 3-5% of people with IBD</a>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5505863/">Liver injury is an adverse side effect of Imuran</a>, and <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7008285/">a recent case report described liver cirrhosis as a potential rare adverse event when using Imuran to treat IBD</a>.     </li>
-</ul>
-<h1 id="3:-potential-beneficial-side-effects-of-using-Imuran-to-treat-IBD">3: <strong>potential beneficial side effects of using Imuran to treat IBD</strong><a class="anchor-link" href="#3:-potential-beneficial-side-effects-of-using-Imuran-to-treat-IBD">&#182;</a></h1><ul>
-<li>Rheumatic arthritis or polyarthritis: <a href="https://www.crohnscolitisfoundation.org/what-is-ibd/extraintestinal-complications-ibd">arthritis is the most common non-GI complication of IBD</a>, <a href="http://europepmc.org/article/PMC/3424429">although it is not rheumatic arthritis (perhaps a misannotation?)</a>. Imuran is <a href="https://www.drugs.com/pro/imuran.html#s-34067-9">indicated for the treatment of active rheumatic arthritis</a> to reduce symptoms. Perhaps Imuran treatment would also reduce the arthritis symptoms in patients with IBD. </li>
-</ul>
+<p>[TO DO: Actual code depends on graph object (ReasonerStd object or Networkx MultiDiGraph) used.]</p>
+<p>We then add the scores and score provenance information to the graph object that will be returned to the ARS. These stored as node attributes on the Gene nodes of the "answer graph".</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_scoring</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># nx.set_node_attributes(q1_r_graph, values = q1_scoring.to_dict(), \</span>
+<span class="c1">#                        name = &#39;score&#39;)</span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;(0-1]&#39;, name = &#39;score_range&#39;)</span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;normalized path count&#39;, name = &#39;score_method&#39;)</span>
+<span class="c1"># ## what is a good score, larger or smaller? </span>
+<span class="c1"># nx.set_node_attributes(q1_r_graph, values = &#39;larger&#39;, name = &#39;score_better_direction&#39;)  </span>
+
+<span class="c1"># ## example of Gene node object with score-related attributes</span>
+<span class="c1"># q1_r_graph.nodes()[&#39;NDUFS1&#39;]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Evaluate-results">Evaluate results<a class="anchor-link" href="#Evaluate-results">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As mentioned above, the known answers are TPMT and NUDT15. <strong>These two genes are highly-scored results of the query <code>Disease</code> inflammatory bowel disease &rarr; <code>Gene</code> &larr; <code>ChemicalSubstance</code> Imuran</strong>. The information supporting this answer came from multiple APIs.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">known_answers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;TPMT&#39;</span><span class="p">,</span> <span class="s1">&#39;NUDT15&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Scoring from the IBD -&gt; Gene &lt;- Imuran query&#39;</span><span class="p">)</span>
+
+<span class="c1">## reset index to show placement of genes</span>
+<span class="n">q2_scoring_df</span> <span class="o">=</span> <span class="n">q2_scoring</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;index&#39;</span><span class="p">:</span> <span class="s1">&#39;node1_name&#39;</span><span class="p">})</span>
+<span class="n">q2_scoring_df</span><span class="p">[</span><span class="n">q2_scoring_df</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_answers</span><span class="p">)]</span>
+
+<span class="c1">## show APIs/sources for the underlying info for these answers</span>
+<span class="n">q2_r_paths_table</span><span class="p">[</span><span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_answers</span><span class="p">)][[</span><span class="s1">&#39;pred1_api&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="n">q2_r_paths_table</span><span class="p">[</span><span class="n">q2_r_paths_table</span><span class="o">.</span><span class="n">node1_name</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">known_answers</span><span class="p">)][[</span><span class="s1">&#39;pred2_api&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -15435,7 +16608,18 @@ There are 56 unique paths between IBD and Imuran.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[18]:</div>
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Scoring from the IBD -&gt; Gene &lt;- Imuran query
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -15458,60 +16642,23 @@ There are 56 unique paths between IBD and Imuran.
   <thead>
     <tr style="text-align: right;">
       <th></th>
+      <th>node1_name</th>
       <th>score</th>
       <th>rank</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>CROHN DISEASE</th>
-      <td>0.571429</td>
+      <th>0</th>
+      <td>TPMT</td>
+      <td>0.521739</td>
       <td>1.0</td>
     </tr>
     <tr>
-      <th>LYMPHOID CANCER</th>
-      <td>0.428571</td>
-      <td>2.0</td>
-    </tr>
-    <tr>
-      <th>ANAEMIA</th>
-      <td>0.285714</td>
+      <th>3</th>
+      <td>NUDT15</td>
+      <td>0.173913</td>
       <td>3.0</td>
-    </tr>
-    <tr>
-      <th>ARTHRITIS OR POLYARTHRITIS, RHEUMATIC</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>DISEASE OF LIVER</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>DISSEMINATED LUPUS ERYTHEMATOSUS</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>COLITIS</th>
-      <td>0.285714</td>
-      <td>3.0</td>
-    </tr>
-    <tr>
-      <th>CHRONIC KIDNEY DISEASE</th>
-      <td>0.142857</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>CELIAC DISEASE</th>
-      <td>0.142857</td>
-      <td>4.0</td>
-    </tr>
-    <tr>
-      <th>EPILEPSY</th>
-      <td>0.142857</td>
-      <td>4.0</td>
     </tr>
   </tbody>
 </table>
@@ -15520,37 +16667,9 @@ There are 56 unique paths between IBD and Imuran.
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The table below showing the relationships between IBD, Imuran, and lymphoma shows how multiple API queries were chained together, including results from the Translator Text Mining Provider group.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">q1_r_paths_table</span><span class="p">[</span><span class="n">q1_r_paths_table</span><span class="p">[</span><span class="s1">&#39;node1_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;LYMPHOID CANCER&#39;</span><span class="p">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[20]:</div>
+    <div class="prompt output_prompt">Out[33]:</div>
 
 
 
@@ -15573,89 +16692,73 @@ There are 56 unique paths between IBD and Imuran.
   <thead>
     <tr style="text-align: right;">
       <th></th>
-      <th>input</th>
-      <th>input_type</th>
-      <th>pred1</th>
-      <th>pred1_source</th>
       <th>pred1_api</th>
-      <th>pred1_pubmed</th>
-      <th>pred1_method</th>
-      <th>node1_type</th>
-      <th>node1_name</th>
-      <th>node1_id</th>
-      <th>pred2</th>
-      <th>pred2_source</th>
-      <th>pred2_api</th>
-      <th>pred2_pubmed</th>
-      <th>pred2_method</th>
-      <th>output_type</th>
-      <th>output_name</th>
-      <th>output_id</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>437</th>
-      <td>AUTOIMMUNE BOWEL DISORDER</td>
-      <td>Disease</td>
-      <td>related_to</td>
-      <td>Translator Text Mining Provider</td>
-      <td>CORD Disease API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>LYMPHOID CANCER</td>
-      <td>MONDO:MONDO:0005062</td>
-      <td>contraindication</td>
-      <td>drugcentral</td>
+      <th>100</th>
+      <td>DISEASES API</td>
+    </tr>
+    <tr>
+      <th>101</th>
+      <td>mydisease.info API</td>
+    </tr>
+    <tr>
+      <th>103</th>
+      <td>Automat PHAROS API</td>
+    </tr>
+    <tr>
+      <th>105</th>
+      <td>BioLink API</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[33]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pred2_api</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>100</th>
       <td>MyChem.info API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THIO)-1H...</td>
-      <td>name:6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THI...</td>
     </tr>
     <tr>
-      <th>441</th>
-      <td>AUTOIMMUNE BOWEL DISORDER</td>
-      <td>Disease</td>
-      <td>related_to</td>
-      <td>Translator Text Mining Provider</td>
-      <td>CORD Disease API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>LYMPHOID CANCER</td>
-      <td>MONDO:MONDO:0005062</td>
-      <td>related_to</td>
-      <td>scigraph</td>
-      <td>Automat CORD19 Scigraph API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THIO)-1H...</td>
-      <td>name:6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THI...</td>
+      <th>151</th>
+      <td>Automat CORD19 Scibite API</td>
     </tr>
     <tr>
-      <th>445</th>
-      <td>AUTOIMMUNE BOWEL DISORDER</td>
-      <td>Disease</td>
-      <td>related_to</td>
-      <td>Translator Text Mining Provider</td>
-      <td>CORD Disease API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>LYMPHOID CANCER</td>
-      <td>MONDO:MONDO:0005062</td>
-      <td>related_to</td>
-      <td>Translator Text Mining Provider</td>
-      <td>CORD Chemical API</td>
-      <td>None</td>
-      <td>None</td>
-      <td>Disease</td>
-      <td>6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THIO)-1H...</td>
-      <td>name:6-((1-METHYL-4-NITRO-1H-IMIDAZOL-5-YL)THI...</td>
+      <th>158</th>
+      <td>Automat HMDB API</td>
     </tr>
   </tbody>
 </table>

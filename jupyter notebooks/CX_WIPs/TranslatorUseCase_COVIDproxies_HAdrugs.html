@@ -14336,6 +14336,14 @@ $(document).ready(function () {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>2020-11-26 update: Hint module results changed so the pick selection is changed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Intro">Intro<a class="anchor-link" href="#Intro">&#182;</a></h2>
 </div>
 </div>
@@ -14591,9 +14599,9 @@ $(document).ready(function () {
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The time that this notebook was executed is...
 Local time (PST, West Coast USA): 
-2020-09-28 18:40:58.445539
+2020-11-26 17:51:47.480246
 UTC time: 
-2020-09-29 01:40:58.445657
+2020-11-27 01:51:47.480470
 </pre>
 </div>
 </div>
@@ -14649,11 +14657,12 @@ UTC time:
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 9 BioThings objects returned for SARS:
+<pre>There are 10 BioThings objects returned for SARS:
 ChemicalSubstance, Anti-SARS-CoV-2 REGN-COV2, num of IDs: 1
 Disease, severe acute respiratory syndrome, num of IDs: 5
 Disease, COVID-19, num of IDs: 2
-Disease, SARS-CoV-2 Kawasaki-like syndrome, num of IDs: 1
+Disease, COVID-19–associated multisystem inflammatory syndrome in children, num of IDs: 2
+Disease, IMD74, num of IDs: 0
 MolecularActivity, selenocysteine-tRNA ligase activity, num of IDs: 2
 MolecularActivity, mRNA (guanine-N7-)-methyltransferase activity, num of IDs: 3
 MolecularActivity, 5&#39;-3&#39; RNA helicase activity, num of IDs: 2
@@ -14773,10 +14782,10 @@ MolecularActivity, RNA-directed 5&#39;-3&#39; RNA polymerase activity, num of ID
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>There are 5 BioThings objects returned for hereditary angioedema:
 Disease, hereditary angioedema, num of IDs: 5
-Disease, hereditary angioedema with c1Inh deficiency, num of IDs: 3
+Disease, hereditary angioedema with C1Inh deficiency, num of IDs: 3
 Disease, hereditary angioedema type 3, num of IDs: 5
-Disease, hereditary angioedema type 1, num of IDs: 3
 Disease, hereditary angioedema type 2, num of IDs: 3
+Disease, hereditary angioedema type 1, num of IDs: 3
 </pre>
 </div>
 </div>
@@ -14886,9 +14895,7 @@ Disease, hereditary angioedema type 2, num of IDs: 3
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 5 BioThings objects returned for icatibant:
-ChemicalSubstance, icatibant, num of IDs: 6
-ChemicalSubstance, icatibant acetate, num of IDs: 4
+<pre>There are 3 BioThings objects returned for icatibant:
 ChemicalSubstance, ICATIBANT, num of IDs: 12
 ChemicalSubstance, ICATIBANT ACETATE, num of IDs: 8
 ChemicalSubstance, icatibant, num of IDs: 2
@@ -14903,7 +14910,7 @@ ChemicalSubstance, icatibant, num of IDs: 2
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>All of these <code>ChemicalSubstance</code> entries seem to be the right object. We'll pick the <code>ChemicalSubstance</code> choice with the most identifiers (indexed at 2) for our query. We can look at identifier mappings inside this BioThings object.</p>
+<p>2020-11-26 update: Hint module results changed so the pick selection is changed. All of these <code>ChemicalSubstance</code> entries seem to be the right object. We'll pick the <code>ChemicalSubstance</code> choice with the most identifiers (the  first option, indexed at 0) for our query. We can look at identifier mappings inside this BioThings object.</p>
 
 </div>
 </div>
@@ -14915,7 +14922,7 @@ ChemicalSubstance, icatibant, num of IDs: 2
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user makes this choice, gives this input</span>
 <span class="n">drug_choice_type</span> <span class="o">=</span> <span class="s1">&#39;ChemicalSubstance&#39;</span>
-<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1">## icatibant: set as 2,3,4 works</span>
+<span class="n">drug_choice_idx</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">## icatibant: set as 2,3,4 works</span>
 
 <span class="n">drug_hint_obj</span> <span class="o">=</span> <span class="n">drug_hint</span><span class="p">[</span><span class="n">drug_choice_type</span><span class="p">][</span><span class="n">drug_choice_idx</span><span class="p">]</span>  
 <span class="n">drug_hint_obj</span>
@@ -14949,11 +14956,11 @@ ChemicalSubstance, icatibant, num of IDs: 2
  &#39;name&#39;: &#39;ICATIBANT&#39;,
  &#39;CAS&#39;: &#39;130308-48-4&#39;,
  &#39;IUPAC&#39;: &#39;(2S)-2-[[(2S,3aS,7aS)-1-[(3R)-2-[(2S)-2-[[(2S)-2-[[2-[[(2S,4R)-1-[(2S)-1-[(2S)-2-[[(2R)-2-amino-5-guanidino-pentanoyl]amino]-5-guanidino-pentanoyl]prolyl]-4-hydroxy-prolyl]amino]acetyl]amino]-3-(2-thienyl)propanoyl]amino]-3-hydroxy-propanoyl]-3,4-dihydro-1H-isoquinoline-3-carbonyl]-2,3,3a,4,5,6,7,7a-octahydroindole-2-carbonyl]amino]-5-guanidino-valeric acid&#39;,
- &#39;formula&#39;: &#39;C59H89N19O13S&#39;,
+ &#39;formula&#39;: &#39;(C2H4O2)n.C59H89N19O13S&#39;,
  &#39;primary&#39;: {&#39;identifier&#39;: &#39;CHEBI&#39;,
   &#39;cls&#39;: &#39;ChemicalSubstance&#39;,
   &#39;value&#39;: &#39;CHEBI:68556&#39;},
- &#39;display&#39;: &#39;CHEBI(CHEBI:68556) CHEMBL.COMPOUND(CHEMBL2028850) DRUGBANK(DB06196) PUBCHEM(6918173) MESH(C065679) UNII(325O8467XK) UMLS(C0246269) name(ICATIBANT) CAS(130308-48-4) IUPAC((2S)-2-[[(2S,3aS,7aS)-1-[(3R)-2-[(2S)-2-[[(2S)-2-[[2-[[(2S,4R)-1-[(2S)-1-[(2S)-2-[[(2R)-2-amino-5-guanidino-pentanoyl]amino]-5-guanidino-pentanoyl]prolyl]-4-hydroxy-prolyl]amino]acetyl]amino]-3-(2-thienyl)propanoyl]amino]-3-hydroxy-propanoyl]-3,4-dihydro-1H-isoquinoline-3-carbonyl]-2,3,3a,4,5,6,7,7a-octahydroindole-2-carbonyl]amino]-5-guanidino-valeric acid) formula(C59H89N19O13S)&#39;,
+ &#39;display&#39;: &#39;CHEBI(CHEBI:68556) CHEMBL.COMPOUND(CHEMBL2028850) DRUGBANK(DB06196) PUBCHEM(6918173) MESH(C065679) UNII(325O8467XK) UMLS(C0246269) name(ICATIBANT) CAS(130308-48-4) IUPAC((2S)-2-[[(2S,3aS,7aS)-1-[(3R)-2-[(2S)-2-[[(2S)-2-[[2-[[(2S,4R)-1-[(2S)-1-[(2S)-2-[[(2R)-2-amino-5-guanidino-pentanoyl]amino]-5-guanidino-pentanoyl]prolyl]-4-hydroxy-prolyl]amino]acetyl]amino]-3-(2-thienyl)propanoyl]amino]-3-hydroxy-propanoyl]-3,4-dihydro-1H-isoquinoline-3-carbonyl]-2,3,3a,4,5,6,7,7a-octahydroindole-2-carbonyl]amino]-5-guanidino-valeric acid) formula((C2H4O2)n.C59H89N19O13S)&#39;,
  &#39;type&#39;: &#39;ChemicalSubstance&#39;}</pre>
 </div>
 
@@ -15028,58 +15035,58 @@ Because severe acute respiratory syndrome is of type &#39;Disease&#39;, BTE will
 
 BTE found 3 apis:
 
-API 1. ontology_lookup_service(1 API call)
-API 2. semmed_disease(17 API calls)
-API 3. cord_disease(1 API call)
+API 1. semmed_disease(17 API calls)
+API 2. cord_disease(1 API call)
+API 3. ontology_lookup_service(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 3.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
-API 2.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
-API 2.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 2.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C1175175&amp;scopes=umls)
-API 2.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
-API 2.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
-API 2.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 2.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
-API 2.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C1175175&amp;scopes=umls)
-API 2.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C1175175&amp;scopes=umls)
-API 2.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
-API 1.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:2945
+API 1.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
+API 2.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
+API 1.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C1175175&amp;scopes=umls)
+API 1.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
+API 1.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C1175175&amp;scopes=umls)
+API 1.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 1.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C1175175&amp;scopes=umls)
+API 1.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
+API 1.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
+API 1.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 1.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
+API 1.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
+API 3.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:2945
 
 
 ==== Step #3: Output normalization ====
 
-API 2.1 semmed_disease: 16 hits
-API 2.2 semmed_disease: 42 hits
-API 2.3 semmed_disease: 12 hits
-API 2.4 semmed_disease: 165 hits
-API 3.1 cord_disease: 20 hits
-API 2.5 semmed_disease: 40 hits
-API 2.6 semmed_disease: No hits
-API 2.7 semmed_disease: No hits
-API 2.8 semmed_disease: No hits
-API 1.1 ontology_lookup_service: No hits
-API 2.9 semmed_disease: No hits
-API 2.10 semmed_disease: No hits
-API 2.11 semmed_disease: No hits
-API 2.12 semmed_disease: No hits
-API 2.13 semmed_disease: No hits
-API 2.14 semmed_disease: No hits
-API 2.15 semmed_disease: No hits
-API 2.16 semmed_disease: 34 hits
-API 2.17 semmed_disease: No hits
+API 1.1 semmed_disease: 16 hits
+API 1.2 semmed_disease: 42 hits
+API 1.3 semmed_disease: 12 hits
+API 1.4 semmed_disease: 165 hits
+API 2.1 cord_disease: 20 hits
+API 1.5 semmed_disease: 40 hits
+API 1.6 semmed_disease: No hits
+API 1.7 semmed_disease: No hits
+API 1.8 semmed_disease: No hits
+API 3.1 ontology_lookup_service: No hits
+API 1.9 semmed_disease: No hits
+API 1.10 semmed_disease: No hits
+API 1.11 semmed_disease: No hits
+API 1.12 semmed_disease: No hits
+API 1.13 semmed_disease: No hits
+API 1.14 semmed_disease: No hits
+API 1.15 semmed_disease: No hits
+API 1.16 semmed_disease: 34 hits
+API 1.17 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 257 unique objects.
+After id-to-object translation, BTE retrieved 255 unique objects.
 
 
 ==========
@@ -15092,40 +15099,45 @@ Because ICATIBANT is of type &#39;ChemicalSubstance&#39;, BTE will query our met
 
 BTE found 8 apis:
 
-API 1. cord_chemical(1 API call)
-API 2. scibite(1 API call)
-API 3. scigraph(1 API call)
-API 4. mychem(2 API calls)
-API 5. mydisease(1 API call)
+API 1. hmdb(2 API calls)
+API 2. mychem(2 API calls)
+API 3. scibite(2 API calls)
+API 4. mydisease(1 API call)
+API 5. cord_chemical(1 API call)
 API 6. semmed_chemical(14 API calls)
-API 7. hmdb(1 API call)
-API 8. pharos(1 API call)
+API 7. scigraph(2 API calls)
+API 8. pharos(2 API calls)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 6.4: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 5.1: https://mydisease.info/v1/query?fields=disgenet.xrefs.mesh&amp;size=250 (POST -d q=C065679&amp;scopes=ctd.chemical_related_to_disease.mesh_chemical_id)
-API 6.8: https://biothings.ncats.io/semmedchemical/query?fields=prevents (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 4.1: https://mydisease.info/v1/query?fields=disgenet.xrefs.mesh&amp;size=250 (POST -d q=C065679&amp;scopes=ctd.chemical_related_to_disease.mesh_chemical_id)
 API 6.3: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulated_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.13: https://biothings.ncats.io/semmedchemical/query?fields=produced_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.9: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.7: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 5.1: https://biothings.ncats.io/cord_chemical/query?fields=associated_with (POST -d q=CHEBI:68564,CHEBI:68556&amp;scopes=chebi)
 API 6.2: https://biothings.ncats.io/semmedchemical/query?fields=treats (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.13: https://biothings.ncats.io/semmedchemical/query?fields=produced_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.11: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.4: https://biothings.ncats.io/semmedchemical/query?fields=affects (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.1: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.6: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C0246269,C0082926&amp;scopes=umls)
 API 6.10: https://biothings.ncats.io/semmedchemical/query?fields=negatively_regulates (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.8: https://biothings.ncats.io/semmedchemical/query?fields=prevents (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.5: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulated_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
 API 6.14: https://biothings.ncats.io/semmedchemical/query?fields=causes (POST -d q=C0246269,C0082926&amp;scopes=umls)
 API 6.12: https://biothings.ncats.io/semmedchemical/query?fields=affected_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.1: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulates (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.11: https://biothings.ncats.io/semmedchemical/query?fields=physically_interacts_with (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.6: https://biothings.ncats.io/semmedchemical/query?fields=disrupts (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 6.5: https://biothings.ncats.io/semmedchemical/query?fields=positively_regulated_by (POST -d q=C0246269,C0082926&amp;scopes=umls)
-API 1.1: https://biothings.ncats.io/cord_chemical/query?fields=associated_with (POST -d q=CHEBI:68556&amp;scopes=chebi)
-API 7.1: https://automat.renci.org/pharos/chemical_substance/disease/CHEBI:68556
-API 7.1 pharos failed
-API 8.1: https://automat.renci.org/hmdb/chemical_substance/disease/CHEBI:68556
-API 2.1: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:68556
-API 3.1: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:68556
+API 6.9: https://biothings.ncats.io/semmedchemical/query?fields=related_to (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 6.7: https://biothings.ncats.io/semmedchemical/query?fields=coexists_with (POST -d q=C0246269,C0082926&amp;scopes=umls)
+API 8.2: https://automat.renci.org/pharos/chemical_substance/disease/CHEBI:68556
+API 8.2 pharos failed
+API 8.1: https://automat.renci.org/pharos/chemical_substance/disease/CHEBI:68564
+API 8.1 pharos failed
+API 7.1: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:68564
+API 3.1: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:68564
+API 1.1: https://automat.renci.org/hmdb/chemical_substance/disease/CHEBI:68564
+API 1.2: https://automat.renci.org/hmdb/chemical_substance/disease/CHEBI:68556
+API 3.2: https://automat.renci.org/cord19-scibite/chemical_substance/disease/CHEBI:68556
+API 7.2: https://automat.renci.org/cord19-scigraph/chemical_substance/disease/CHEBI:68556
 
 
 ==== Step #3: Output normalization ====
@@ -15135,7 +15147,8 @@ API 6.2 semmed_chemical: No hits
 API 6.3 semmed_chemical: No hits
 API 6.4 semmed_chemical: No hits
 API 6.5 semmed_chemical: No hits
-API 8.1 hmdb: No hits
+API 1.1 hmdb: No hits
+API 1.2 hmdb: No hits
 API 6.6 semmed_chemical: No hits
 API 6.7 semmed_chemical: No hits
 API 6.8 semmed_chemical: No hits
@@ -15144,13 +15157,15 @@ API 6.10 semmed_chemical: No hits
 API 6.11 semmed_chemical: No hits
 API 6.12 semmed_chemical: No hits
 API 6.13 semmed_chemical: No hits
-API 4.1 mychem: 1 hits
-API 2.1 scibite: 2 hits
-API 3.1 scigraph: 7 hits
-API 5.1 mydisease: No hits
-API 1.1 cord_chemical: 1 hits
+API 2.1 mychem: 1 hits
+API 3.1 scibite: No hits
+API 3.2 scibite: 2 hits
+API 7.1 scigraph: No hits
+API 7.2 scigraph: 7 hits
+API 4.1 mydisease: No hits
+API 5.1 cord_chemical: 1 hits
 API 6.14 semmed_chemical: No hits
-API 4.2 mychem: No hits
+API 2.2 mychem: No hits
 
 After id-to-object translation, BTE retrieved 9 unique objects.
 
@@ -15159,7 +15174,7 @@ After id-to-object translation, BTE retrieved 9 unique objects.
 ==========
 
 
-BTE found 5 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;ICATIBANT&#39;
+BTE found 3 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;ICATIBANT&#39;
 </pre>
 </div>
 </div>
@@ -15284,7 +15299,7 @@ There are 6 unique paths between SARS and icatibant.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15329,58 +15344,58 @@ Because severe acute respiratory syndrome is of type &#39;Disease&#39;, BTE will
 
 BTE found 3 apis:
 
-API 1. ontology_lookup_service(1 API call)
-API 2. semmed_disease(17 API calls)
-API 3. cord_disease(1 API call)
+API 1. semmed_disease(17 API calls)
+API 2. cord_disease(1 API call)
+API 3. ontology_lookup_service(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 2.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C1175175&amp;scopes=umls)
-API 2.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
-API 2.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
-API 2.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C1175175&amp;scopes=umls)
-API 2.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
-API 2.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
-API 2.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
-API 2.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
-API 2.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 2.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 2.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C1175175&amp;scopes=umls)
-API 3.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
-API 1.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:2945
+API 1.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C1175175&amp;scopes=umls)
+API 1.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 1.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 1.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
+API 1.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C1175175&amp;scopes=umls)
+API 1.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C1175175&amp;scopes=umls)
+API 1.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
+API 1.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C1175175&amp;scopes=umls)
+API 2.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
+API 1.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
+API 1.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
+API 1.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
+API 3.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:2945
 
 
 ==== Step #3: Output normalization ====
 
-API 2.1 semmed_disease: 16 hits
-API 2.2 semmed_disease: 42 hits
-API 2.3 semmed_disease: 12 hits
-API 2.4 semmed_disease: 165 hits
-API 3.1 cord_disease: 20 hits
-API 2.5 semmed_disease: 40 hits
-API 2.6 semmed_disease: No hits
-API 2.7 semmed_disease: No hits
-API 2.8 semmed_disease: No hits
-API 1.1 ontology_lookup_service: No hits
-API 2.9 semmed_disease: No hits
-API 2.10 semmed_disease: No hits
-API 2.11 semmed_disease: No hits
-API 2.12 semmed_disease: No hits
-API 2.13 semmed_disease: No hits
-API 2.14 semmed_disease: No hits
-API 2.15 semmed_disease: No hits
-API 2.16 semmed_disease: 34 hits
-API 2.17 semmed_disease: No hits
+API 1.1 semmed_disease: 16 hits
+API 1.2 semmed_disease: 42 hits
+API 1.3 semmed_disease: 12 hits
+API 1.4 semmed_disease: 165 hits
+API 2.1 cord_disease: 20 hits
+API 1.5 semmed_disease: 40 hits
+API 1.6 semmed_disease: No hits
+API 1.7 semmed_disease: No hits
+API 1.8 semmed_disease: No hits
+API 3.1 ontology_lookup_service: No hits
+API 1.9 semmed_disease: No hits
+API 1.10 semmed_disease: No hits
+API 1.11 semmed_disease: No hits
+API 1.12 semmed_disease: No hits
+API 1.13 semmed_disease: No hits
+API 1.14 semmed_disease: No hits
+API 1.15 semmed_disease: No hits
+API 1.16 semmed_disease: 34 hits
+API 1.17 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 257 unique objects.
+After id-to-object translation, BTE retrieved 255 unique objects.
 
 
 ==========
@@ -15393,65 +15408,65 @@ Because hereditary angioedema is of type &#39;Disease&#39;, BTE will query our m
 
 BTE found 3 apis:
 
-API 1. ontology_lookup_service(1 API call)
-API 2. semmed_disease(17 API calls)
-API 3. cord_disease(1 API call)
+API 1. semmed_disease(17 API calls)
+API 2. cord_disease(1 API call)
+API 3. ontology_lookup_service(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 3.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
-API 2.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 2.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:14735
+API 1.16: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 2.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
+API 1.11: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.8: https://biothings.ncats.io/semmed/query?fields=prevents (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.13: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.5: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.17: https://biothings.ncats.io/semmed/query?fields=treats (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.6: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.7: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.9: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.10: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.14: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.12: https://biothings.ncats.io/semmed/query?fields=disrupts (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.1: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.2: https://biothings.ncats.io/semmed/query?fields=causes (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.15: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.3: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 1.4: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 3.1: https://www.ebi.ac.uk/ols/api/ontologies/doid/children?id=DOID:14735
 
 
 ==== Step #3: Output normalization ====
 
-API 2.1 semmed_disease: 2 hits
-API 2.2 semmed_disease: 30 hits
-API 2.3 semmed_disease: 13 hits
-API 2.4 semmed_disease: 76 hits
-API 3.1 cord_disease: 2 hits
-API 2.5 semmed_disease: 13 hits
-API 2.6 semmed_disease: No hits
-API 2.7 semmed_disease: No hits
-API 2.8 semmed_disease: No hits
-API 1.1 ontology_lookup_service: No hits
-API 2.9 semmed_disease: No hits
-API 2.10 semmed_disease: No hits
-API 2.11 semmed_disease: No hits
-API 2.12 semmed_disease: No hits
-API 2.13 semmed_disease: No hits
-API 2.14 semmed_disease: No hits
-API 2.15 semmed_disease: No hits
-API 2.16 semmed_disease: 4 hits
-API 2.17 semmed_disease: No hits
+API 1.1 semmed_disease: 2 hits
+API 1.2 semmed_disease: 30 hits
+API 1.3 semmed_disease: 13 hits
+API 1.4 semmed_disease: 76 hits
+API 2.1 cord_disease: 2 hits
+API 1.5 semmed_disease: 13 hits
+API 1.6 semmed_disease: No hits
+API 1.7 semmed_disease: No hits
+API 1.8 semmed_disease: No hits
+API 3.1 ontology_lookup_service: No hits
+API 1.9 semmed_disease: No hits
+API 1.10 semmed_disease: No hits
+API 1.11 semmed_disease: No hits
+API 1.12 semmed_disease: No hits
+API 1.13 semmed_disease: No hits
+API 1.14 semmed_disease: No hits
+API 1.15 semmed_disease: No hits
+API 1.16 semmed_disease: 4 hits
+API 1.17 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 113 unique objects.
+After id-to-object translation, BTE retrieved 112 unique objects.
 
 ==========
 ========== Final assembly of results ==========
 ==========
 
 
-BTE found 26 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;hereditary angioedema&#39;
+BTE found 24 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;hereditary angioedema&#39;
 </pre>
 </div>
 </div>
@@ -15543,7 +15558,7 @@ There are 65 unique paths between SARS and hereditary angioedema.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15588,69 +15603,69 @@ Because severe acute respiratory syndrome is of type &#39;Disease&#39;, BTE will
 
 BTE found 8 apis:
 
-API 1. semmed_disease(15 API calls)
-API 2. scibite(1 API call)
-API 3. scigraph(1 API call)
-API 4. mychem(2 API calls)
-API 5. cord_disease(1 API call)
-API 6. mydisease(1 API call)
-API 7. hmdb(1 API call)
+API 1. hmdb(1 API call)
+API 2. mychem(2 API calls)
+API 3. scibite(1 API call)
+API 4. semmed_disease(15 API calls)
+API 5. mydisease(1 API call)
+API 6. cord_disease(1 API call)
+API 7. scigraph(1 API call)
 API 8. pharos(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 6.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D045169&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
-API 1.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
-API 1.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 1.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=C1175175&amp;scopes=umls)
-API 1.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
-API 1.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
-API 1.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C1175175&amp;scopes=umls)
-API 5.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
-API 1.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
-API 1.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
-API 1.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
-API 7.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0005091
-API 7.1 pharos failed
-API 3.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0005091
-API 2.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0005091
-API 8.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0005091
+API 5.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D045169&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
+API 4.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C1175175&amp;scopes=umls)
+API 4.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C1175175&amp;scopes=umls)
+API 4.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C1175175&amp;scopes=umls)
+API 4.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 4.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C1175175&amp;scopes=umls)
+API 4.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C1175175&amp;scopes=umls)
+API 4.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=C1175175&amp;scopes=umls)
+API 6.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:2945&amp;scopes=doid)
+API 4.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C1175175&amp;scopes=umls)
+API 4.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C1175175&amp;scopes=umls)
+API 8.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0005091
+API 8.1 pharos failed
+API 1.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0005091
+API 3.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0005091
+API 7.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0005091
 
 
 ==== Step #3: Output normalization ====
 
-API 4.1 mychem: No hits
-API 8.1 hmdb: No hits
-API 1.1 semmed_disease: No hits
-API 1.2 semmed_disease: 14 hits
-API 4.2 mychem: No hits
-API 1.3 semmed_disease: No hits
-API 5.1 cord_disease: 45 hits
-API 3.1 scigraph: 42 hits
-API 1.4 semmed_disease: 11 hits
-API 1.5 semmed_disease: No hits
-API 2.1 scibite: 50 hits
-API 1.6 semmed_disease: 20 hits
-API 1.7 semmed_disease: No hits
-API 1.8 semmed_disease: 69 hits
-API 1.9 semmed_disease: 28 hits
-API 1.10 semmed_disease: No hits
-API 1.11 semmed_disease: No hits
-API 1.12 semmed_disease: 19 hits
-API 1.13 semmed_disease: No hits
-API 1.14 semmed_disease: No hits
-API 6.1 mydisease: 60 hits
-API 1.15 semmed_disease: No hits
+API 2.1 mychem: No hits
+API 1.1 hmdb: No hits
+API 4.1 semmed_disease: No hits
+API 4.2 semmed_disease: 14 hits
+API 2.2 mychem: No hits
+API 4.3 semmed_disease: No hits
+API 6.1 cord_disease: 45 hits
+API 7.1 scigraph: 42 hits
+API 4.4 semmed_disease: 11 hits
+API 4.5 semmed_disease: No hits
+API 3.1 scibite: 50 hits
+API 4.6 semmed_disease: 20 hits
+API 4.7 semmed_disease: No hits
+API 4.8 semmed_disease: 69 hits
+API 4.9 semmed_disease: 28 hits
+API 4.10 semmed_disease: No hits
+API 4.11 semmed_disease: No hits
+API 4.12 semmed_disease: 19 hits
+API 4.13 semmed_disease: No hits
+API 4.14 semmed_disease: No hits
+API 5.1 mydisease: 35 hits
+API 4.15 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 275 unique objects.
+After id-to-object translation, BTE retrieved 266 unique objects.
 
 
 ==========
@@ -15663,76 +15678,76 @@ Because hereditary angioedema is of type &#39;Disease&#39;, BTE will query our m
 
 BTE found 8 apis:
 
-API 1. semmed_disease(15 API calls)
-API 2. scibite(1 API call)
-API 3. scigraph(1 API call)
-API 4. mychem(2 API calls)
-API 5. cord_disease(1 API call)
-API 6. mydisease(1 API call)
-API 7. hmdb(1 API call)
+API 1. hmdb(1 API call)
+API 2. mychem(2 API calls)
+API 3. scibite(1 API call)
+API 4. semmed_disease(15 API calls)
+API 5. mydisease(1 API call)
+API 6. cord_disease(1 API call)
+API 7. scigraph(1 API call)
 API 8. pharos(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 6.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D054179&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
-API 1.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 5.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
-API 1.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 7.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0019623
-API 7.1 pharos failed
-API 8.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0019623
-API 2.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0019623
-API 3.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0019623
+API 5.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D054179&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
+API 4.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 6.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
+API 4.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 8.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0019623
+API 8.1 pharos failed
+API 3.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0019623
+API 1.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0019623
+API 7.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0019623
 
 
 ==== Step #3: Output normalization ====
 
-API 4.1 mychem: 17 hits
-API 8.1 hmdb: No hits
-API 1.1 semmed_disease: No hits
-API 1.2 semmed_disease: No hits
-API 4.2 mychem: 2 hits
-API 1.3 semmed_disease: No hits
-API 5.1 cord_disease: 2 hits
-API 3.1 scigraph: 17 hits
-API 1.4 semmed_disease: No hits
-API 1.5 semmed_disease: No hits
-API 2.1 scibite: 4 hits
-API 1.6 semmed_disease: 4 hits
-API 1.7 semmed_disease: No hits
-API 1.8 semmed_disease: 37 hits
-API 1.9 semmed_disease: 12 hits
-API 1.10 semmed_disease: No hits
-API 1.11 semmed_disease: No hits
-API 1.12 semmed_disease: 5 hits
-API 1.13 semmed_disease: No hits
-API 1.14 semmed_disease: No hits
-API 6.1 mydisease: 6 hits
-API 1.15 semmed_disease: No hits
+API 2.1 mychem: 17 hits
+API 1.1 hmdb: No hits
+API 4.1 semmed_disease: No hits
+API 4.2 semmed_disease: No hits
+API 2.2 mychem: 2 hits
+API 4.3 semmed_disease: No hits
+API 6.1 cord_disease: 2 hits
+API 7.1 scigraph: 17 hits
+API 4.4 semmed_disease: No hits
+API 4.5 semmed_disease: No hits
+API 3.1 scibite: 4 hits
+API 4.6 semmed_disease: 4 hits
+API 4.7 semmed_disease: No hits
+API 4.8 semmed_disease: 37 hits
+API 4.9 semmed_disease: 12 hits
+API 4.10 semmed_disease: No hits
+API 4.11 semmed_disease: No hits
+API 4.12 semmed_disease: 5 hits
+API 4.13 semmed_disease: No hits
+API 4.14 semmed_disease: No hits
+API 5.1 mydisease: 4 hits
+API 4.15 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 89 unique objects.
+After id-to-object translation, BTE retrieved 86 unique objects.
 
 ==========
 ========== Final assembly of results ==========
 ==========
 
 
-BTE found 14 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;hereditary angioedema&#39;
+BTE found 11 unique intermediate nodes connecting &#39;severe acute respiratory syndrome&#39; and &#39;hereditary angioedema&#39;
 </pre>
 </div>
 </div>
@@ -15743,7 +15758,7 @@ BTE found 14 unique intermediate nodes connecting &#39;severe acute respiratory 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q3_r_paths_table</span> <span class="o">=</span> <span class="n">q3</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
@@ -15768,7 +15783,7 @@ BTE found 14 unique intermediate nodes connecting &#39;severe acute respiratory 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## show number of unique intermediate nodes</span>
@@ -15794,8 +15809,8 @@ BTE found 14 unique intermediate nodes connecting &#39;severe acute respiratory 
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>There are 12 unique ChemicalSubstances linked to both SARS and hereditary angioedema.
-There are 38 unique paths between SARS and hereditary angioedema.
+<pre>There are 11 unique ChemicalSubstances linked to both SARS and hereditary angioedema.
+There are 26 unique paths between SARS and hereditary angioedema.
 </pre>
 </div>
 </div>
@@ -15806,7 +15821,7 @@ There are 38 unique paths between SARS and hereditary angioedema.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q3_r_paths_table</span><span class="p">[</span><span class="s1">&#39;node1_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -15822,7 +15837,7 @@ There are 38 unique paths between SARS and hereditary angioedema.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[24]:</div>
+    <div class="prompt output_prompt">Out[22]:</div>
 
 
 
@@ -15831,7 +15846,7 @@ There are 38 unique paths between SARS and hereditary angioedema.
 <pre>array([&#39;C0243077&#39;, &#39;C0450442&#39;, &#39;C0544357&#39;, &#39;C1611640&#39;, &#39;CHEBI:35222&#39;,
        &#39;CHEBI:48433&#39;, &#39;PHARMACEUTICAL PREPARATIONS&#39;,
        &#39;INHIBITOR, PROTEASE&#39;, &#39;ADSORBED HEPATITIS B VACCINE&#39;, &#39;ESTROGEN&#39;,
-       &#39;ANIONIC TRNA POLYMER&#39;, &#39;ZINC&#39;], dtype=object)</pre>
+       &#39;ANIONIC TRNA POLYMER&#39;], dtype=object)</pre>
 </div>
 
 </div>
@@ -15860,7 +15875,7 @@ There are 38 unique paths between SARS and hereditary angioedema.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1">## the human user gives this input</span>
@@ -15890,7 +15905,7 @@ There are 38 unique paths between SARS and hereditary angioedema.
 ========== QUERY PARAMETER SUMMARY ==========
 ==========
 
-BTE will find paths that join &#39;hereditary angioedema&#39; and &#39;ChemicalSubstance&#39;.                   Paths will have 0 intermediate node.
+BTE will find paths that join &#39;hereditary angioedema&#39; and &#39;ChemicalSubstance&#39;. Paths will have 0 intermediate node.
 
 
 
@@ -15903,76 +15918,76 @@ Because hereditary angioedema is of type &#39;Disease&#39;, BTE will query our m
 
 BTE found 8 apis:
 
-API 1. semmed_disease(15 API calls)
-API 2. scibite(1 API call)
-API 3. scigraph(1 API call)
-API 4. mychem(2 API calls)
-API 5. cord_disease(1 API call)
-API 6. mydisease(1 API call)
-API 7. hmdb(1 API call)
+API 1. hmdb(1 API call)
+API 2. mychem(2 API calls)
+API 3. scibite(1 API call)
+API 4. semmed_disease(15 API calls)
+API 5. mydisease(1 API call)
+API 6. cord_disease(1 API call)
+API 7. scigraph(1 API call)
 API 8. pharos(1 API call)
 
 
 ==== Step #2: Query path execution ====
 NOTE: API requests are dispatched in parallel, so the list of APIs below is ordered by query time.
 
-API 6.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D054179&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
-API 1.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 5.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
-API 1.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 1.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=C0019243,CN239191&amp;scopes=umls)
-API 7.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0019623
-API 7.1 pharos failed
-API 3.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0019623
-API 8.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0019623
-API 2.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0019623
+API 5.1: https://mydisease.info/v1/query?fields=ctd.chemical_related_to_disease (POST -d q=D054179&amp;scopes=mondo.xrefs.mesh, disgenet.xrefs.mesh)
+API 4.15: https://biothings.ncats.io/semmed/query?fields=positively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.3: https://biothings.ncats.io/semmed/query?fields=coexists_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.10: https://biothings.ncats.io/semmed/query?fields=affects (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.1: https://biothings.ncats.io/semmed/query?fields=physically_interacts_with (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.5: https://biothings.ncats.io/semmed/query?fields=derives_from (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 6.1: https://biothings.ncats.io/cord_disease/query?fields=associated_with (POST -d q=DOID:14735&amp;scopes=doid)
+API 4.4: https://biothings.ncats.io/semmed/query?fields=prevented_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.14: https://biothings.ncats.io/semmed/query?fields=negatively_regulated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.9: https://biothings.ncats.io/semmed/query?fields=related_to (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.11: https://biothings.ncats.io/semmed/query?fields=positively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.13: https://biothings.ncats.io/semmed/query?fields=derives_info (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.6: https://biothings.ncats.io/semmed/query?fields=caused_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.7: https://biothings.ncats.io/semmed/query?fields=negatively_regulates (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.12: https://biothings.ncats.io/semmed/query?fields=affected_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.8: https://biothings.ncats.io/semmed/query?fields=treated_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 4.2: https://biothings.ncats.io/semmed/query?fields=disrupted_by (POST -d q=CN239191,C0019243&amp;scopes=umls)
+API 8.1: https://automat.renci.org/pharos/disease/chemical_substance/MONDO:0019623
+API 8.1 pharos failed
+API 1.1: https://automat.renci.org/hmdb/disease/chemical_substance/MONDO:0019623
+API 3.1: https://automat.renci.org/cord19-scibite/disease/chemical_substance/MONDO:0019623
+API 7.1: https://automat.renci.org/cord19-scigraph/disease/chemical_substance/MONDO:0019623
 
 
 ==== Step #3: Output normalization ====
 
-API 4.1 mychem: 17 hits
-API 8.1 hmdb: No hits
-API 1.1 semmed_disease: No hits
-API 1.2 semmed_disease: No hits
-API 4.2 mychem: 2 hits
-API 1.3 semmed_disease: No hits
-API 5.1 cord_disease: 2 hits
-API 3.1 scigraph: 17 hits
-API 1.4 semmed_disease: No hits
-API 1.5 semmed_disease: No hits
-API 2.1 scibite: 4 hits
-API 1.6 semmed_disease: 4 hits
-API 1.7 semmed_disease: No hits
-API 1.8 semmed_disease: 37 hits
-API 1.9 semmed_disease: 12 hits
-API 1.10 semmed_disease: No hits
-API 1.11 semmed_disease: No hits
-API 1.12 semmed_disease: 5 hits
-API 1.13 semmed_disease: No hits
-API 1.14 semmed_disease: No hits
-API 6.1 mydisease: 6 hits
-API 1.15 semmed_disease: No hits
+API 2.1 mychem: 17 hits
+API 1.1 hmdb: No hits
+API 4.1 semmed_disease: No hits
+API 4.2 semmed_disease: No hits
+API 2.2 mychem: 2 hits
+API 4.3 semmed_disease: No hits
+API 6.1 cord_disease: 2 hits
+API 7.1 scigraph: 17 hits
+API 4.4 semmed_disease: No hits
+API 4.5 semmed_disease: No hits
+API 3.1 scibite: 4 hits
+API 4.6 semmed_disease: 4 hits
+API 4.7 semmed_disease: No hits
+API 4.8 semmed_disease: 37 hits
+API 4.9 semmed_disease: 12 hits
+API 4.10 semmed_disease: No hits
+API 4.11 semmed_disease: No hits
+API 4.12 semmed_disease: 5 hits
+API 4.13 semmed_disease: No hits
+API 4.14 semmed_disease: No hits
+API 5.1 mydisease: 4 hits
+API 4.15 semmed_disease: No hits
 
-After id-to-object translation, BTE retrieved 89 unique objects.
+After id-to-object translation, BTE retrieved 86 unique objects.
 
 ==========
 ========== Final assembly of results ==========
 ==========
 
 
-In the #1 query, BTE found 89 unique ChemicalSubstance nodes
+In the #1 query, BTE found 86 unique ChemicalSubstance nodes
 </pre>
 </div>
 </div>
@@ -15983,7 +15998,7 @@ In the #1 query, BTE found 89 unique ChemicalSubstance nodes
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q4_r_paths_table</span> <span class="o">=</span> <span class="n">q4</span><span class="o">.</span><span class="n">display_table_view</span><span class="p">()</span>
@@ -16001,7 +16016,7 @@ In the #1 query, BTE found 89 unique ChemicalSubstance nodes
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">q4_r_paths_table</span><span class="p">[</span><span class="s1">&#39;output_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
@@ -16017,7 +16032,7 @@ In the #1 query, BTE found 89 unique ChemicalSubstance nodes
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[27]:</div>
+    <div class="prompt output_prompt">Out[25]:</div>
 
 
 
@@ -16025,52 +16040,68 @@ In the #1 query, BTE found 89 unique ChemicalSubstance nodes
 <div class="output_text output_subarea output_execute_result">
 <pre>array([&#39;C0243076&#39;, &#39;C0243077&#39;, &#39;C0351241&#39;, &#39;C0450442&#39;, &#39;C0544357&#39;,
        &#39;C0596537&#39;, &#39;C0597512&#39;, &#39;C1611640&#39;, &#39;C1305959&#39;, &#39;CHEBI:35222&#39;,
-       &#39;CHEBI:17891&#39;, &#39;CHEBI:64926&#39;, &#39;CHEBI:48705&#39;, &#39;CHEBI:48706&#39;,
-       &#39;CHEBI:24505&#39;, &#39;CHEBI:33697&#39;, &#39;CHEBI:8583&#39;, &#39;CHEBI:36080&#39;,
-       &#39;CHEBI:37958&#39;, &#39;CHEBI:48433&#39;,
+       &#39;CHEBI:48433&#39;, &#39;CHEBI:8583&#39;, &#39;CHEBI:48705&#39;, &#39;CHEBI:48706&#39;,
+       &#39;CHEBI:37958&#39;, &#39;CHEBI:64926&#39;, &#39;CHEBI:33697&#39;, &#39;CHEBI:17891&#39;,
+       &#39;CHEBI:36080&#39;, &#39;CHEBI:24505&#39;,
        &#39;(S)-1-(N(2)-(1-CARBOXY-3-PHENYLPROPYL)-L-LYSYL)-L-PROLINE&#39;,
+       &#39;(3S)-2-{N-[(2S)-1-ETHOXYCARBONYL-4-PHENYLBUTAN-2-YL]-L-ALANYL}-1,2,3,4-TETRAHYDROISOQUINOLINE-3-CARBOXYLIC ACID&#39;,
        &#39;(2S-(1(R*(R*)),2ALPHA,3ABETA,6ABETA))-1-(2-((1-(ETHOXYCARBONYL)-3-PHENYLPROPYL)AMINO)-1-OXOPROPYL)OCTAHYDROCYCLOPENTA(B)PYRROLE-2-CARBOXYLIC ACID&#39;,
-       &#39;ACCUPRIN&#39;, &#39;ENALAPRIL ACID&#39;, &#39;(-)-CAPTOPRIL&#39;,
+       &#39;(-)-CAPTOPRIL&#39;, &#39;ENALAPRIL ACID&#39;,
        &#39;(S)-1-(N-(1-(ETHOXYCARBONYL)-3-PHENYLPROPYL)-L-ALANYL)-L-PROLINE&#39;,
-       &#39;(7E,9E,11E,13Z)-RETINOIC ACID&#39;, &#39;(+/-)-VERAPAMIL&#39;, &#39;BENAZEPRIL&#39;,
-       &#39;(+/-)-FELODIPINE&#39;,
+       &#39;(7E,9E,11E,13Z)-RETINOIC ACID&#39;, &#39;(+/-)-VERAPAMIL&#39;,
+       &#39;1H-1-BENZAZEPINE-1-ACETIC ACID, 3-((1-(ETHOXYCARBONYL)-3-PHENYLPROPYL)AMINO)-2,3,4,5-TETRAHYDRO-2-OXO-, (S-(R*,R*))-&#39;,
        &#39;6-CHLORO-1,1-DIOXO-1,2-DIHYDRO-1LAMBDA*6*-BENZO[1,2,4]THIADIAZINE-7-SULFONIC ACID AMIDE&#39;,
+       &#39;(+-)-ETHYL METHYL 4-(2,3-DICHLOROPHENYL)-1,4-DIHYDRO-2,6-DIMETHYL-3,5-PYRIDINEDICARBOXYLATE&#39;,
        &#39;ACECOR&#39;,
        &#39;(+)-CIS-5-[2-(DIMETHYLAMINO)ETHYL]-2,3-DIHYDRO-3-HYDROXY-2-(P-METHOXYPHENYL)-1,5-BENZOTHIAZEPIN-4(5H)-ONE ACETATE ESTER&#39;,
-       &#39;GOPTEN&#39;,
+       &#39;GOPTEN&#39;, &#39;APO-HYDRO&#39;,
        &#39;(RS)-3-ETHYL 5-METHYL 2-[(2-AMINOETHOXY)METHYL]-4-(2-CHLOROPHENYL)-6-METHYL-1,4-DIHYDROPYRIDINE-3,5-DICARBOXYLATE&#39;,
        &#39;(2S,3AS,7AS)-1-[(2S)-2-{[(2S)-1-ETHOXY-1-OXOPENTAN-2-YL]AMINO}PROPANOYL]OCTAHYDRO-1H-INDOLE-2-CARBOXYLIC ACID&#39;,
-       &#39;APO-HYDRO&#39;, &#39;ANDROSTANAZOL&#39;, &#39;FIRAZYR&#39;, &#39;AGENTS, ALKYLATING&#39;,
-       &#39;ANDROGENS&#39;, &#39;ANGIOTENSIN CONVERTING ENZYME INHIBITORS&#39;,
-       &#39;ANTICOAGULANT&#39;, &#39;AGENTS, ANTIFIBRINOLYTIC&#39;,
+       &#39;ANDROSTANAZOL&#39;,
+       &#39;(R)-ARGINYL-(S)-ARGINYL-()-PROLYL-(2S,4R)-(4-HYDROXYPROLYL)GLYCYL-(S)-(3-(2-THIENYL)ALANYL)-(S)-SERYL-(R)-((1,2,3,4-TETRAHYDRO-3-ISOQUINOLYL)CARBONYL)-(2S,3AS,7AS)-((HEXAHYDRO-2-INDOLINYL)CARBONYL)-(S)-ARGININE ACETATE&#39;,
+       &#39;AGENTS, ALKYLATING&#39;, &#39;ANDROGENS&#39;,
+       &#39;ANGIOTENSIN CONVERTING ENZYME INHIBITORS&#39;, &#39;ANTICOAGULANT&#39;,
+       &#39;AGENTS, ANTIFIBRINOLYTIC&#39;,
        &#39;1-(DIPHENYLMETHYL)-4-(3-PHENYL-2-PROPENYL)PIPERAZINE&#39;,
        &#39;AGENTS, CONTRACEPTIVE&#39;, &#39;CHRONOGYN&#39;,
        &#39;3-BETA-HYDROXY-5-ANDROSTEN-17-ONE&#39;, &#39;PHARMACEUTICAL PREPARATIONS&#39;,
-       &#39;DRUGS, INVESTIGATIONAL NEW&#39;, &#39;DRUG, ORPHAN&#39;, &#39;(-)-ADRENALINE&#39;,
-       &#39;AGENTS, IMMUNOSUPPRESSIVE&#39;, &#39;DEHYDROMETHYLTESTOSTERONE&#39;,
-       &#39;17-BETA-HYDROXY-17-METHYLANDROST-4-EN-3-ONE&#39;, &#39;ANAVAR&#39;,
+       &#39;DRUGS, INVESTIGATIONAL NEW&#39;, &#39;DRUG, ORPHAN&#39;,
+       &#39;(-)-(R)-EPINEPHRINE&#39;, &#39;AGENTS, IMMUNOSUPPRESSIVE&#39;,
+       &#39;DEHYDROMETHYLTESTOSTERONE&#39;,
+       &#39;17(ALPHA)-METHYL-DELTA(4)-ANDROSTEN-17(BETA)-OL-3-ONE&#39;, &#39;ANAVAR&#39;,
        &#39;INHIBITORS, PLATELET&#39;, &#39;PROGESTIN&#39;, &#39;INHIBITOR, PROTEASE&#39;,
        &#39;309 FOURNEAU&#39;,
        &#39;(Z)-2-(4-(1,2-DIPHENYL-1-BUTENYL)PHENOXY)-N,N-DIMETHYLETHANAMINE&#39;,
        &#39;HORMONES&#39;, &#39;ACIDE TRANÉXAMIQUE&#39;,
        &#39;PROTHROMBIN COMPLEX CONCENTRATES&#39;,
-       &#39;17-HYDROXY-7ALPHA-METHYL-19-NOR-17ALPHA-PREGN-5(10)-EN-20-YN-3-ONE&#39;,
+       &#39;(17R)-17-HYDROXY-7ALPHA-METHYL-19-NORPREGN-5(10)-EN-20-YN-3-ONE&#39;,
        &#39;FRAXIPARIN&#39;, &#39;DANOCRINE&#39;, &#39;ADSORBED HEPATITIS B VACCINE&#39;,
        &#39;NORGESTRIENONE&#39;, &#39;(S)-4-PREGNENE-3,20-DIONE&#39;,
        &#39;GONADAL STEROID HORMONES&#39;, &#39;INDIUM ARSENIDE&#39;,
        &#39;ANDROGENS, SYNTHETIC&#39;, &#39;ESTROGEN&#39;, &#39;ANIONIC TRNA POLYMER&#39;,
-       &#39;ARG-PRO-PRO-GLY-PHE-SER-PRO-PHE-ARG&#39;, &#39;COLLAGEN&#39;,
-       &#39;ARDEPARIN SODIUM&#39;,
-       &#39;1-CYCLOPROPYL-6-FLUORO-1,4-DIHYDRO-4-OXO-7-(1-PIPERAZINYL)-3-QUINOLINECARBOXYLIC ACID&#39;,
+       &#39;ARG-PRO-PRO-GLY-PHE-SER-PRO-PHE-ARG&#39;, &#39;ASMANEX&#39;,
+       &#39;ARDEPARIN SODIUM&#39;, &#39;20CA&#39;,
        &#39;2-(4-(AMINOIMINOMETHYL)PHENYL)-1H-INDOLE-6-CARBOXIMIDAMIDE&#39;,
-       &#39;ASMANEX&#39;, &#39;CA(0)&#39;, &#39;DX-88&#39;,
-       &#39;D-ARGINYL-L-ARGINYL-L-PROLYL-TRANS-4-HYDROXY-L-PROLYLGLYCYL-3-(2-THIENYL)-L-ALANYL-L-SERYL-D-1,2,3,4-TETRAHYDRO-3-ISOQUINOLINECARBONYL-L-(2ALPHA,3ABETA,7ABETA)-OCTAHYDRO-1H-INDOLE-2-CARBONYL-L-ARGININE&#39;,
-       &#39;(+)-Α-TOCOPHEROL&#39;, &#39;2-METHYL-1,4-NAPHTHALENEDIONE&#39;, &#39;MS 54&#39;,
-       &#39;AZIDOTHYMIDINE&#39;, &#39;ZINC&#39;], dtype=object)</pre>
+       &#39;1-CYCLOPROPYL-6-FLUORO-1,4-DIHYDRO-4-OXO-7-(1-PIPERAZINYL)-3-QUINOLINECARBOXYLIC ACID&#39;,
+       &#39;COLLAGEN&#39;, &#39;DX-88&#39;, &#39;MS 54&#39;, &#39;AZIDOTHYMIDINE&#39;, &#39;30ZN&#39;],
+      dtype=object)</pre>
 </div>
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
 </div>
 </div>
 
